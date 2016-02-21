@@ -18,8 +18,8 @@
  */
 package vs.debug;
 
-import jpl.Atom;
-import jpl.Query;
+import org.jpl7.Atom;
+import org.jpl7.Query;
 import junit.framework.TestCase;
 
 public class PrologKBTest extends TestCase {

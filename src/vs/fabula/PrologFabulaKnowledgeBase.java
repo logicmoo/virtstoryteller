@@ -20,7 +20,7 @@ package vs.fabula;
 
 import java.io.File;
 
-import jpl.Atom;
+import org.jpl7.Atom;
 import vs.knowledge.PrologKB;
 
 public class PrologFabulaKnowledgeBase extends FabulaKnowledgeBase {

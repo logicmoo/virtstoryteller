@@ -19,9 +19,11 @@
 package vs.rationalagent.ui;
 
 import java.util.Hashtable;
+import java.util.Map;
 
-import jpl.PrologException;
-import jpl.Query;
+import org.jpl7.PrologException;
+import org.jpl7.Query;
+
 import vs.rationalagent.RationalAgent;
 import vs.rationalagent.behaviour.AnswerQueryBehaviour;
 
@@ -48,7 +50,7 @@ public class PrologCommand extends Command
 			try {
 				Query q = new Query(prologCommand);
 				
-				Hashtable[] answers = q.allSolutions();
+				Map[] answers = q.allSolutions();
 				m_Agent.addBehaviour( new AnswerQueryBehaviour(m_Agent, answers, m_AgentGui ));
 				m_AgentGui.writeConsole(answers.length + " answers.");
 			} catch(PrologException pe) {

@@ -21,6 +21,7 @@ package vs.rationalagent.behaviour;
 import jade.core.behaviours.OneShotBehaviour;
 
 import java.util.Hashtable;
+import java.util.Map;
 
 import vs.rationalagent.RationalAgent;
 import vs.rationalagent.ui.RationalAgentGui;
@@ -38,7 +39,7 @@ public class AnswerQueryBehaviour extends OneShotBehaviour
 	private static final long serialVersionUID = 1536550106438684912L;
 	//private RDFReasoningContext		m_context;
 	private RationalAgentGui		m_gui;
-	private Hashtable[] m_answers;
+	private Map[] m_answers;
 
 	/////////////////////////////////////////////
 	// CONSTRUCTORS AND INSTANTIATION
@@ -59,12 +60,20 @@ public class AnswerQueryBehaviour extends OneShotBehaviour
 	// ACTION AND DONE
 	/////////////////////////////////////////////
 
+	public AnswerQueryBehaviour(RationalAgent m_Agent, Map[] answers,
+			RationalAgentGui m_AgentGui) {
+		super(m_Agent);
+		//m_context = ra.knowledge().context();
+		m_answers = answers;
+		m_gui = m_AgentGui;
+	}
+
 	@Override
 	public void action()
 	{
 		if ( m_answers != null ) {
 			int idx = 1;
-			for (Hashtable bindings: m_answers) {
+			for (Map bindings: m_answers) {
 				if ( !bindings.isEmpty() ) {
 					m_gui.writeConsole( "Answer #" + idx + ":" );
 					idx++;
@@ -89,6 +98,11 @@ public class AnswerQueryBehaviour extends OneShotBehaviour
 	// METHODS
 	/////////////////////////////////////////////
 	
+	protected void displayAnswer(Map bindings) {
+		m_gui.writeConsole(bindings.toString());
+		
+	}
+
 	protected void displayAnswer( Hashtable bindings )
 	{
 		m_gui.writeConsole(bindings.toString());

@@ -37,7 +37,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import jpl.Query;
+import org.jpl7.Query;
 import vs.Config;
 import vs.StoryDomain;
 import vs.characteragent.BasicCharacterAgent;

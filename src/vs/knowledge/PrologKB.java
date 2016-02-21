@@ -20,7 +20,6 @@ package vs.knowledge;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,13 +27,14 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import jpl.Atom;
-import jpl.Compound;
-import jpl.JPLException;
-import jpl.Query;
-import jpl.Term;
-import jpl.Util;
-import jpl.Variable;
+import org.jpl7.Atom;
+import org.jpl7.Compound;
+import org.jpl7.JPLException;
+import org.jpl7.Query;
+import org.jpl7.Term;
+import org.jpl7.Util;
+import org.jpl7.Variable;
+
 import vs.communication.GoalSchema;
 import vs.communication.Operator;
 import vs.communication.RDFtriple;
@@ -393,7 +393,7 @@ public class PrologKB {
 		
 		// Retrieve results
 		Vector<RDFtriple> returnList = new Vector<RDFtriple>();
-		for (Hashtable binding: q.allSolutions()) {
+		for (Map<String, Term> binding: q.allSolutions()) {
 			String t = binding.get("T").toString();
 			String s = binding.get("S").toString();
 			String p = binding.get("P").toString();
@@ -521,7 +521,7 @@ public class PrologKB {
 	 */
 	public Vector<String> getAllResults(Query q, Variable v) {
 		Vector<String> returnList = new Vector<String>();
-		for (Hashtable binding: q.allSolutions()) {
+		for (Map<String, Term> binding: q.allSolutions()) {
 			Term t = (Term) binding.get(v.toString());
 			if (t != null) {
 				returnList.add(t.toString());
@@ -554,7 +554,7 @@ public class PrologKB {
 		
 		// Retrieve results
 		Set<String> returnList = new HashSet<String>();
-		for (Hashtable binding: q.allSolutions()) {
+		for (Map<String, Term> binding: q.allSolutions()) {
 			String ind = binding.get("Individual").toString();
 			
 			returnList.add(removeQuotes(ind));
@@ -584,10 +584,10 @@ public class PrologKB {
 		if (logger.isLoggable(Level.FINE)) {
 			logger.fine("Querying prolog with: " + q.toString());
 		}
-		//Hashtable[] answers = q.allSolutions();
+		//Map<String, Term>[] answers = q.allSolutions();
 
 		while (q.hasMoreElements()) {
-			Hashtable binding = (Hashtable) q.nextElement();
+			Map<String, Term> binding = (Map<String, Term>) q.nextElement();
 			Term goal = (Term) binding.get(G.toString());
 			Term plan = (Term) binding.get(P.toString());
 			if (goal != null && plan != null) {
@@ -626,7 +626,7 @@ public class PrologKB {
 		
 		// Retrieve results
 		Set<String> returnList = new HashSet<String>();
-		for (Hashtable binding: q.allSolutions()) {
+		for (Map<String, Term> binding: q.allSolutions()) {
 			String ind = binding.get("Individual").toString();
 			
 			returnList.add(removeQuotes(ind));
@@ -640,7 +640,7 @@ public class PrologKB {
 	 * Given a query and a variable occurring in this query, get one resulting binding from the answers
 	 */
 	public String getOneResult(Query q, Variable v) {
-		Hashtable binding = q.oneSolution();
+		Map<String, Term> binding = q.oneSolution();
 		q.close();
 		if (binding != null) {
 			Term t = (Term) binding.get(v.toString());
@@ -673,7 +673,7 @@ public class PrologKB {
 		
 		// Retrieve results
 		Vector<RDFtriple> returnList = new Vector<RDFtriple>();
-		for (Hashtable binding: q.allSolutions()) {
+		for (Map<String, Term> binding: q.allSolutions()) {
 			String t = binding.get("T").toString();
 			String s = binding.get("S").toString();
 			String p = binding.get("P").toString();
@@ -811,7 +811,7 @@ public class PrologKB {
 		String answer = new String();
 		//TODO This is ugly
 		if (q.hasMoreElements()) {
-			Hashtable binding = (Hashtable) q.nextElement();
+			Map<String, Term> binding = (Map<String, Term>) q.nextElement();
 			Term t = (Term) binding.get(X.toString());
 			if (t != null) {
 				answer = t.toString();
@@ -838,10 +838,10 @@ public class PrologKB {
 			logger.fine("Querying prolog with: " + q.toString());
 		}
 		
-		//Hashtable[] answers = q.allSolutions();
+		//Map<String, Term>[] answers = q.allSolutions();
 		Vector<String> returnList = new Vector<String>();
 		while (q.hasMoreElements()) {
-			Hashtable binding = (Hashtable) q.nextElement();
+			Map<String, Term> binding = (Map<String, Term>) q.nextElement();
 			Term t = (Term) binding.get(X.toString());
 			if (t != null) {
 				returnList.add(t.toString());
@@ -865,10 +865,10 @@ public class PrologKB {
 				X.toString()).append(").");
 		Query q = new Query(sb.toString()); //prologCommand + "(" + input + ", " + X.toString() + ").");
 		logger.fine("Querying prolog with: " + q.toString());
-		//Hashtable[] answers = q.allSolutions();
+		//Map<String, Term>[] answers = q.allSolutions();
 		Vector<String> returnList = new Vector<String>();
 		while (q.hasMoreElements()) {
-			Hashtable binding = (Hashtable) q.nextElement();
+			Map<String, Term> binding = (Map<String, Term>) q.nextElement();
 			Term t = (Term) binding.get(X.toString());
 			if (t != null) {
 				returnList.add(t.toString());
@@ -1096,7 +1096,7 @@ public class PrologKB {
 		
 		Query q = new Query(sb.toString());
 		String solution = PrologKB.getInstance().getOneResult(q, new Variable("Plan"));
-		//Hashtable solution = PrologKB.getInstance().prologCallOneSolution(sb.toString());
+		//Map<String, Term> solution = PrologKB.getInstance().prologCallOneSolution(sb.toString());
 
 		if (logger.isLoggable(Level.INFO)) {
 			if (solution != null) {
@@ -1152,7 +1152,7 @@ public class PrologKB {
 		
 		Query q = new Query(sb.toString());
 		String solution = PrologKB.getInstance().getOneResult(q, new Variable("Plan"));
-		//Hashtable solution = PrologKB.getInstance().prologCallOneSolution(sb.toString());
+		//Map<String, Term> solution = PrologKB.getInstance().prologCallOneSolution(sb.toString());
 
 		if (logger.isLoggable(Level.INFO)) {
 			if (solution != null) {
@@ -1179,14 +1179,14 @@ public class PrologKB {
 		return PrologKB.getInstance().getPrologSingleVariableList(PrologKB.possibleThread);		
 	}
 	
-	public Hashtable[] prologCall(String prologString) {
+	public Map<String, Term>[] prologCall(String prologString) {
 		Query q = new Query(prologString);
-		Hashtable[] answers = q.allSolutions();
+		Map<String, Term>[] answers = q.allSolutions();
 		q.close();
 		return answers;
 	}
 	
-	public Hashtable[] prologCall(String prologCommand, String input,
+	public Map<String, Term>[] prologCall(String prologCommand, String input,
 			Vector<String> vars) {
 		// Use prologCommand^(AgentID, Variable) which is in prolog in BasicCharacterAgent.pl
 		StringBuilder queryString = new StringBuilder();
@@ -1201,14 +1201,14 @@ public class PrologKB {
 		if (logger.isLoggable(Level.INFO)) {
 			logger.info("Querying Prolog with: " + queryString.toString());//prologCommand + "(" + input + queryString.toString() + ").");
 		}
-		Hashtable[] answers = q.allSolutions();
+		Map<String, Term>[] answers = q.allSolutions();
 		q.close();
 		return answers;
 	}
 	
-	public Hashtable prologCallOneSolution(String prologString) {
+	public Map<String, Term> prologCallOneSolution(String prologString) {
 		Query q = new Query(prologString);
-		Hashtable answer = q.oneSolution();
+		Map<String, Term> answer = q.oneSolution();
 		q.close();
 		return answer;
 	}

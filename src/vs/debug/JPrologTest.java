@@ -20,10 +20,13 @@ package vs.debug;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Hashtable;
+import java.util.Map;
 import java.util.Properties;
 
-import jpl.Query;
+import org.jpl7.Query;
+import org.jpl7.Term;
+
+import vs.Config;
 import vs.knowledge.PrologKB;
 
 public class JPrologTest {
@@ -42,6 +45,8 @@ public class JPrologTest {
 		
 		PrologKB km = 
 			PrologKB.getInstance();
+
+		km.consult(Config.PROLOGFILESPATH + "knowledgebase.pl");
 		
 		String term1 = "(owl:'Thing', rdf:type, owl:'Class')";
 		String term2 = "('boom', 'roos', 'vis')";
@@ -54,9 +59,9 @@ public class JPrologTest {
 		
 		String query1 = "(S, P, O)";
 		Query q = km.query(query1);
-		Hashtable[] solutions = q.allSolutions();
+		Map<String, Term>[] solutions = q.allSolutions();
 		System.out.println("Query " + query1 + " gives these solutions: ");	
-		for (Hashtable element : solutions) {
+		for (Map<String, Term> element : solutions) {
 			System.out.println(element.toString());
 		}		
 
@@ -70,9 +75,9 @@ public class JPrologTest {
 
 		String query2 = "(S, rdf:type, O)";
 		Query q2 = km.query(query2);
-		Hashtable[] solutions2 = q2.allSolutions();
+		Map<String, Term>[] solutions2 = q2.allSolutions();
 		System.out.println("it gives these solutions: ");	
-		for (Hashtable element : solutions2) {
+		for (Map<String, Term> element : solutions2) {
 			System.out.println(element.toString());
 		}
 	}

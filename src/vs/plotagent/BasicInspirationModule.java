@@ -27,8 +27,8 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Logger;
 
-import jpl.PrologException;
-import jpl.Term;
+import org.jpl7.PrologException;
+import org.jpl7.Term;
 import vs.communication.RDFtriple;
 import vs.communication.StoryAction;
 import vs.communication.StoryEvent;
@@ -195,7 +195,7 @@ public class BasicInspirationModule implements IInspirationModule {
 					// decompose suggCausers
 					Set<String> suggCauserSet = new HashSet<String>();
 					
-					Term t = jpl.Util.textToTerm(suggCausers);
+					Term t = org.jpl7.Util.textToTerm(suggCausers);
 					Term[] causers = t.toTermArray();
 					
 					for (Term causer: causers) {
@@ -341,7 +341,7 @@ public class BasicInspirationModule implements IInspirationModule {
 
 		//logger.fine("Boolean value: " + truth);
 		try {
-			Term term = jpl.Util.textToTerm(goalContents);
+			Term term = org.jpl7.Util.textToTerm(goalContents);
 			Term[] goalContentTriples = term.toTermArray();
 
 			for (Term goalContentTriple: goalContentTriples) {

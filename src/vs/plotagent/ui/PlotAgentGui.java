@@ -51,7 +51,7 @@ import javax.swing.tree.TreePath;
 
 import com.hp.hpl.jena.shared.PrefixMapping;
 
-import jpl.Variable;
+import org.jpl7.Variable;
 import vs.Config;
 import vs.fabula.io.LanguageFilter;
 import vs.fabula.ui.FabulaPanel;

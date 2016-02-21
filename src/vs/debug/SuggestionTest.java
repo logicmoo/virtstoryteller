@@ -21,8 +21,8 @@ package vs.debug;
 import java.util.HashSet;
 import java.util.Set;
 
-import jpl.Compound;
-import jpl.Term;
+import org.jpl7.Compound;
+import org.jpl7.Term;
 import junit.framework.TestCase;
 import vs.plotagent.inspiration.Suggestion;
 
@@ -43,7 +43,7 @@ public class SuggestionTest extends TestCase {
 				"'.'(rdf('http://www.owl-ontologies.com/FabulaKnowledge.owl#E_loseShoe.1', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 'http://www.owl-ontologies.com/FabulaKnowledge.owl#LoseItem', _36), '.'(rdf(i_sAction_10_cinderellaAgent, 'http://www.owl-ontologies.com/FabulaKnowledge.owl#phi_causes', 'http://www.owl-ontologies.com/FabulaKnowledge.owl#E_loseShoe.1', _37), '.'(rdf('http://www.owl-ontologies.com/FabulaKnowledge.owl#E_loseShoe.1', 'http://www.owl-ontologies.com/FabulaKnowledge.owl#agens', 'http://www.owl-ontologies.com/StoryWorldSettings/Cinderella#cinderella', _38), '.'(rdf('http://www.owl-ontologies.com/FabulaKnowledge.owl#E_loseShoe.1', 'http://www.owl-ontologies.com/FabulaKnowledge.owl#patiens', 'http://www.owl-ontologies.com/StoryWorldSettings/Cinderella#cloak', _39), []))))"
 			);
 
-		Term t = jpl.Util.textToTerm(s.getBody());
+		Term t = org.jpl7.Util.textToTerm(s.getBody());
 		
 		// Walk structure of term. It is a compound term consisting of a set of quads
 		if (t instanceof Compound) {
