@@ -1,0 +1,169 @@
+% ---------------------------------------------------------------------------------
+% Copyright (C) 2008 Human Media Interaction - University of Twente
+%  
+% This file is part of The Virtual Storyteller.
+% 
+% The Virtual Storyteller is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% The Virtual Storyteller is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with The Virtual Storyteller. If not, see <http://www.gnu.org/licenses/>.
+% ---------------------------------------------------------------------------------
+
+% WalkFromTo
+% WalkToFrom
+% WalkFromToDoor
+% WalkToFromDoor
+
+% -------------------------------------------
+% WalkFromTo -- walking on a road, "upstream"
+% -------------------------------------------
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#WalkFromTo'),
+		agens(Agens), target(Target), instrument(Instrument), location(CurLoc), road(Road), door(Door), length(Len)
+		]),
+	class(action),
+	duration(1),
+	posPreconditions([
+	    % Agens can do the action, either with his own body or using an instrument that can do the action
+		(Instrument,    swc:controlledBy,       Agens),
+		(Instrument,    swcr:knowsAction,       fabula:'WalkFromTo'),
+		
+		% There is an "upstream" road to walk on, from where the instrument is
+		(Instrument,	swc:supportedBy,        CurLoc),
+		(Road,	owlr:typeOrSubType,     swc:'GroundWay'), 
+		(Road,	swc:fromGeographicArea, CurLoc),
+		(Road,	swc:toGeographicArea,   Target),
+		(Road,	swcr:length,			Len)
+		]),
+	negPreconditions([
+	    % There is no door on this path
+	    (Road,    swc:hasDoor,    Door)
+		]),
+	posEffects([
+	    % We are now at the target location
+		(Instrument,	swc:supportedBy,		Target)
+		]),
+	negEffects([
+	    % We are no longer at our current location
+		(Instrument,	swc:supportedBy,		CurLoc)
+		])
+]).
+
+% ---------------------------------------------
+% WalkToFrom -- walking on a road, "downstream"
+% ---------------------------------------------
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#WalkToFrom'),
+		agens(Agens), target(Target), instrument(Instrument), location(CurLoc), road(Road), door(Door), length(Len)
+		]),
+	class(action),
+	duration(1),
+	posPreconditions([
+	    % Agens can do the action, either with his own body or using an instrument that can do the action	
+		(Instrument,	swc:controlledBy,		Agens),
+		(Instrument,	swcr:knowsAction,		fabula:'WalkToFrom'),
+		
+		% There is a "downstream" road to walk on, from where the instrument is		
+		(Instrument,	swc:supportedBy,			CurLoc),
+		(Road,	swc:toGeographicArea,	CurLoc),
+		(Road, 	owlr:typeOrSubType, swc:'GroundWay'),
+		(Road,	swc:fromGeographicArea,	Target),
+		(Road,	swcr:length, Len)
+		]),
+	negPreconditions([
+	    % There is no door on this path
+	    (Road,    swc:hasDoor,    Door)	
+		]),
+	posEffects([
+	    % We are now at the target location	
+		(Instrument,	swc:supportedBy,		Target)
+		]),
+	negEffects([
+	    % We are no longer at our current location	
+		(Instrument,	swc:supportedBy,		CurLoc)
+		])
+]).
+
+% --------------------------------------------------------------------
+% WalkFromToDoor -- walking on a road that contains a door, "upstream"
+% --------------------------------------------------------------------
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#WalkFromToDoor'),
+		agens(Agens), target(Target), instrument(Instrument), location(CurLoc), road(Road), door(Door), length(Len)
+		]),
+	class(action),
+	duration(1),
+	posPreconditions([
+	    % Agens can do the action, either with his own body or using an instrument that can do the action		
+		(Instrument,	swc:controlledBy, Agens),
+		(Instrument,	swcr:knowsAction, fabula:'WalkFromTo'),
+		
+		% There is an "upstream" road to walk on, from where the instrument is		
+		(Road, 	owlr:typeOrSubType, swc:'GroundWay'),
+		(Road,	swc:toGeographicArea, Target),
+		(Road,	swc:fromGeographicArea, CurLoc),
+		(Road,	swcr:length,				Len),
+		(Instrument,	swc:supportedBy,			CurLoc),
+		
+		% There is a door on this road, which is open
+		(Road,    swc:hasDoor,    Door),
+		(Door,    swc:hasOpenCloseProperty, swc:open)
+		]),
+	negPreconditions([]),
+	posEffects([
+	    % We are now at the target location		
+		(Instrument,	swc:supportedBy,		Target)
+		]),
+	negEffects([
+	    % We are no longer at our current location		
+		(Instrument,	swc:supportedBy,		CurLoc)
+		])
+]).
+
+% ----------------------------------------------------------------------
+% WalkToFromDoor -- walking on a road that contains a door, "downstream"
+% ----------------------------------------------------------------------
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#WalkToFromDoor'),
+		agens(Agens), target(Target), instrument(Instrument), location(CurLoc), road(Road), door(Door), length(Len)
+		]),
+	class(action),
+	duration(1),
+	posPreconditions([
+	    % Agens can do the action, either with his own body or using an instrument that can do the action			
+		(Instrument,	swc:controlledBy,		Agens),
+		(Instrument,	swcr:knowsAction, fabula:'WalkToFrom'),
+		
+		% There is a "downstream" road to walk on, from where the instrument is		
+		(Road, 	owlr:typeOrSubType, swc:'GroundWay'),
+		(Road,	swc:fromGeographicArea,	Target),
+		(Road,	swc:toGeographicArea,	CurLoc),
+		(Road,	swcr:length,				Len),
+		(Instrument,	swc:supportedBy,			CurLoc),
+		
+		% There is a door on this road, which is open
+		(Road,    swc:hasDoor,    Door),
+		(Door,    swc:hasOpenCloseProperty, swc:open)
+		]),
+	negPreconditions([	]),
+	posEffects([
+	    % We are now at the target location		
+		(Instrument,	swc:supportedBy, Target)
+		]),
+	negEffects([
+	    % We are no longer at our current location		
+		(Instrument,	swc:supportedBy, CurLoc)
+		])
+]).

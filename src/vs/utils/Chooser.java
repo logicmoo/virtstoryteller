@@ -1,0 +1,49 @@
+/* Copyright (C) 2008 Human Media Interaction - University of Twente
+ * 
+ * This file is part of The Virtual Storyteller.
+ * 
+ * The Virtual Storyteller is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * The Virtual Storyteller is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with The Virtual Storyteller. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
+package vs.utils;
+
+import java.util.Collection;
+import java.util.Iterator;
+
+public class Chooser {
+
+	public static <T> T randomChoice(Collection<T> possibleChoices) {
+		if (possibleChoices == null) {
+			return null;
+		}
+		
+		int elemCount = possibleChoices.size();
+		if (elemCount == 0) {
+			return null;
+		}
+		
+		// Determine random number between 1 and #elems
+		long choice = Math.round(Math.random()*(elemCount - 1) + 1);
+		
+		// Iterate till we stumble on it.
+		Iterator<T> it = possibleChoices.iterator();
+		T currElem = null;
+		for (int i = 0; i < choice; i++) {
+			currElem = it.next();
+		}
+		
+		return currElem;
+		
+	}
+}

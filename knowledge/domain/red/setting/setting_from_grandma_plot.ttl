@@ -1,0 +1,150 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix fabula:     <http://www.owl-ontologies.com/FabulaKnowledge.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix red:   <http://www.owl-ontologies.com/Red.owl#> .
+@prefix :        <http://www.owl-ontologies.com/Red.owl#> .
+
+# Description of the story world.
+# Author: Ivo Swartjes
+# Date:   6 oct 2008
+
+# ----------
+# BACKSTORY
+# ----------
+:act_dummy
+    a   :WhatToDo ;
+    fabula:agens    :red ;
+    fabula:target   :grandma ;
+    .
+    
+:goal_dummy
+    a   :Poison ;
+    fabula:agens    :grandma ;
+    fabula:patiens  :wolf ;
+    fabula:target   :red ;
+    .
+
+# ----------
+# CHARACTERS
+# ----------
+
+# Little Red Riding Hood
+:red
+    a   swc:Character ;
+    a   red:LittleGirl ;
+    swc:at      :grandmas_house ;  
+    swc:has     :cake ;
+    swc:owns    :cake ;
+    rdfs:label "Little Red Riding Hood" ;
+    .
+    
+# The big bad wolf    
+:wolf
+    a   swc:Character ;
+    swc:at  :forest ;
+    swc:hasAttribute :mean ;
+    swc:hasAttribute :hungry ;
+    rdfs:label "the wolf" ;
+    .
+    
+# Grandma
+:grandma
+    a   swc:Character ;
+    swc:at  :grandmas_house ;
+    rdfs:label "Grandma" ;
+    .    
+    
+# ----------
+# LOCATIONS
+# ----------
+
+# The house of LRRH    
+:reds_house
+    a   swc:Location ;
+    rdfs:label "Reds house" ;
+    .
+    
+# The forest    
+:forest
+    a   swc:Location ;
+    rdfs:label "the forest" ;
+    .
+
+# Grandmother's house    
+:grandmas_house
+    a   swc:Location ;
+    rdfs:label "Grandmas house" ;
+    .    
+
+# Garden in front of grandmother's house    
+:grandmas_garden
+    a   swc:Location ;
+    rdfs:label "Grandmas garden" ;
+    .    
+    
+# Path from Red's house to forest
+:forest_path1a
+    a   swc:Path ;
+    swc:from    :reds_house ;
+    swc:to      :forest ;
+    rdfs:label "the path leading to the forest" ;
+    .
+    
+# Path from Red's house to forest
+:forest_path1b
+    a   swc:Path ;
+    swc:from    :forest ;
+    swc:to      :reds_house ;
+    rdfs:label "the path leading to Reds house" ;
+    .    
+
+# Path from forest to grandmas garden
+:forest_path2a
+    a   swc:Path ;
+    swc:from :forest ;
+    swc:to  :grandmas_garden ;
+    rdfs:label "the path leading to Grandmas garden" ;
+    .
+             
+# Path from forest to grandmas garden
+:forest_path2b
+    a   swc:Path ;
+    swc:from  :grandmas_garden ;
+    swc:to    :forest ;
+    rdfs:label "the path leading to the forest" ;    
+    .
+
+# Path from grandmas garden to grandmas house
+:house_door1
+    a   swc:Path ;
+    swc:from    :grandmas_garden ;
+    swc:to  :grandmas_house ;
+    rdfs:label "the door of Grandma's house" ;
+    .   
+    
+# Path from grandmas garden to grandmas house
+:house_door2
+    a   swc:Path ;
+    swc:from  :grandmas_house ;
+    swc:to    :grandmas_garden ;
+    rdfs:label "the door of Grandma's house" ;
+    .   
+    
+	
+    
+# ----------
+# OBJECTS
+# ----------	
+:cake
+    a   red:Cake ;
+    rdfs:label "the birthday cake" ;
+    .	
+    
+:chocolate_cake
+    a   red:Cake ;    
+    swc:hasAttribute red:unbaked ;
+    rdfs:label "chocolate cake" ;
+    .	            
+	    

@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldCore.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldCore.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Object">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A thing in the world</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Entity"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="InternalAttribute">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Any Attribute of a thing that is an internal property of the Entity, e.g. its shape, its color, its fragility, etc.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Attribute"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Attribute">
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Qualities which we cannot or choose not to reify into subclasses of [SUMO]</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Role">
+    <rdfs:subClassOf rdf:resource="#InternalAttribute"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The social function that a character plays (e.g. Pirate, King)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Location">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A place in the story world</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="partOf"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Location"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SocialRelationship">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Relationship"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Models social relationships (between characters), e.g. Like, Hate, Love</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Path">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A way to get from a location to another location (one direction only)</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="to"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Location"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="from"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Location"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PhysicalRelationship"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Relationship">
+    <rdfs:subClassOf rdf:resource="#Attribute"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Any Attribute that an Entity has by virtue of a relationship that it bears to another Entity or set of Entities, e.g. SocialRoles and PositionalAttributes.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#PhysicalRelationship">
+    <rdfs:subClassOf rdf:resource="#Relationship"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasAttribute">
+    <rdfs:range rdf:resource="#Attribute"/>
+    <rdfs:domain rdf:resource="#Entity"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="owns">
+    <rdfs:range rdf:resource="#Object"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Expresses ownership</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasRole">
+    <rdfs:subPropertyOf rdf:resource="#hasAttribute"/>
+    <rdfs:range rdf:resource="#Role"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#partOf">
+    <rdfs:domain rdf:resource="#Entity"/>
+  </owl:ObjectProperty>
+  <owl:FunctionalProperty rdf:about="#to">
+    <rdfs:range rdf:resource="#Relationship"/>
+    <rdfs:domain rdf:resource="#Relationship"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >target of some relation</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="at">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Specifies the location of an object</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Object"/>
+    <rdfs:range rdf:resource="#Location"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#from">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >source of some relation</rdfs:comment>
+    <rdfs:domain rdf:resource="#Relationship"/>
+    <rdfs:range rdf:resource="#Relationship"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:AnnotationProperty rdf:ID="hasAction">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Points to the classes of actions that a character is allowed to do</rdfs:comment>
+  </owl:AnnotationProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

@@ -1,0 +1,2045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY FabulaKnowledge "http://www.owl-ontologies.com/FabulaKnowledge.owl#">
+  <!ENTITY FabulaKnowledge.owl "http://www.owl-ontologies.com/FabulaKnowledge.owl">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="&FabulaKnowledge.owl;"
+         xmlns:FabulaKnowledge="&FabulaKnowledge;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;">
+
+<!-- Ontology Information -->
+  <owl:Ontology rdf:about="">
+    <owl:imports>
+      <owl:Ontology rdf:about="http://www.owl-ontologies.com/"/>
+    </owl:imports>
+  </owl:Ontology>
+
+<!-- Classes -->
+  <owl:Class rdf:about="#Action">
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:controlledBy ?AGENS ?AGENTID)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(unp(swc:controlledBy ?controller ?AGENS))</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasAction ?AGENS ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AirMove">
+    <rdfs:comment rdf:datatype="&xsd;string">Transit movement through the air. Note that one can fly through
+corridors.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(> ?flyingWidth ?agensWidth)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdf:type ?INSTRUMENT swc:TransitWay)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:flyingWidth ?INSTRUMENT ?flyingWidth)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:width ?AGENS ?agensWidth)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Ambulate">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement over ground using legs.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GroundMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Assemble">
+    <rdfs:comment rdf:datatype="&xsd;string">Creating an artifact from its parts. Action is reversible by Disassemble.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Make"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Assemble ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Attach">
+    <rdfs:comment rdf:datatype="&xsd;string">Attach one object to another using a AttachingDevice.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attaching"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AttachChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Attaching">
+    <rdfs:comment rdf:datatype="&xsd;string">General class of actions that deal with attaching and detaching objects.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Attack">
+    <rdfs:comment rdf:datatype="&xsd;string">Try to hurt/damage an object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AttainGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to attain a certain situation / state, i.e. being rich</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AvoidGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to avoid a certain situation / state, i.e. that the vilain escapes</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Belief">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#BeliefElement">
+    <rdfs:comment rdf:datatype="&xsd;string">An Internal Element representing a belief of a character</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Character"/>
+  <owl:Class rdf:about="#Climb">
+    <rdfs:subClassOf rdf:resource="#GroundMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Close">
+    <rdfs:comment rdf:datatype="&xsd;string">Close a device which is open and can be closed using the object itself. This excludes closing a frying pan with its cover, assuming that the cover is not a part of the pan.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties true)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?PATIENS ?openCloseProperties)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isOpenable ?openCloseProperties true)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Close ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Cognition">
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Consume">
+    <rdfs:comment rdf:datatype="&xsd;string">Ingesting food</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ConsumeChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ControlAct">
+    <rdfs:comment rdf:datatype="&xsd;string">Actions involving control</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ControlActChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#CorpuscularObjectMove">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Creation">
+    <rdfs:comment rdf:datatype="&xsd;string">Class of actions dealing with creation and uncreation.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#CreationChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#CurrentBeliefElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Describes a belief about the now...e.g. what is believed to be true now.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#BeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Cycle">
+    <rdfs:comment rdf:datatype="&xsd;string">Use your own force to propel a vehicle.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Cycle ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Detach">
+    <rdfs:subClassOf rdf:resource="#Attaching"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Disassemble">
+    <rdfs:comment rdf:datatype="&xsd;string">Disassemble the object into its parts.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Creation"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Disassemble ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Dress">
+    <rdfs:comment rdf:datatype="&xsd;string">Putting on WearableProducts, like Bracelets or Jeans.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Dress ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Drink">
+    <rdfs:comment rdf:datatype="&xsd;string">Ingesting substance food.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Consume"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Drive">
+    <rdfs:comment rdf:datatype="&xsd;string">Drive an automated vehicle.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Drive ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#DropControl">
+    <rdfs:comment rdf:datatype="&xsd;string">Drop control over a device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ControlAct"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:DropControl ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Eat">
+    <rdfs:comment rdf:datatype="&xsd;string">Ingesting corpuscular food. (i.e. food which is not a substance).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Consume"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Eat ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Emotion">
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Event">
+    <rdfs:comment rdf:datatype="&xsd;string">Any change in the world that is not a direct and planned result of a character action</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Extract">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of extracting an Object from another Object</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FabulaElement">
+    <rdfs:comment rdf:datatype="&xsd;string">An element that represents a part of fabula, being that what happens in a story, the actual events and processes</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FaucetFill">
+    <rdfs:comment rdf:datatype="&xsd;string">Use a faucet to fill a container with a substance.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Feel">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Fly">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement through the air using wings. Is not yet different from Air-
+Move. Note that AirMove is included because of consistency, and Fly is
+added because it is a more intuitive term to use. One can split AirMove
+in movement using moving wings and movement using a jet-engine, if
+it proves to be a useful distinction.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AirMove"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Fly ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Fold">
+    <rdfs:comment rdf:datatype="&xsd;string">Fold a foldable item into its folded or original state.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Fold ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ForcefulDetach">
+    <rdfs:comment rdf:datatype="&xsd;string">Detaching an object using force. This can be done on
+glued and tied objects. There is the risk of breaking one of the objects,
+however.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Detach"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FutureBeliefElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Describes a belief about the future, this could be a hope or a worry, for instance</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#BeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#GlideFly">
+    <rdfs:subClassOf rdf:resource="#Fly"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Glue">
+    <rdfs:comment rdf:datatype="&xsd;string">Attach one object to another using a sticky substance. The substance will be removed from the storyworld after use.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attach"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Goal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal of a character</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#GroundMove">
+    <rdfs:comment rdf:datatype="&xsd;string">All move actions that are done over the ground (i.e. a GroundWay) fall in this
+category.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:width ?INSTRUMENT ?pathWidth)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(unp(swc:hasBlockingObstacle ?INSTRUMENT ?someObstacle))</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdf:type ?INSTRUMENT swc:GroundWay)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(> ?pathWidth ?agensWidth)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:width ?AGENS ?agensWidth)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Guess">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Hear">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Hope">
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Hunger">
+    <rdfs:subClassOf rdf:resource="#PhysicalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Inject">
+    <rdfs:comment rdf:datatype="&xsd;string">Inserting a BiologicallyActiveSubstance into an Animal or Human
+with a syringe. This is SUMO and will not be implemented in our first
+world.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Insert">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of inserting an Object into another object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#InternalAttribute">
+    <rdfs:comment rdf:datatype="&xsd;string">Property made into a class</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="#InternalElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Anything internal to a character, like a belief, or an emotion, feeling, etc.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#JetFly">
+    <rdfs:subClassOf rdf:resource="#Fly"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Joy">
+    <rdfs:subClassOf rdf:resource="#Emotion"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Jump">
+    <rdfs:subClassOf rdf:resource="#AirMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Kick">
+    <rdfs:comment rdf:datatype="&xsd;string">Kick an object using ones legs.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LeaveGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to leave a certain situation / state, i.e. being hungry</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LieOn">
+    <rdfs:subClassOf rdf:resource="#MoveOn"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LocationMoveChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Lock">
+    <rdfs:comment rdf:datatype="&xsd;string">Lock a securityDevice 'Lock'</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?PATIENS ?openCloseProperties)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Lock ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isLocked ?theLock false)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasLock ?openCloseProperties ?theLock)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LoseItem">
+    <rdfs:subClassOf rdf:resource="#Event"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Make">
+    <rdfs:comment rdf:datatype="&xsd;string">[SUMO] The subclass of Creation in which an individual Artifact or a type of
+Artifact is made.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Creation"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Manipulate">
+    <rdfs:comment rdf:datatype="&xsd;string">General class of actions that change one property of an object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ManipulateChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MechanicalSail">
+    <rdfs:comment rdf:datatype="&xsd;string">Propel the boat by means of engines.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MoveIn">
+    <rdfs:comment rdf:datatype="&xsd;string">Move the self into another object (probably a container). The result is that one is containedBy the object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:MoveIn ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MoveOn">
+    <rdfs:comment rdf:datatype="&xsd;string">Move the self ONTO another object. (supportedBy the other object)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MoveOut">
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:MoveOut ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#NeedleDrain">
+    <rdfs:comment rdf:datatype="&xsd;string">The inverse of Inject: Use a syringe to drain someone.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Open">
+    <rdfs:comment rdf:datatype="&xsd;string">Open a device which is closed.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Open ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?PATIENS ?openCloseProperties)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties false)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isOpenable ?openCloseProperties true)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Outcome">
+    <rdfs:comment rdf:datatype="&xsd;string">Describes what happened to a Goal</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Perception">
+    <rdfs:comment rdf:datatype="&xsd;string">Describing what a character perceives</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PhysicalElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Denotes the elements of the internal feelings that are not psychological</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PourIn">
+    <rdfs:comment rdf:datatype="&xsd;string">Pour in fluid from a container into another container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Punch">
+    <rdfs:comment rdf:datatype="&xsd;string">Attack an object using bare hands.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Put">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of changing the location of an object which has an isLocated
+relation with the hands (or hand-like object) of the actor. After the
+action the actor does not hold the object anymore.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Transfer"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PutIn">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of placing an Object inside a Container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:PutIn ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PutOn">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of placing an Object from ones Hands atop of another
+object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(+ ?totalHeightTarget ?heightPatiens ?projectedTotalHeightObject)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(> ?projectedTotalHeightObject ?distanceToGroundAgens)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swcr:totalHeight ?AGENS ?totalHeightAgens)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(> ?totalHeightAgens ?totalHeightTarget)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:PutOn ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swcr:distanceToGround ?AGENS ?distanceToGroundAgens)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:height ?PATIENS ?heightPatiens)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swcr:totalHeight ?TARGET ?totalHeightTarget)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#RailDrive">
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Ride">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement over ground by means of wheels.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GroundMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Row">
+    <rdfs:comment rdf:datatype="&xsd;string">Propel the boat using the energy of its controller.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Run">
+    <rdfs:comment rdf:datatype="&xsd;string">Fast movement over ground. Consumes more energy per distance
+measure.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ambulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Run ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Sadness">
+    <rdfs:subClassOf rdf:resource="#Emotion"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ScoopOut">
+    <rdfs:comment rdf:datatype="&xsd;string">The process of scooping substances out of some container using another container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#See">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Shoot">
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SitOn">
+    <rdfs:subClassOf rdf:resource="#MoveOn"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:SitOn ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Skipper">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement through water by means of transportation device. Can be
+split in movement needing wind and movement using an engine.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WaterMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Smell">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#StepOn">
+    <rdfs:subClassOf rdf:resource="#MoveOn"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:StepOn ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Strike">
+    <rdfs:comment rdf:datatype="&xsd;string">Attack an object while holding another object to hit with. (i.e. use that object as weapon).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Suspicion">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SustainGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to sustain a certain situation or state, i.e. being healthy</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Swim">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement through water by using arms or fins.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WaterMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SwitchOff">
+    <rdfs:comment rdf:datatype="&xsd;string">Turn off a device which 'on'.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SwitchOn">
+    <rdfs:comment rdf:datatype="&xsd;string">Turn a device with a power source on.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Take">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of changing the location of an object to the grabbing device
+of the acting object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Transfer"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(unp(swc:attachedBy ?PATIENS ?attachingObject))</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TakeControl">
+    <rdfs:comment rdf:datatype="&xsd;string">Take control of a device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ControlAct"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasControlProperties ?AGENS ?controlProperties)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:TakeControl ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TakeFrom">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of taking an object which is supported by another
+object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:TakeFrom ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TakeOut">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of taking an object out of a Container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:TakeOut ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Taste">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Tie">
+    <rdfs:comment rdf:datatype="&xsd;string">Attach one object to another using a rope-like device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attach"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Tie ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Transfer">
+    <rdfs:comment rdf:datatype="&xsd;string">The general action of changing the location of an object other
+than the acting object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(unp(= ?AGENS ?PATIENS))</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TransferChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Transform">
+    <rdfs:comment rdf:datatype="&xsd;string">Creating an artifact from its substances. (i.e. create a WineGlass from Sand or a Key from Metal). Action is irreversible.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Make"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TransitMove">
+    <rdfs:comment rdf:datatype="&xsd;string">The general class of actions in which the acting object changes
+its location.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:resource="#TransitMoveInterEffects"/>
+        <owl:onProperty rdf:resource="#interEffects"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(unp(swc:attachedBy ?AGENS ?someObjectA))</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;int">3</owl:hasValue>
+        <owl:onProperty rdf:resource="#interruptableDuration"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;int">6</owl:hasValue>
+        <owl:onProperty rdf:resource="#duration"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;int">100</owl:hasValue>
+        <owl:onProperty rdf:resource="#chanceOfSuccess"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isLowestLevel ?currLoc true)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TransitMoveChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Undress">
+    <rdfs:comment rdf:datatype="&xsd;string">The act of taking off WearableProducts.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Undress ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:wornBy ?PATIENS ?AGENS)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Unlock">
+    <rdfs:comment rdf:datatype="&xsd;string">Unlock a lock with a key.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?PATIENS ?openCloseProperties)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:hasLock ?openCloseProperties ?theLock)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(swc:isLocked ?theLock true)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Unlock ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Untie">
+    <rdfs:comment rdf:datatype="&xsd;string">Detaching an object which is fastened by a rope-like device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Detach"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Untie ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Walk">
+    <rdfs:comment rdf:datatype="&xsd;string">Normal movement over ground.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ambulate"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:hasValue rdf:datatype="&xsd;string">(rdfs:subClassOf fabula:Walk ?theAgensAction)</owl:hasValue>
+        <owl:onProperty rdf:resource="#preconditions"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WalkFromTo">
+    <rdfs:subClassOf rdf:resource="#Walk"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WalkFromToDoor">
+    <rdfs:subClassOf rdf:resource="#Walk"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WalkToFrom">
+    <rdfs:subClassOf rdf:resource="#Walk"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WalkToFromDoor">
+    <rdfs:subClassOf rdf:resource="#Walk"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WaterMove">
+    <rdfs:comment rdf:datatype="&xsd;string">All movement that is done over a WaterWay.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WindSail">
+    <rdfs:comment rdf:datatype="&xsd;string">Propel the boat by means of wind energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WingFly">
+    <rdfs:subClassOf rdf:resource="#Fly"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WorldChanges">
+    <rdfs:comment rdf:datatype="&xsd;string">Add and delete list which contains changes of the world.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InternalAttribute"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Worry">
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+
+<!-- Datatypes -->
+  <rdfs:Datatype rdf:about="&xsd;boolean"/>
+  <rdfs:Datatype rdf:about="&xsd;int"/>
+  <rdfs:Datatype rdf:about="&xsd;string"/>
+
+<!-- Annotation Properties -->
+  <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+
+<!-- Datatype Properties -->
+  <owl:DatatypeProperty rdf:about="#add">
+    <rdfs:comment rdf:datatype="&xsd;string">List of facts to be added upon a world change.</rdfs:comment>
+    <rdfs:domain rdf:resource="#WorldChanges"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#chanceOfSuccess">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">Chance of success for an action</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#delete">
+    <rdfs:comment rdf:datatype="&xsd;string">list of facts to be deleted upon a world change.</rdfs:comment>
+    <rdfs:domain rdf:resource="#WorldChanges"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#duration">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">total duration of an action</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#endTime">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;int"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#hasTruth">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:comment xml:lang="en">Defines whether the individual is interpreted as being true ("I see that...") or false ("I don't see that...")
+can also define whether graphs should be interpreted as being true or false: a true perception with false content graph means ("I see that there is no...")</rdfs:comment>
+    <rdfs:range rdf:resource="&xsd;boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#interruptableDuration">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">Duration of an action in which it can be interrupted. Only used for TransitMoves.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#isSuccessful">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#preconditions">
+    <rdfs:comment rdf:datatype="&xsd;string">Conditions which must hold for an action to be performed</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;string"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#startTime">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;int"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#time">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+    <rdfs:range rdf:resource="&xsd;int"/>
+  </owl:DatatypeProperty>
+
+<!-- Object Properties -->
+  <owl:FunctionalProperty rdf:about="#agens">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">the one doing the Action</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#causes"/>
+  <owl:FunctionalProperty rdf:about="#character">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+  </owl:FunctionalProperty>
+
+  <owl:FunctionalProperty rdf:about="#effects">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">effects of an succesfully performed action</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="#WorldChanges"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#enables">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#hasContent">
+    <rdfs:comment>Defines the graph that forms the content of a fabula element</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#instrument">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+  <owl:FunctionalProperty rdf:about="#interEffects">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">Changes of the world after interDuration time has passed, and therefore making the action uninterruptable. Only used in TransitMoves.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="#WorldChanges"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#motivates">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#patiens">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#phi_causes">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#psi_causes">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#resolves">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Outcome"/>
+    <rdfs:range rdf:resource="#Goal"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#sameConcept">
+    <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">Defines whether two Individuals refer to the same concept</rdfs:comment>
+    <owl:inverseOf rdf:resource="#sameConcept"/>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#target">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+<!-- Instances -->
+  <FabulaKnowledge:Assemble rdf:about="#AssembleObjectFromHeap">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">10</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#AssembleObjectFromHeapChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">10</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?proficiencyAgent ?creationDifficulty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:ConstructionHeap)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?prototype ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?skillAgent ?neededCreationSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:creationDifficulty ?prototype ?creationDifficulty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasSkill ?AGENTID ?skillAgent)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:height ?PATIENS ?patiensHeight)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:height ?prototype ?heightPrototype)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?PATIENS ?patiensLength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?prototype ?lengthPrototype)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:locatedAtPrototypeStorage ?prototype swc:ThePrototypeStorage)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:needsCreationSkill ?prototype ?neededCreationSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:proficiency ?skillAgent ?proficiencyAgent)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toughness ?prototype ?toughnessPrototype)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:weight ?PATIENS ?patiensWeight)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:weight ?prototype ?weightPrototype)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:width ?PATIENS ?patiensWidth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:width ?prototype ?widthPrototype)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:hasNecessaryMaterials ?PATIENS ?prototype)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:supportedBy ?someSupportedObject ?PATIENS))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Assemble>
+
+  <FabulaKnowledge:CreationChanges rdf:about="#AssembleObjectFromHeapChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(rdf:type ?PATIENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:creationDifficulty ?PATIENS ?creationDifficulty)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:height ?PATIENS ?heightPrototype)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:length ?PATIENS ?lengthPrototype)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:toughness ?PATIENS ?toughnessPrototype)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:weight ?PATIENS ?weightPrototype)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:width ?PATIENS ?widthPrototype)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:ConstructionHeap)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:height ?PATIENS ?patiensHeight)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:length ?PATIENS ?patiensLength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:weight ?PATIENS ?patiensWeight)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:width ?PATIENS ?patiensWidth)</FabulaKnowledge:delete>
+  </FabulaKnowledge:CreationChanges>
+
+  <FabulaKnowledge:Assemble rdf:about="#AssignObjectToHeap">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#AssignObjectToHeapChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?TARGET swc:ConstructionHeap)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?TARGET ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(rdf:type ?PATIENS swc:ConstructionHeap))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Assemble>
+
+  <FabulaKnowledge:CreationChanges rdf:about="#AssignObjectToHeapChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:partOfCorpuscularObject ?PATIENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:CreationChanges>
+
+  <FabulaKnowledge:ManipulateChanges rdf:about="#CloseChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties false)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties true)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ManipulateChanges>
+
+  <FabulaKnowledge:Close rdf:about="#CloseContainerNoLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#CloseChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:Container)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasLock ?openCloseProperties ?someLock))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Close>
+
+  <FabulaKnowledge:Close rdf:about="#CloseContainerWithLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#CloseChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasLock ?openCloseProperties ?aLock)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Close>
+
+  <FabulaKnowledge:Close rdf:about="#CloseDoorNoLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#CloseChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasLock ?openCloseProperties ?someLock))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Close>
+
+  <FabulaKnowledge:Close rdf:about="#CloseDoorWithLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#CloseChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasLock ?openCloseProperties ?aLock)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Close>
+
+  <FabulaKnowledge:Assemble rdf:about="#CreateHeap">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">3</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#CreateHeapChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">3</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:height ?PATIENS ?heightPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?PATIENS ?lengthPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:width ?PATIENS ?widthPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(rdf:type ?TARGET ?someType))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Assemble>
+
+  <FabulaKnowledge:CreationChanges rdf:about="#CreateHeapChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(rdf:type ?TARGET swc:ConstructionHeap)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:height ?TARGET ?heightPatiens)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:length ?TARGET ?lengthPatiens)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:partOfCorpuscularObject ?PATIENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:supportedBy ?TARGET ?supportingObject)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:weight ?TARGET 0)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:width ?TARGET ?widthPatiens)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:CreationChanges>
+
+  <FabulaKnowledge:Cycle rdf:about="#CycleFromTo">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?someDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Cycle>
+
+  <FabulaKnowledge:Cycle rdf:about="#CycleFromToDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Cycle>
+
+  <FabulaKnowledge:Cycle rdf:about="#CycleToFrom">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?someDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Cycle>
+
+  <FabulaKnowledge:Cycle rdf:about="#CycleToFromDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Cycle>
+
+  <FabulaKnowledge:Disassemble rdf:about="#DisassembleHeap">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#DisassembleHeapChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:ConstructionHeap)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:partOfCorpuscularObject ?someObject ?PATIENS))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Disassemble>
+
+  <FabulaKnowledge:CreationChanges rdf:about="#DisassembleHeapChanges">
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:ConstructionHeap)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:CreationChanges>
+
+  <FabulaKnowledge:Disassemble rdf:about="#DisassembleObjectFromHeap">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#DisassembleObjectFromHeapChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?TARGET swc:ConstructionHeap)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:partOfCorpuscularObject ?PATIENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?TARGET ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Disassemble>
+
+  <FabulaKnowledge:CreationChanges rdf:about="#DisassembleObjectFromHeapChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:partOfCorpuscularObject ?PATIENS ?TARGET)</FabulaKnowledge:delete>
+  </FabulaKnowledge:CreationChanges>
+
+  <FabulaKnowledge:Disassemble rdf:about="#DisassembleObjectToConstructionHeap">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">10</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#DisassembleObjectToConstructionHeapChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">10</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= ?INSTRUMENT ?patiensDirectClass)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?proficiencyAgens ?creationDifficultyPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?skillAgens ?creationSkillNeeded)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:creationDifficulty ?PATIENS ?creationDifficultyPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasSkill ?AGENTID ?skillAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:needsCreationSkill ?PATIENS ?creationSkillNeeded)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:proficiency ?skillAgens ?proficiencyAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Disassemble>
+
+  <FabulaKnowledge:CreationChanges rdf:about="#DisassembleObjectToConstructionHeapChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:ConstructionHeap)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(rdf:type ?PATIENS ?patiensDirectClass)</FabulaKnowledge:delete>
+  </FabulaKnowledge:CreationChanges>
+
+  <FabulaKnowledge:Dress rdf:about="#DressAction">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#DressChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:WearableItem)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Dress>
+
+  <FabulaKnowledge:TransferChanges rdf:about="#DressChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:wornBy ?PATIENS ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "grabbingDevice")</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:delete>
+  </FabulaKnowledge:TransferChanges>
+
+  <FabulaKnowledge:Drive rdf:about="#DriveFromTo">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?someDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Drive>
+
+  <FabulaKnowledge:Drive rdf:about="#DriveFromToDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Drive>
+
+  <FabulaKnowledge:Drive rdf:about="#DriveToFrom">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?theDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Drive>
+
+  <FabulaKnowledge:Drive rdf:about="#DriveToFromDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Drive>
+
+  <FabulaKnowledge:DropControl rdf:about="#DropControlAction">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#DropControlChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:controlStrength ?controlProperty ?controlStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:controlType ?controlProperty ?controlType)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:controlledBy ?AGENS ?controllingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:controlledObject ?controlProperty ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasControlProperties ?controllingObject ?controlProperty)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:DropControl>
+
+  <FabulaKnowledge:ControlActChanges rdf:about="#DropControlChanges">
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:controlStrength ?controlProperty ?controlStrength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:controlType ?controlProperty ?controlType)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:controlledBy ?AGENS ?controllingObject)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:controlledObject ?controlProperty ?AGENS)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ControlActChanges>
+
+  <FabulaKnowledge:ConsumeChanges rdf:about="#EatChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:health ?AGENS ?newHealth)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "grabbingDevice")</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ConsumeChanges>
+
+  <FabulaKnowledge:Eat rdf:about="#EatHealthFoodEqualHealth">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#EatChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(+ ?healthAgens ?potency ?proposedHealth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= ?proposedHealth ?maxHealthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= ?proposedHealth ?newHealth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:affectsBodyAttribute ?bioActiveSubstance "swc:health")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containsBioActiveSubstance ?PATIENS ?bioActiveSubstance)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:health ?AGENS ?healthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:maxHealth ?AGENS ?maxHealthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:potency ?bioActiveSubstance ?potency)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Eat>
+
+  <FabulaKnowledge:Eat rdf:about="#EatHealthFoodMaxHealth">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#EatChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(+ ?healthAgens ?potency ?proposedHealth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= ?maxHealthAgens ?newHealth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?proposedHealth ?maxHealthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:affectsBodyAttribute ?bioActiveSubstance "swc:health")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containsBioActiveSubstance ?PATIENS ?bioActiveSubstance)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:health ?AGENS ?healthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:maxHealth ?AGENS ?maxHealthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:potency ?bioActiveSubstance ?potency)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Eat>
+
+  <FabulaKnowledge:Eat rdf:about="#EatHealthFoodNotMaxHealth">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#EatChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(+ ?healthAgens ?potency ?proposedHealth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(&lt; ?proposedHealth ?maxHealthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= ?proposedHealth ?newHealth)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:affectsBodyAttribute ?bioActiveSubstance "swc:health")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containsBioActiveSubstance ?PATIENS ?bioActiveSubstance)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:health ?AGENS ?healthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:maxHealth ?AGENS ?maxHealthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:potency ?bioActiveSubstance ?potency)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Eat>
+
+  <FabulaKnowledge:Fly rdf:about="#FlyFromTo">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?aDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Fly>
+
+  <FabulaKnowledge:Fly rdf:about="#FlyFromToDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Fly>
+
+  <FabulaKnowledge:Fly rdf:about="#FlyToFrom">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?aDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Fly>
+
+  <FabulaKnowledge:Fly rdf:about="#FlyToFromDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Fly>
+
+  <FabulaKnowledge:Fold rdf:about="#FoldAction">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">3</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#FoldChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">3</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:foldableInto ?PATIENS ?foldedObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Fold>
+
+  <FabulaKnowledge:ManipulateChanges rdf:about="#FoldChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:supportedBy ?foldedObject ?supportingObject)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ManipulateChanges>
+
+  <FabulaKnowledge:ManipulateChanges rdf:about="#LockChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:isLocked ?theLock true)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:isLocked ?theLock false)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ManipulateChanges>
+
+  <FabulaKnowledge:Lock rdf:about="#LockContainerWithCode">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#LockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "code")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Lock>
+
+  <FabulaKnowledge:Lock rdf:about="#LockContainerWithKey">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#LockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?INSTRUMENT ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "physicalKey")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:physicalKey ?theLock ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Lock>
+
+  <FabulaKnowledge:Lock rdf:about="#LockDoorWithCode">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#LockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "code")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Lock>
+
+  <FabulaKnowledge:Lock rdf:about="#LockDoorWithKey">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#LockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?INSTRUMENT ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "physicalKey")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:physicalKey ?theLock ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Lock>
+
+  <FabulaKnowledge:LocationMoveChanges rdf:about="#MoveInChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:containedBy ?AGENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:LocationMoveChanges>
+
+  <FabulaKnowledge:MoveIn rdf:about="#MoveInContainer">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">4</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#MoveInChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">4</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?availableCapacityTarget ?volumeAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?TARGET swc:Container)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?TARGET ?openCloseProperties)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:availableCapacity ?TARGET ?availableCapacityTarget)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:stapleVolume ?AGENS ?volumeAgens)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:MoveIn>
+
+  <FabulaKnowledge:LocationMoveChanges rdf:about="#MoveOnChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:LocationMoveChanges>
+
+  <FabulaKnowledge:LocationMoveChanges rdf:about="#MoveOutChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:containedBy ?AGENS ?thisContainer)</FabulaKnowledge:delete>
+  </FabulaKnowledge:LocationMoveChanges>
+
+  <FabulaKnowledge:MoveOut rdf:about="#MoveOutContainerOnTarget">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#MoveOutChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?thisContainer swc:Container)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containedBy ?AGENS ?thisContainer)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?thisContainer ?openCloseProperties)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:movableHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:MoveOut>
+
+  <FabulaKnowledge:ManipulateChanges rdf:about="#OpenChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties true)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties false)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ManipulateChanges>
+
+  <FabulaKnowledge:Open rdf:about="#OpenContainerNoLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#OpenChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:Container)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasLock ?openCloseProperties ?someLock))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Open>
+
+  <FabulaKnowledge:Open rdf:about="#OpenContainerWithLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#OpenChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasLock ?openCloseProperties ?theLock)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isLocked ?theLock false)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Open>
+
+  <FabulaKnowledge:Open rdf:about="#OpenDoorNoLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#OpenChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasLock ?openCloseProperties ?someLock))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Open>
+
+  <FabulaKnowledge:Open rdf:about="#OpenDoorWithLock">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">1</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#OpenChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">1</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasLock ?openCloseProperties ?theLock)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isLocked ?theLock false)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Open>
+
+  <FabulaKnowledge:Run rdf:about="#RunFromTo">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?aDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Run>
+
+  <FabulaKnowledge:Run rdf:about="#RunFromToDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Run>
+
+  <FabulaKnowledge:Run rdf:about="#RunToFrom">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:hasDoor ?INSTRUMENT ?aDoor))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Run>
+
+  <FabulaKnowledge:Run rdf:about="#RunToFromDoor">
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:fromGeographicArea ?INSTRUMENT ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?INSTRUMENT ?theDoor)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?theDoor ?doorProperty)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?doorProperty true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:toGeographicArea ?INSTRUMENT ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Run>
+
+  <FabulaKnowledge:StepOn rdf:about="#StepOnTarget">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#MoveOnChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:movableHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:validTransferLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:StepOn>
+
+  <FabulaKnowledge:ControlActChanges rdf:about="#TakeControlChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:controlStrength ?controlProperties ?controlStrength)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:controlType ?controlProperties ?controlType)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:controlledBy ?PATIENS ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:controlledObject ?controlProperties ?PATIENS)</FabulaKnowledge:add>
+  </FabulaKnowledge:ControlActChanges>
+
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlContainedByNonSentient">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">3</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TakeControlChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">3</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= "containedByNonSentient" ?controlType)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= 100 ?controlStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containedBy ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasControlType ?PATIENS "containedByNonSentient")</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:TakeControl>
+
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlContainedBySentient">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">3</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TakeControlChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">3</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(- ?controlProficiency ?controlDifficultyPatiens ?controlStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= "containedBySentient" ?controlType)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?controlStrength 0)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?agentControlSkill ?neededControlSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containedBy ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:controlDifficulty ?PATIENS ?controlDifficultyPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasControlType ?PATIENS "containedBySentient")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasSkill ?AGENTID ?agentControlSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:needsControlSkill ?PATIENS ?neededControlSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:proficiency ?agentControlSkill ?controlProficiency)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:TakeControl>
+
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlSupportedByNonSentient">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">3</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TakeControlChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">3</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= "supportedByNonSentient" ?controlType)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= 100 ?controlStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasControlType ?PATIENS "supportedByNonSentient")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:TakeControl>
+
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlSupportedBySentient">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">3</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TakeControlChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">3</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(- ?controlProficiency ?controlDifficultyPatiens ?controlStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(= "supportedBySentient" ?controlType)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?controlStrength 0)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?agentControlSkill ?neededControlSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:controlDifficulty ?PATIENS ?controlDifficultyPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasControlType ?PATIENS "supportedBySentient")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasSkill ?AGENTID ?agentControlSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:needsControlSkill ?PATIENS ?neededControlSkill)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:proficiency ?agentControlSkill ?controlProficiency)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:TakeControl>
+
+  <FabulaKnowledge:TakeFrom rdf:about="#TakeFromSupportedBy">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TakeFromSupportedByChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?strengthAgens ?weightPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:strength ?AGENS ?strengthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:stapleWeight ?PATIENS ?weightPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:heldBy ?someObject ?AGENS))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:TakeFrom>
+
+  <FabulaKnowledge:TransferChanges rdf:about="#TakeFromSupportedByChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?strengthAgens)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "grabbingDevice")</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?supportingObject)</FabulaKnowledge:delete>
+  </FabulaKnowledge:TransferChanges>
+
+  <FabulaKnowledge:TransferChanges rdf:about="#TakeOutChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?strengthAgens)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "grabbingDevice")</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:containedBy ?PATIENS ?thisContainer)</FabulaKnowledge:delete>
+  </FabulaKnowledge:TransferChanges>
+
+  <FabulaKnowledge:TakeOut rdf:about="#TakeOutContainer">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TakeOutChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?strengthAgens ?weightPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:containedBy ?PATIENS ?thisContainer)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasOpenCloseProperties ?thisContainer ?openCloseProperties)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:isOpen ?openCloseProperties true)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:strength ?AGENS ?strengthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?PATIENS ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:stapleWeight ?PATIENS ?weightPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:heldBy ?someObject ?AGENS))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:TakeOut>
+
+  <FabulaKnowledge:Tie rdf:about="#TieObjectToRope">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TieObjectToRopeChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(- ?strengthAgens 1 ?attachingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?availableRopeLength ?minCircumferencePatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?TARGET swc:RopeLikeDevice)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?holdingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:strength ?AGENS ?strengthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:availableRopeLength ?TARGET ?availableRopeLength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:minCircumference ?PATIENS ?minCircumferencePatiens)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Tie>
+
+  <FabulaKnowledge:AttachChanges rdf:about="#TieObjectToRopeChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachedBy ?PATIENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "knot")</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?holdingStrength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "grabbingDevice")</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:delete>
+  </FabulaKnowledge:AttachChanges>
+
+  <FabulaKnowledge:Tie rdf:about="#TieRopeToObject">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#TieRopeToObjectChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(- ?strengthAgens 1 ?attachingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?availableRopeLengthTarget ?minCircumferenceTarget)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(rdf:type ?PATIENS swc:RopeLikeDevice)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?holdingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:strength ?AGENS ?strengthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:availableRopeLength ?PATIENS ?availableRopeLengthTarget)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:minCircumference ?TARGET ?minCircumferenceTarget)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Tie>
+
+  <FabulaKnowledge:AttachChanges rdf:about="#TieRopeToObjectChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachedBy ?PATIENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?PATIENS)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</FabulaKnowledge:add>
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "knot")</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?AGENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?holdingStrength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "grabbingDevice")</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:heldBy ?PATIENS ?AGENS)</FabulaKnowledge:delete>
+  </FabulaKnowledge:AttachChanges>
+
+  <FabulaKnowledge:TransitMoveChanges rdf:about="#TransitMoveInterEffects">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:isOnTransitWay ?AGENS ?INSTRUMENT)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:delete>
+  </FabulaKnowledge:TransitMoveChanges>
+
+  <FabulaKnowledge:ManipulateChanges rdf:about="#UnlockChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:isLocked ?theLock false)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:isLocked ?theLock true)</FabulaKnowledge:delete>
+  </FabulaKnowledge:ManipulateChanges>
+
+  <FabulaKnowledge:Unlock rdf:about="#UnlockContainerWithCode">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#UnlockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:code ?theLock ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "code")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Unlock>
+
+  <FabulaKnowledge:Unlock rdf:about="#UnlockContainerWithKey">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#UnlockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?INSTRUMENT ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "physicalKey")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:physicalKey ?theLock ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveHeight ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:interactiveLocation ?AGENS ?PATIENS)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Unlock>
+
+  <FabulaKnowledge:Unlock rdf:about="#UnlockDoorWithCode">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#UnlockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:code ?theLock ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "code")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Unlock>
+
+  <FabulaKnowledge:Unlock rdf:about="#UnlockDoorWithKey">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">2</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#UnlockChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">2</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:connectedToGeographicArea ?path ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasDoor ?path ?PATIENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:heldBy ?INSTRUMENT ?AGENS)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:length ?path 1)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:lockType ?theLock "physicalKey")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:physicalKey ?theLock ?INSTRUMENT)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:supportedBy ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swcr:atLocation ?AGENS ?currLoc)</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Unlock>
+
+  <FabulaKnowledge:Untie rdf:about="#UntieRopeFromObject">
+    <FabulaKnowledge:chanceOfSuccess rdf:datatype="&xsd;string">100</FabulaKnowledge:chanceOfSuccess>
+    <FabulaKnowledge:duration rdf:datatype="&xsd;string">5</FabulaKnowledge:duration>
+    <FabulaKnowledge:effects rdf:resource="#UntieRopeFromObjectChanges"/>
+    <FabulaKnowledge:interruptableDuration rdf:datatype="&xsd;string">5</FabulaKnowledge:interruptableDuration>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(> ?strengthAgens ?attachingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:attachedBy ?PATIENS ?TARGET)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedProperties ?attachingStrength)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "knot")</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:hasAttachedProperties ?PATIENS ?attachedPropertiesPatiens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(swc:strength ?AGENS ?strengthAgens)</FabulaKnowledge:preconditions>
+    <FabulaKnowledge:preconditions rdf:datatype="&xsd;string">(unp(swc:heldBy ?heldObj ?AGENS))</FabulaKnowledge:preconditions>
+  </FabulaKnowledge:Untie>
+
+  <FabulaKnowledge:AttachChanges rdf:about="#UntieRopeFromObjectChanges">
+    <FabulaKnowledge:add rdf:datatype="&xsd;string">(swc:supportedBy ?PATIENS ?TARGET)</FabulaKnowledge:add>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachedBy ?PATIENS ?TARGET)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingDevice ?attachedPropertiesPatiens ?PATIENS)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingObject ?attachedPropertiesPatiens ?TARGET)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingStrength ?attachedPropertiesPatiens ?attachingStrength)</FabulaKnowledge:delete>
+    <FabulaKnowledge:delete rdf:datatype="&xsd;string">(swc:attachingType ?attachedPropertiesPatiens "knot")</FabulaKnowledge:delete>
+  </FabulaKnowledge:AttachChanges>
+</rdf:RDF>

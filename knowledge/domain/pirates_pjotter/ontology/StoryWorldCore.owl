@@ -1,0 +1,1784 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldCore.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldCore.owl">
+  <owl:Ontology rdf:about=""/>
+  <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#boolean">
+    <rdf:type>
+      <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Class"/>
+    </rdf:type>
+  </rdfs:Datatype>
+  <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#int">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdfs:Datatype>
+  <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
+  <owl:Class rdf:ID="GlueDevice">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AttachingDevice"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Device which contains glue like substance.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Robot">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Machine"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A humanoid like machine which is controllable.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="DeviceMakingSkill">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CreationSkill"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ability to create devices.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PrototypeStorage">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Abstract"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Abstract location at which all prototypes of objects are stored.
+
+Prototypes are necessary to create objects: standard measures for various attributes are stored in prototypes.
+Prototypes are also usefull fo quick Story World creation: simply copy a prototype, and change its location.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Entity">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] The universal class of individuals.  This is the root node of the ontology.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Corn">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Plant"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Corn.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Toxic">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="BiologicallyActiveSubstance"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A BiologicallyActiveSubstance that is harmful to an Organism. It is generally unknowingly ingested as Food.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="BodyPart">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnatomicalStructure"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A collection of Cells and Tissues which are localized to a specific area of an Organism and which are not pathological. The instances of this Class range from gross structures to small components of complex Organs.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Agent">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Something or someone that can act on its own and produce changes in the world.
+
+[Ivo/Jasper] In SUMO this is a subclass of Physical-&gt;Object. But in our world an agent can not exist without a body: Something which is only an agent is not tangible. Thus 'agent' has to become an abstract entity.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Object"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Protein">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Nutrient"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Nutrient made up of amino acids joined by peptide bonds
+
+Used in our StoryWorld to increase Stamina of an Animal.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="OnOffProperties">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="InternalAttribute"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the properties necessary to switch things on and off.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="NailLikeDevice">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AttachingDevice"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Device which has sharp point and is made to attach things to each other. Examples are Nail, Screw and Thumbtack.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Meat">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Beverage"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="FruitOrVegetable"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnimalBodyPart"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Food"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Any Food which was originally part of an Animal and is not ingested by drinking, including eggs and animal blood that is eaten as food. Note that this class covers both raw meat and meat that has been prepared in some way, e.g. by cooking. Note too that preparations involving Meat and FruitOrVegetable are classed directly under Food.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Product">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Artifact"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] An Artifact that is produced by Manufacture and that is intended to be sold.
+
+[Ivo] Is our intention for it to be sold?</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SecurityDevice">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Device"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[MILO] A Device whose purpose is to protect people or property from kidnappers and/or thieves.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Plant">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Organism"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] An Organism having cellulose cell walls, growing by synthesis of Substances, generally distinguished by the presence of chlorophyll, and lacking the power of locomotion.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#AnimalBodyPart">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class of BodyParts of an Animal.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#BodyPart"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Artifact">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CorpuscularObject"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A CorpuscularObject that is the product of a Making.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_1">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Animal"/>
+          <owl:Class rdf:about="#Artifact"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Door"/>
+          <owl:Class rdf:ID="Window"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Container">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Device which is made to CONTAIN a SelfConnectedObject or Substance.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Device"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >container</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="HumanBody">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body of a Human. Different from Animal in that it can have arms, hands etc. (can an Ape have arms?)</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnimalBody"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="PropertyAttribute">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Attribute"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A class containing all the properties of properties: Some relations need to specify additional parameters. In OWL this is only possible by creating a new class. 
+
+We specify those classes to be sub-classes of PropertyAttribute.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="BuildingMaterial">
+    <rdfs:subClassOf rdf:resource="#Product"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jasper: Basic materials from which objects are constructed. I.e. wooden planks, nails, bricks.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Door">
+    <rdfs:subClassOf rdf:resource="#Artifact"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[MILO] An Artifact that restricts and permits access to a StationaryArtifact (e.g. Building or Room) depending on whether the Door is open or locked. Note that the class Door also covers gates, because it is not possible to define objective criteria that reliably distinguish doors from gates
+
+[Jasper] In our StoryWorld it is used to restrict and permit access to GeographicalArea's (which might be StationaryArtifacts).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Vegetable">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="PlantBodyPart"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A vegetable.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#FruitOrVegetable">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Any Food which was originally part of a Plant and is not ingested by drinking.</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Beverage"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Meat"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Food"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PlantBodyPart"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OpenCloseProperties">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#InternalAttribute"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the extra properties of artifacts which can be opened and closed. This includes the closely related notions about locked/unlocked.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="AttachedProperties">
+    <rdfs:subClassOf rdf:resource="#PropertyAttribute"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Description of the properties of an Attaching relation.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#CorpuscularObject">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A SelfConnectedObject whose parts have properties that are not shared by the whole.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SelfConnectedObject"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ConstructionHeap">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Type of objects which are under construction.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CorpuscularObject"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SeaWay">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A TransitWay over sea.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="WaterWay"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Root">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PlantBodyPart"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A root.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Skill">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The capabilities of an agent in terms of professions.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#InternalAttribute"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Torso">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A Torso.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AnimalBodyPart"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ArtisticSkill">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ability to create nice Artwork</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CreationSkill"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Machine">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Machines are Devices that that have a well-defined resource and result and that automatically convert the resource into the result.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Device"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Clothing">
+    <rdfs:subClassOf rdf:resource="#Container"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="WearableItem"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Artifact made out of fabrics and possibly other materials that are used to cover the bodies of Humans.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Bush">
+    <rdfs:subClassOf rdf:resource="#Plant"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A bush.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Nutrient">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#BiologicallyActiveSubstance"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A BiologicallyActiveSubstance required by an Organism. It is generally ingested as Food, and it is of primary interest because of its role in the biologic functioning of the Organism.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ControlAnimal">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ControlSkill"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Device">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Device is an Artifact whose purpose is to serve as an instrument in a specific subclass of Process.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Artifact"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PlantBodyPart">
+    <rdfs:subClassOf rdf:resource="#BodyPart"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class of BodyParts of a plant.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Artwork">
+    <rdfs:subClassOf rdf:resource="#Artifact"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Artifacts that are created primarily for aesthetic appreciation.  Note that this Class does not include most examples of architecture, which belong under StationaryArtifact.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="SubstanceContainer">
+    <rdfs:subClassOf rdf:resource="#Container"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Container which can contain both substances and
+CorpuscularObjects. We might want to make a distinction between
+liquid substances and solid substances like sand. (That is, if sand is a
+substance. I think it is.)</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  <owl:Class rdf:ID="GroundWay">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TransitWay"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A Transitway that is directly over solid terrain.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="TransportationDevice">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A TransportationDevice is a Device which serves as the instrument in a Transportation Process which carries the patient of the Process from one point to another.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Device"/>
+  </owl:Class>
+  <owl:Class rdf:about="#WearableItem">
+    <rdfs:subClassOf rdf:resource="#Artifact"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Products that one can carry without using ones hands.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="NecessaryCreationMaterial">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#InternalAttribute"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="StationaryArtifact">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A StationaryArtifact is an Artifact that has a fixed spatial location.  Most instances of this Class are architectural works, e.g. the Eiffel Tower, the Great Pyramids, office towers, single-family houses, etc.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Artifact"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CreationSkill">
+    <rdfs:subClassOf rdf:resource="#Skill"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The ability of an agent to create, assemble and disassemble Artifacts and Food.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Food">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Any SelfConnectedObject containing Nutrients, such as carbohydrates, proteins, and fats, that can be ingested by a living Animal and metabolized into energy and body tissue.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SelfConnectedObject"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Vitamin">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Nutrient present in natural products or made synthetically, which is essential in the diet of Humans and other higher Animals.  Included here are Vitamin precursors and provitamins.
+
+Used in our StoryWorld to increase health of an Organism</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Nutrient"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Wing">
+    <rdfs:subClassOf rdf:resource="#AnimalBodyPart"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A wing.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_4">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Region"/>
+          <owl:Class rdf:about="#SelfConnectedObject"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Tree">
+    <rdfs:subClassOf rdf:resource="#Plant"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A tree.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Arm">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AnimalGrabbingDevice"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jasper: Humanoid Arm. Used for picking up items.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Mixture">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Substance"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ControlProperties">
+    <rdfs:subClassOf rdf:resource="#PropertyAttribute"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Description of the properties of an Control relation.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Organism">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Generally, a living individual, including all Plants and Animals.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="OrganicObject"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Fruit">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fruit.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#PlantBodyPart"/>
+  </owl:Class>
+  <owl:Class rdf:about="#ControlSkill">
+    <rdfs:subClassOf rdf:resource="#Skill"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Region">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A topographic location.  Regions encompass surfaces of Objects, imaginary places, and GeographicAreas.  Note that a Region is the only kind of Object which can be located at itself.  Note too that Region is not a subclass of SelfConnectedObject, because some Regions, e.g. archipelagos, have parts which are not connected with one another.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Object"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Head">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A head.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AnimalBodyPart"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Trunk">
+    <rdfs:subClassOf rdf:resource="#PlantBodyPart"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A trunk.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#AttachingDevice">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Device whose purpose is to attach one thing to something else, e.g. nails, screws, buttons, etc.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Device"/>
+  </owl:Class>
+  <owl:Class rdf:ID="IntentionalProcess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Process that has a specific purpose for the CognitiveAgent who performs it.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Process"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#OrganicObject">
+    <rdfs:subClassOf rdf:resource="#CorpuscularObject"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] This class encompasses Organisms, CorpuscularObjects that are parts of Organisms, i.e. BodyParts, and CorpuscularObjects that are nonintentionally produced by Organisms, e.g. ReproductiveBodies.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_5">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Agent"/>
+          <owl:Class rdf:about="#CorpuscularObject"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#InternalAttribute">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Attribute"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Any Attribute of an Entity that is an internal property of the Entity, e.g. its shape, its color, its fragility, etc.
+
+For now, we redefine this to be about Attributes of a Corpuscular Object.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Beverage">
+    <owl:disjointWith rdf:resource="#FruitOrVegetable"/>
+    <owl:disjointWith rdf:resource="#Meat"/>
+    <rdfs:subClassOf rdf:resource="#Food"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Any Food that is ingested by Drinking. Note that this class is disjoint with the other subclasses of Food, i.e. Meat and FruitOrVegetable.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Mineral">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Substance"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO]  Any of various naturally occurring homogeneous substances (such as stone, coal, salt, sulfur, sand, petroleum), or synthetic substances having the chemical composition and crystalline form and properties of a naturally occurring mineral.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Attribute">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Qualities which we cannot or choose not to reify into subclasses of Object</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Abstract"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Window">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[MILO] A StationaryArtifact composed of transparent glass or plastic that admits light (and possibly air) into a Room or Building.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Artifact"/>
+  </owl:Class>
+  <owl:Class rdf:about="#WaterWay">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#TransitWay"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A TransitWay over water.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Leg">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A Leg.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AnimalBodyPart"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AnatomicalStructure">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A normal or pathological part of the anatomy or structural organization of an Organism. This class covers BodyParts, as well as structures that are given off by Organisms, e.g. ReproductiveBodies.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#OrganicObject"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Substance">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SelfConnectedObject"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BiologicalProcess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Process embodied in an Organism.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="InternalChange"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GeographicArea">
+    <rdfs:subClassOf rdf:resource="#Region"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A geographic location, generally having definite boundaries.  Note that this differs from its immediate superclass Region in that a GeographicArea is a three-dimensional Region of the earth.  Accordingly, all astronomical objects other than earth and all one-dimensional and two-dimensional Regions are not classed under GeographicArea.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="AttachingLock">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A U shaped lock which can be used to attach rings or to a container/door with a ring.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AttachingDevice"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Lock"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Padlock">
+    <rdfs:subClassOf rdf:resource="#AttachingLock"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AttachableDevice">
+    <rdfs:subClassOf rdf:resource="#Device"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A device which is made for facilitating attaching.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#AnimalBody">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Body"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body of an Animal.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#TransitWay">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Transitway is the broadest class of regions which may be passed through as a path in instances of Translocation.  Transitway includes land, air, and sea regions, and it includes both natural and artificial transitways.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Region"/>
+  </owl:Class>
+  <owl:Class rdf:about="#BiologicallyActiveSubstance">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A Substance that is capable of inducing a change in the structure or functioning of an Organism.  This Class includes Substances used in the treatment, diagnosis, prevention or analysis of normal and abnormal body function. This Class also includes Substances that occur naturally in the body and are administered therapeutically.  Finally, BiologicallyActiveSubstance includes Nutrients, most drugs of abuse, and agents that require special handling because of their toxicity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Substance"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SelfConnectedObject">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] A SelfConnectedObject is any Object that does not consist of two or more disconnected parts.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Object"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Animal">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] An Organism with eukaryotic Cells, and lacking stiff cell walls, plastids, and photosynthetic pigments.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Organism"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Flower">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A flower.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Plant"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SelfConnectedObjectContainer">
+    <rdfs:subClassOf rdf:resource="#Container"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Container which can only contain SelfConnectedObjects.
+Note that in this interpretation of SUMO, a chicken
+is both a CorpuscularObject and Food.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="CookingSkill">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ability to create nice food.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CreationSkill"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ring">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dictionary.com: A circular object, form, line, or arrangement with a vacant circular center. Can be used to attach padlocks to.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AttachableDevice"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Process">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Physical"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Intuitively, the class of things that happen and have temporal parts or stages.  Examples include extended events like a football match or a race, actions like Pursuing and Reading, and biological processes. The formal definition is: anything that lasts for a time but is not an Object.  Note that a Process may have participants 'inside' it which are Objects, such as the players in a football match.  In a 4D ontology, a Process is something whose spatiotemporal extent is thought of as dividing into temporal stages roughly perpendicular to the time-axis.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#AnimalGrabbingDevice">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jasper: Grabbing Device of an Animal.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AnimalBodyPart"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GrabbingDevice"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#GrabbingDevice">
+    <rdfs:subClassOf rdf:resource="#Device"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jasper: Device for picking up objects. Can be organic.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Wall">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[MILO] A StationaryArtifact that supports a Building or partitions it into Rooms</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#StationaryArtifact"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Object">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Corresponds roughly to the class of ordinary objects.  Examples include normal physical objects, geographical regions, and locations of Processes, the complement of Objects in the Physical class.  In a 4D ontology, an Object is something whose spatiotemporal extent is thought of as dividing into spatial parts roughly parallel to the time-axis.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Physical"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_2">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#CorpuscularObject"/>
+          <owl:Class rdf:about="#Region"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Artifact"/>
+          <owl:Class rdf:about="#Organism"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Humanoid">
+    <rdfs:subClassOf rdf:resource="#Animal"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class of animals that resemble humans more or less and are fairly intelligent.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Beak">
+    <rdfs:subClassOf rdf:resource="#AnimalGrabbingDevice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jasper: Beak of a bird. Often used to carry items.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Human">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Human being.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Humanoid"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Lock">
+    <rdfs:subClassOf rdf:resource="#SecurityDevice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[MILO] A Device, which, through a Key or a combination prevents access to a Container or StationaryArtifact.
+
+[Jasper] There is more to that: TransportationDevices can also be locked and unlocked. It is a device which prevents other devices from 'opening'. Note that this still hold for a bike which is chained to a lantern: the Lock prevents the AttachingDevice:Chain from opening.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Body">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >AnatomicalStructure that represents the physical appearance of an organism. It consists of various BodyParts.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AnatomicalStructure"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Physical">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] An entity that has a location in space-time. Note that locations are themselves understood to have a location in space-time.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:about="#InternalChange">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Processes which involve altering an internal property of an Object, e.g. the shape of the Object, its coloring, its structure, etc. Processes that are not instances of this class include changes that only affect the relationship to other objects, e.g. changes in spatial or temporal location.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Process"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Vehicle">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Vehicle is the subclass of TransportationDevices that transport passengers or goods from one place to another by moving from one place to the other with them, e.g., cars, trucks, ferries, and airplanes. Contrast with devices such as pipelines, escalators, or supermarket checkout belts, which carry items from one place to another by means of a moving part, without the device removing from the origin to the destination.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransportationDevice"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RopeLikeDevice">
+    <rdfs:subClassOf rdf:resource="#AttachingDevice"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Abstract">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] Properties or qualities as distinguished from any particular embodiment of the properties/qualities in a physical medium. Instances of Abstract can be said to exist in the same sense as mathematical objects such as sets and relations, but they cannot exist at a particular place and time without some physical encoding or embodiment.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Entity"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RailWay">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A TransitWay consisting of rail that require an Object that can use them.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitWay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Key">
+    <rdfs:subClassOf rdf:resource="#SecurityDevice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[MILO] A Device which opens and closes a Lock
+
+[Jasper] In our implementation this will be called 'unlocking' and 'locking' a Lock.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="RiverWay">
+    <rdfs:subClassOf rdf:resource="#WaterWay"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A river.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="PlantBody">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Body of a Plant.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Body"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Role">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The role that a character plays in the story world (e.g. mother, farmer, etc)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Abstract"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_3">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Region"/>
+          <owl:Class rdf:about="#SelfConnectedObject"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Chain">
+    <rdfs:subClassOf rdf:resource="#RopeLikeDevice"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Cord">
+    <rdfs:subClassOf rdf:resource="#RopeLikeDevice"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Leaf">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A Leaf.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#PlantBodyPart"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="needsCreationMaterials">
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range rdf:resource="#NecessaryCreationMaterial"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="supportedBy">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="locatedAt"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Object"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="supports"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="containsBioActiveSubstance">
+    <rdfs:range rdf:resource="#BiologicallyActiveSubstance"/>
+    <rdfs:domain rdf:resource="#Food"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The BiologicallyActiveSubstance that a certain food contains. These are usually nutrients, but could also be toxic (i.e. a toxic berry or a poisoned apple).</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="physicalKey">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The physical key which is needed to lock/unlock this Lock.</rdfs:comment>
+    <rdfs:range rdf:resource="#Key"/>
+    <rdfs:domain rdf:resource="#Lock"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isOnTransitWay">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasOnTransitWay"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes on which TransitWay the object is moving.</rdfs:comment>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range rdf:resource="#TransitWay"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#locatedAt"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="toGeographicArea">
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="toTransitWay"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The destination of the TransitWay.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="connectedToGeographicArea"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasOnOffProperty">
+    <rdfs:range rdf:resource="#OnOffProperties"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Machine"/>
+          <owl:Class rdf:about="#TransportationDevice"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the on/off properties. Is modeled in the same way as open/close.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="length">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Length of the Transitway, in distance units.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="heldBy">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="attachedBy"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Object"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="holds"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isLowestLevel">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Indicates whether the GeographicArea doesn't have any geographicSubregions. Objects can only actually be located 'at' a GeographicArea when it is the lowest level.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="strength">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Muscle strength of an Object.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasAttachedProperties">
+    <rdfs:range rdf:resource="#AttachedProperties"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This slot is only filled if the object attaches or isAttachedBy another object. This class defines the properties of that attaching relation.
+
+If all is well, the domain and range of this relation should be the same as attaches and isAttachedBy</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#toTransitWay">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="connectedToTransitWay"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#toGeographicArea"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasCorpuscularObjectPart">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation between a Corpuscalar object and its CorpuscularObject parts.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="hasPart"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range rdf:resource="#CorpuscularObject"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="partOfCorpuscularObject"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="fastens">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="attaches"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="fastenedBy"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="contains">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="containedBy"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="hasObject"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation between a container and the object INSIDE the container.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isBlockingObstacleOnTransitWay">
+    <rdfs:subPropertyOf rdf:resource="#isOnTransitWay"/>
+    <owl:inverseOf>
+      <owl:FunctionalProperty rdf:ID="hasBlockingObstacle"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="partOfBody">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#partOfCorpuscularObject"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#BodyPart"/>
+    <rdfs:range rdf:resource="#Body"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasBodyPart"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasOnTransitWay">
+    <owl:inverseOf rdf:resource="#isOnTransitWay"/>
+    <rdfs:range rdf:resource="#CorpuscularObject"/>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasObject"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes which objects are moving on the TransitWay.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="wears">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation between objects that an agent carries directly and the
+agent itself. Carrying directly means that an agent has a hasClothing
+relation with a BackPack, but not with the Candle inside the backpack.</rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="wornBy"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasObject"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasLock">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the locks available on/in the object. Note that multiple locks are possible.
+
+Locks can prevent things from opening/closing and switching off/on.</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#OnOffProperties"/>
+          <owl:Class rdf:about="#OpenCloseProperties"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Lock"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#fastenedBy">
+    <owl:inverseOf rdf:resource="#fastens"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#attachedBy"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="consistsOf">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The materials out of which an artifact is build. The materials are probably Substances.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Artifact"/>
+    <rdfs:range rdf:resource="#Substance"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasBodyPart">
+    <owl:inverseOf rdf:resource="#partOfBody"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation between a body and its bodyparts.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Body"/>
+    <rdfs:range rdf:resource="#BodyPart"/>
+    <rdfs:subPropertyOf rdf:resource="#hasCorpuscularObjectPart"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#containedBy">
+    <owl:inverseOf rdf:resource="#contains"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#locatedAt"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Object"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="partOfGeographicArea">
+    <rdfs:range rdf:resource="#GeographicArea"/>
+    <rdfs:domain rdf:resource="#Region"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasRegion"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="partOf"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasBiologicalProcess">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >BiologicalProcess that the Organism has, i.e. producing oxygen or taking up water.</rdfs:comment>
+    <rdfs:range rdf:resource="#BiologicalProcess"/>
+    <rdfs:domain rdf:resource="#Organism"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="controls">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Agent"/>
+          <owl:Class rdf:about="#CorpuscularObject"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#CorpuscularObject"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="controlledBy"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes which object the current object is controlling.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#attachedBy">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#attaches"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Object"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#locatedAt"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.
+
+Note that this property should also have the same range and domain as hasAttachingProperties</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasControlProperties">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Properties of the controlledBy/controls relations.
+
+Has the same domain as control and controlledBy together.</rdfs:comment>
+    <rdfs:range rdf:resource="#ControlProperties"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Artifact"/>
+          <owl:Class rdf:about="#Organism"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasRegion">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasPart"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#partOfGeographicArea"/>
+    <rdfs:range rdf:resource="#Region"/>
+    <rdfs:domain rdf:resource="#GeographicArea"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation of a GeographicArea to another GeographicArea or TransitWay
+that is contained in the first.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="height">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Height of an object.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="fromGeographicArea">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the starting location of the TransitWay.</rdfs:comment>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="fromTransitWay"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#connectedToGeographicArea"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#holds">
+    <owl:inverseOf rdf:resource="#heldBy"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#attaches"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Relation for object which is held by an hand-like object.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasPart">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#partOf"/>
+    </owl:inverseOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation of an object to its parts.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasObject"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#Object"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasSkill">
+    <rdfs:domain rdf:resource="#Agent"/>
+    <rdfs:range rdf:resource="#Skill"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#partOfCorpuscularObject">
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range rdf:resource="#CorpuscularObject"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#hasCorpuscularObjectPart"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#partOf"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="weight">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The weight of an object.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="locatedAtPrototypeStorage">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Property which is used to state that an object is a prototype. Store the prototypes in the ontology in a separate object (ThePrototypeStorate) for quick access.</rdfs:comment>
+    <rdfs:range rdf:resource="#PrototypeStorage"/>
+    <rdfs:domain rdf:resource="#Object"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#controlledBy">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes by which Object the current Object is controlled. Same range as DirectlyControlledBy</rdfs:comment>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Agent"/>
+          <owl:Class rdf:about="#CorpuscularObject"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <owl:inverseOf rdf:resource="#controls"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#connectedToTransitWay">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#connectedToGeographicArea"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#GeographicArea"/>
+    <rdfs:range rdf:resource="#TransitWay"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasRemoteControl">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >device which is necessary to 'artifactRemote' control this artifact.
+
+Used in the control action.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Artifact"/>
+    <rdfs:range rdf:resource="#Device"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#connectedToGeographicArea">
+    <rdfs:range rdf:resource="#GeographicArea"/>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <owl:inverseOf rdf:resource="#connectedToTransitWay"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#attaches">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation between an object object which is attached to another
+object. The difference between supports is that there is some
+force holding the objects together. 
+
+Domain and range should be the same as hasAttachingProperties.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasObject"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#attachedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#fromTransitWay">
+    <owl:inverseOf rdf:resource="#fromGeographicArea"/>
+    <rdfs:subPropertyOf rdf:resource="#connectedToTransitWay"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isDoorOnTransitWay">
+    <rdfs:subPropertyOf rdf:resource="#isOnTransitWay"/>
+    <rdfs:range rdf:resource="#TransitWay"/>
+    <rdfs:domain rdf:resource="#Artifact"/>
+    <owl:inverseOf>
+      <owl:FunctionalProperty rdf:ID="hasDoor"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#partOf">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#hasPart"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#locatedAt"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasOpenCloseProperty">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Container"/>
+          <owl:Class rdf:about="#Door"/>
+          <owl:Class rdf:about="#Vehicle"/>
+          <owl:Class rdf:about="#Window"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#OpenCloseProperties"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the open/close properties of the object. Notice that the objects of the domain are found at different places in the hierarchy.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#wornBy">
+    <rdfs:domain rdf:resource="#Object"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#locatedAt"/>
+    </rdfs:subPropertyOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <owl:inverseOf rdf:resource="#wears"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#supports">
+    <owl:inverseOf rdf:resource="#supportedBy"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The relation between an object (A) that is on (or atop) another object
+(B). Now object B supports object A.</rdfs:comment>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasObject"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="limited">
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+          >true</rdf:first>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="hasExtraActionWhenOn">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#OnOffProperties"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Extra actions when the artifact is turned on (that is, if it can be turned on).</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="OWL-ONTOLOGY-PREFIXES"/>
+  <owl:DatatypeProperty rdf:ID="maxAttachableDeviceWidth">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Maximum width of the Attachable Device (such as a ring). Used to determine if a Padlock can be attached to this device.</rdfs:comment>
+    <rdfs:domain rdf:resource="#AttachableDevice"/>
+  </owl:DatatypeProperty>
+  <owl:TransitiveProperty rdf:about="#locatedAt">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >See description of inverse relation.</rdfs:comment>
+    <rdfs:range rdf:resource="#Object"/>
+    <rdfs:domain rdf:resource="#Object"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="#hasObject"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#hasObject">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The general relation that specifies the location of an object.
+This relation is transitive. We can use this relation to query if a specific
+object is located in/at/on another object. Thus we can ask if the apple
+is in the hand of the witch, or with the same relation, we can ask if the
+same apple is in the Forest.</rdfs:comment>
+    <rdfs:range rdf:resource="#Object"/>
+    <rdfs:domain rdf:resource="#Object"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#locatedAt"/>
+  </owl:TransitiveProperty>
+  <owl:SymmetricProperty rdf:ID="foldableInto">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#CorpuscularObject"/>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <owl:inverseOf rdf:resource="#foldableInto"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jasper: denotes object into which this object can be folded. I.e. an unfoldedChair can be fold into a foldedChair, decreasing its size.</rdfs:comment>
+  </owl:SymmetricProperty>
+  <owl:FunctionalProperty rdf:ID="isHerbivore">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Organism"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Whether the Organism eats plants. Does not imply that the Organism is a carnivore; it's not meant as a restriction.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="code">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The code which is needed to lock/unlock this Lock.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Lock"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="attachingStrength">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#AttachedProperties"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="submergedPath">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#WaterWay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes if the path is completely under water or not.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="windFromTo">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >strength of the wind in the direction of fromGeographicArea to toGeographicArea</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="currentToFrom">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Speed current when going from fromGeographicArea to toGeographicArea.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#WaterWay"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isOn">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#OnOffProperties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes if object is 'on' or not.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="flyingWidth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >width of a path for flying objects. Jasper: Not used to determine if object is small enough to cross path: maxFlyingSize is used instead.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="irregularityTerrain">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes how smooth the terrain is. Influences speed of Ambulate and Drive. The latter is influenced more heavily, until the point of standing still.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#GroundWay"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#hasDoor">
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <rdfs:range rdf:resource="#Artifact"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#isDoorOnTransitWay"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Contains an openable door-like object of a TransitWay</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="#hasOnTransitWay"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="instantiated">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="capacity">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The amount of space inside the container.
+This is usually smaller than the size of the container. Exceptions are
+a magical bag or a plastic bag. The latter is more special. A plastic
+bag is very small, but if one puts something inside it, its size increases
+to the size of the object inside of it. It remains to be seen if we can
+model this properly.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Container"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="attachingType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#AttachedProperties"/>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:rest rdf:parseType="Resource">
+                <rdf:rest rdf:parseType="Resource">
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >nail</rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:rest>
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >lock</rdf:first>
+              </rdf:rest>
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >knot</rdf:first>
+            </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >grabbingDevice</rdf:first>
+          </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >glue</rdf:first>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="depth">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#WaterWay"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Depth of the water. Can be used to determine the outcome of a failed swim action, or to determine if an actor can cross the water without swimming.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="attachingObject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The object which is ’attached’ (or held).
+
+Range of AttachedObject and Domain of hasAttachingProperties shoudl be the same.</rdfs:comment>
+    <rdfs:domain rdf:resource="#AttachedProperties"/>
+    <rdfs:range rdf:resource="#SelfConnectedObject"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="needsCreationSkill">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Denotes which skill is necessary and how high this skill must be to make the object. 
+
+The necessary value of the skill is contained in the CreationSkill itself.</rdfs:comment>
+    <rdfs:domain rdf:resource="#SelfConnectedObject"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="minMaterialSize">
+    <rdfs:domain rdf:resource="#NecessaryCreationMaterial"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="maxStamina">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The maximum amount of stamine an animal can have.
+
+This property has the same domain as stamina.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Animal"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="controlType">
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >containedByNonSentient</rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >containedBySentient</rdf:first>
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:rest rdf:parseType="Resource">
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >supportedByNonSentient</rdf:first>
+                <rdf:rest rdf:parseType="Resource">
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >supportedBySentient</rdf:first>
+                </rdf:rest>
+              </rdf:rest>
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >controlDevice</rdf:first>
+            </rdf:rest>
+          </rdf:rest>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#ControlProperties"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the type of this control relation. Possible values are 'love', 'artifactRemote' (remote controlled vehicle), 'artifactInside' (i.e. Car) etc.
+
+Note that the possible values of hasControlTypes are a subset of the possible values of controlType.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasControlType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest rdf:parseType="Resource">
+              <rdf:rest rdf:parseType="Resource">
+                <rdf:rest rdf:parseType="Resource">
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >supportedBySentient</rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:rest>
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >supportedByNonSentient</rdf:first>
+              </rdf:rest>
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >controlDevice</rdf:first>
+            </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >containedBySentient</rdf:first>
+          </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >containedByNonSentient</rdf:first>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes in what way the artifact may be controlled. Possible values are 'artifactRemote' (remote controlled vehicle), 'artifactInside' (i.e. Car), 'artifactSupportedBy (i.e. Bike).
+
+Note that the possible values of hasControlTypes are a subset of the possible values of controlType.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isCarnivore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Organism"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Whether the Organism eats meat. Does not imply that the Organism is a carnivore; it's not meant as a restriction.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="affectsBodyAttribute">
+    <rdfs:domain rdf:resource="#BiologicallyActiveSubstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >swc:stamina</rdf:first>
+          </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >swc:health</rdf:first>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="windToFrom">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >strength of the wind in the direction of toGeographicArea to fromGeographicArea</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="lockType">
+    <rdfs:domain rdf:resource="#Lock"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the type of lock.</rdfs:comment>
+    <rdfs:range>
+      <owl:DataRange>
+        <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >code</rdf:first>
+          <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >physicalKey</rdf:first>
+            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+          </rdf:rest>
+        </owl:oneOf>
+      </owl:DataRange>
+    </rdfs:range>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="controlledObject">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Artifact"/>
+          <owl:Class rdf:about="#Organism"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#ControlProperties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes which object is controlled</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="needsControlSkill">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Animal"/>
+          <owl:Class rdf:about="#Artifact"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="railType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The guiding object that will keep the corresponding vehicle on track.</rdfs:comment>
+    <rdfs:range rdf:resource="#CorpuscularObject"/>
+    <rdfs:domain rdf:resource="#RailWay"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="transparent">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Necessary for containers and doors to determine visibility.</rdfs:comment>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="stamina">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Number denoting 'the Physical or moral strength to resist or withstand illness, fatigue, or hardship'.
+We mainly use it for fatigue issues.
+
+This property has the same domain as maxStamina.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Animal"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="currentFromTo">
+    <rdfs:domain rdf:resource="#WaterWay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Speed current when going from toGeographicArea to fromGeographicArea.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="minQuantity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Denotes the necessary quantity of the target material for creating an object.</rdfs:comment>
+    <rdfs:domain rdf:resource="#NecessaryCreationMaterial"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="shape">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes the shape of an object. Only included for completeness. Shapes and reasoning with shapes still has to be dealt with, but this will prove VERY difficult.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:range rdf:resource="#InternalAttribute"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="toughness">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#CorpuscularObject"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strongness or resilience of a SelfConnectedObject.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="proficiency">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Skill"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Number denoting the ability of an Agent for that skill. The higher the number, the better the agent is in creation.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isOpenable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#OpenCloseProperties"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes if an object can be opened/closed or not.
+
+Examples: 
+- A mug is open and cannot be closed.
+- A window can be openable and closed.
+- If a window is not openable, it is closed by default.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isSwitchable">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Determines if object can be switched on/off or not (i.e. if there is a button which does this).</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#OnOffProperties"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="controlStrength">
+    <rdfs:domain rdf:resource="#ControlProperties"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Determines the strength of the control relation</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="material">
+    <rdfs:domain rdf:resource="#NecessaryCreationMaterial"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isLocked">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Lock"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes if the Lock is locked or not.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="interior">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Region"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Determines if the Region is an interior or exterior area</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="maxMaterialSize">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#NecessaryCreationMaterial"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="ascent">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#GroundWay"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes how much the path changes in height when going from fromGeograpicArea to toGeographicArea</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isOpen">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#OpenCloseProperties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes if the object is open.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="width">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >width of a path. Jasper: Not used to determine is object is small enough to cross transitway. MaxSize is used instead.</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#CorpuscularObject"/>
+          <owl:Class rdf:about="#Region"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="maxQuantity">
+    <rdfs:domain rdf:resource="#NecessaryCreationMaterial"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="health">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Organism"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Number denoting the current health of an organism. At zero, the organism dies. Same domain as maxHealth.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="creationDifficulty">
+    <rdfs:domain rdf:resource="#SelfConnectedObject"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="attachingDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#AttachedProperties"/>
+    <rdfs:range rdf:resource="#AttachingDevice"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The object which is the cause of the attached relation.
+It can be a hand, but it can also be glue or a rope.</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="maxHealth">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The maximum health an organism can have. 
+
+Has the same domain as health.</rdfs:comment>
+    <rdfs:domain rdf:resource="#Organism"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="potency">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Strength of the effect of the BiologicallyActiveSubstance.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#BiologicallyActiveSubstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="controlDifficulty">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Artifact"/>
+          <owl:Class rdf:about="#Organism"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#hasBlockingObstacle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#hasOnTransitWay"/>
+    <owl:inverseOf rdf:resource="#isBlockingObstacleOnTransitWay"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Obstackle that must be removed before one can cross a TransitWay</rdfs:comment>
+    <rdfs:domain rdf:resource="#TransitWay"/>
+  </owl:FunctionalProperty>
+  <OpenCloseProperties rdf:ID="open"/>
+  <OpenCloseProperties rdf:ID="closed"/>
+  <OpenCloseProperties rdf:ID="openable"/>
+  <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
+  <owl:AnnotationProperty rdf:ID="hasAction"/>
+  <PrototypeStorage rdf:ID="ThePrototypeStorage"/>
+  <OnOffProperties rdf:ID="on">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </OnOffProperties>
+  <OnOffProperties rdf:ID="off"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

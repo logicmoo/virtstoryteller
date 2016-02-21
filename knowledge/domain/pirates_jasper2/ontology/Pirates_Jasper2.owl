@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper2.owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:swc="http://www.owl-ontologies.com/StoryWorldCore.owl#"
+    xmlns:fabula="http://www.owl-ontologies.com/FabulaKnowledge.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper2.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl"/>
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="GoToDoor">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Walk"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ladder">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Path"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GoTo">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Walk"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LaunchCanon">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AttainGoal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Deck">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Location"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LoadCanon">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Water">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Rum">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Hold">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Location"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Pirate">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CrowsNest">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Location"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LookForRum">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AttainGoal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ship">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Location"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FireCanon">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Torch">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CanonBall">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Canon">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Container"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Bottle">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Container"/>
+  </owl:Class>
+  <swc:InternalAttribute rdf:ID="lit"/>
+  <swc:InternalAttribute rdf:ID="fired"/>
+  <swc:InternalAttribute rdf:ID="not_fired"/>
+  <swc:InternalAttribute rdf:ID="not_lit"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

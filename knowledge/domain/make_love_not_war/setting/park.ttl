@@ -1,0 +1,28 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix fabula:   <http://www.owl-ontologies.com/FabulaKnowledge.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix love:   <http://www.owl-ontologies.com/StoryWorldSettings/MakeLoveNotWar.owl#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/MakeLoveNotWar.owl#> .
+
+# Description of the park.
+# Author: Ivo Swartjes
+# Date:   21 jan 2008
+
+:john
+    a   fabula:Character ;
+    love:hasEmotion love:love ;
+    .
+    
+:linda
+    a   fabula:Character ;
+    love:hasEmotion love:hate ;
+    love:hasMoralStandard love:considerateForOthers ;    
+    .
+    
+:peter
+    a   fabula:Character ;
+    love:hasEmotion love:hate ;    
+    .	
+	    

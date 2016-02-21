@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldSettings/Lollipop.owl#"
+    xmlns:fabula="http://www.owl-ontologies.com/FabulaKnowledge.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldSettings/Lollipop.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Kid">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Role"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AskFor">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ToddleOffTo">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Money">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Object"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Give">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Greet">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AskForPrice">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Location"/>
+  <owl:Class rdf:ID="SayPrice">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Buy">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="IceVendor">
+    <rdfs:subClassOf rdf:resource="#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="IceCream">
+    <rdfs:subClassOf rdf:resource="#Object"/>
+  </owl:Class>
+  <owl:Class rdf:ID="HaveIce">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Goal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SellIce">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Goal"/>
+  </owl:Class>  
+  <owl:Class rdf:ID="Thank">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="at"/>
+  <owl:ObjectProperty rdf:ID="has"/>
+  <owl:ObjectProperty rdf:ID="greeted"/>
+  <owl:ObjectProperty rdf:ID="knowprice"/>  
+  <owl:ObjectProperty rdf:ID="adjacent"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

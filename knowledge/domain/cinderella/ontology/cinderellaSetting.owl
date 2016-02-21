@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY Cinderella "http://www.owl-ontologies.com/StoryWorldSettings/Cinderella">
+  <!ENTITY StoryWorldCore "http://www.owl-ontologies.com/StoryWorldCore.owl#">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="&Cinderella;"
+         xmlns:StoryWorldCore="&StoryWorldCore;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;">
+
+<!-- Ontology Information -->
+  <owl:Ontology rdf:about=""
+                rdfs:label="the Setting for Cinderella"/>
+
+<!-- Classes -->
+  <owl:Class rdf:about="&StoryWorldCore;AttachedProperties"/>
+  <owl:Class rdf:about="&StoryWorldCore;Clothing"/>
+  <owl:Class rdf:about="&StoryWorldCore;GeographicArea"/>
+  <owl:Class rdf:about="&StoryWorldCore;GroundWay"/>
+  <owl:Class rdf:about="&StoryWorldCore;Human"/>
+  <owl:Class rdf:about="&StoryWorldCore;Humanoid"/>
+
+<!-- Annotation Properties -->
+  <owl:AnnotationProperty rdf:about="&StoryWorldCore;hasAction"/>
+  <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+
+<!-- Datatype Properties -->
+  <owl:DatatypeProperty rdf:about="&StoryWorldCore;height"/>
+  <owl:DatatypeProperty rdf:about="&StoryWorldCore;isLowestLevel"/>
+  <owl:DatatypeProperty rdf:about="&StoryWorldCore;length"/>
+  <owl:DatatypeProperty rdf:about="&StoryWorldCore;strength"/>
+  <owl:DatatypeProperty rdf:about="&StoryWorldCore;weight"/>
+
+<!-- Object Properties -->
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;controlledBy"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;controls"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;fromGeographicArea"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;fromTransitWay"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;hasAttachedProperties"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;heldBy"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;holds"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;supportedBy"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;toGeographicArea"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;toTransitWay"/>
+  <owl:ObjectProperty rdf:about="&StoryWorldCore;wornBy"/>
+
+<!-- Instances -->
+  <StoryWorldCore:Human rdf:about="#cinderella"
+                        rdfs:label="Cinderella">
+    <StoryWorldCore:controlledBy rdf:resource="#cinderella"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Ambulate"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Transfer"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">160</StoryWorldCore:height>
+    <StoryWorldCore:strength rdf:datatype="&xsd;int">60</StoryWorldCore:strength>
+    <StoryWorldCore:supportedBy rdf:resource="#house"/>
+  </StoryWorldCore:Human>
+
+  <StoryWorldCore:Clothing rdf:about="#cloak">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#cloakattachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:supportedBy rdf:resource="#house"/>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#cloakattachedProperties"/>
+  <StoryWorldCore:GeographicArea rdf:about="#courthouse"
+                                 rdfs:label="the Courthouse"/>
+  <StoryWorldCore:GroundWay rdf:about="#cproad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#courthouse"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">13</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#palace"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:GroundWay rdf:about="#ffroad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#forest"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">17</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#field"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:GeographicArea rdf:about="#field"
+                                 rdfs:label="the Field"/>
+  <StoryWorldCore:GeographicArea rdf:about="#forest"
+                                 rdfs:label="the Forest"/>
+  <StoryWorldCore:GroundWay rdf:about="#fproad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#field"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">11</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#palace"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:GeographicArea rdf:about="#garden"
+                                 rdfs:label="Garden"/>
+  <StoryWorldCore:GroundWay rdf:about="#gfroad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#garden"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">5</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#forest"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:Humanoid rdf:about="#godmother"
+                           rdfs:label="Fairy Godmother">
+    <StoryWorldCore:controlledBy rdf:resource="#godmother"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Transfer"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Walk"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">45</StoryWorldCore:height>
+    <StoryWorldCore:strength rdf:datatype="&xsd;int">60</StoryWorldCore:strength>
+    <StoryWorldCore:supportedBy rdf:resource="#improvroom"/>
+  </StoryWorldCore:Humanoid>
+
+  <StoryWorldCore:Clothing rdf:about="#gown"
+                           rdfs:label="A gown">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#gownattachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:supportedBy rdf:resource="#improvroom"/>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#gownattachedProperties"/>
+  <StoryWorldCore:GroundWay rdf:about="#hgroad"
+                            rdfs:label="Road From the House to the Garden">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#house"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">5</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#garden"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:GeographicArea rdf:about="#house"
+                                 rdfs:label="Cinderella's House"/>
+  <StoryWorldCore:GroundWay rdf:about="#hsroad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#house"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">17</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#square"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:GroundWay rdf:about="#htroad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#house"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">13</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#tavern"/>
+  </StoryWorldCore:GroundWay>
+
+  <owl:Thing rdf:about="#improvroom"/>
+  <StoryWorldCore:Clothing rdf:about="#nicedress1"
+                           rdfs:label="Some Nice Dress">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#nicedress1attachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:heldBy rdf:resource="#stepmother"/>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#nicedress1attachedProperties"/>
+  <StoryWorldCore:Clothing rdf:about="#nicedress2"
+                           rdfs:label="Another Nice Dress">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#nicedress2attachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:heldBy rdf:resource="#stepmother"/>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#nicedress2attachedProperties"/>
+  <StoryWorldCore:Clothing rdf:about="#nicedress3"
+                           rdfs:label="Very Nice Dress">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#nicedress3attachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:heldBy rdf:resource="#godmother"/>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#nicedress3attachedProperties"/>
+  <StoryWorldCore:GeographicArea rdf:about="#palace"
+                                 rdfs:label="the Palace"/>
+  <StoryWorldCore:Human rdf:about="#prince"
+                        rdfs:label="Prince Charming">
+    <StoryWorldCore:controlledBy rdf:resource="#prince"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Ambulate"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Transfer"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">180</StoryWorldCore:height>
+    <StoryWorldCore:strength rdf:datatype="&xsd;int">60</StoryWorldCore:strength>
+    <StoryWorldCore:supportedBy rdf:resource="#palace"/>
+  </StoryWorldCore:Human>
+
+  <StoryWorldCore:GroundWay rdf:about="#scroad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#square"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">11</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#courthouse"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:Clothing rdf:about="#slipper1"
+                           rdfs:label="A glass slipper">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#slipper1attachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+    <StoryWorldCore:wornBy rdf:resource="#cinderella"/>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#slipper1attachedProperties"/>
+  <StoryWorldCore:Clothing rdf:about="#slipper2"
+                           rdfs:label="A glass slipper">
+    <StoryWorldCore:hasAttachedProperties rdf:resource="#slipper2attachedProperties"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">1</StoryWorldCore:height>
+    <StoryWorldCore:weight rdf:datatype="&xsd;int">1</StoryWorldCore:weight>
+    <StoryWorldCore:wornBy rdf:resource="#cinderella"/>
+  </StoryWorldCore:Clothing>
+
+  <StoryWorldCore:AttachedProperties rdf:about="#slipper2attachedProperties"/>
+  <StoryWorldCore:GroundWay rdf:about="#sproad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#square"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">19</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#palace"/>
+  </StoryWorldCore:GroundWay>
+
+  <StoryWorldCore:GeographicArea rdf:about="#square"
+                                 rdfs:label="the Fountain"/>
+  <StoryWorldCore:Human rdf:about="#stepmother"
+                        rdfs:label="Cinderella's Stepmother">
+    <StoryWorldCore:controlledBy rdf:resource="#stepmother"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Transfer"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Walk"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">160</StoryWorldCore:height>
+    <StoryWorldCore:strength rdf:datatype="&xsd;int">60</StoryWorldCore:strength>
+    <StoryWorldCore:supportedBy rdf:resource="#house"/>
+  </StoryWorldCore:Human>
+
+  <StoryWorldCore:Human rdf:about="#stepsister1"
+                        rdfs:label="Clorinda">
+    <StoryWorldCore:controlledBy rdf:resource="#stepsister1"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Transfer"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Walk"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">160</StoryWorldCore:height>
+    <StoryWorldCore:strength rdf:datatype="&xsd;int">60</StoryWorldCore:strength>
+    <StoryWorldCore:supportedBy rdf:resource="#house"/>
+  </StoryWorldCore:Human>
+
+  <StoryWorldCore:Human rdf:about="#stepsister2"
+                        rdfs:label="Tisbe">
+    <StoryWorldCore:controlledBy rdf:resource="#stepsister2"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Transfer"/>
+    <StoryWorldCore:hasAction rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Walk"/>
+    <StoryWorldCore:height rdf:datatype="&xsd;int">160</StoryWorldCore:height>
+    <StoryWorldCore:strength rdf:datatype="&xsd;int">60</StoryWorldCore:strength>
+    <StoryWorldCore:supportedBy rdf:resource="#house"/>
+  </StoryWorldCore:Human>
+
+  <StoryWorldCore:GeographicArea rdf:about="#tavern"
+                                 rdfs:label="the Tavern"/>
+  <StoryWorldCore:GroundWay rdf:about="#tcroad">
+    <StoryWorldCore:fromGeographicArea rdf:resource="#tavern"/>
+    <StoryWorldCore:length rdf:datatype="&xsd;int">13</StoryWorldCore:length>
+    <StoryWorldCore:toGeographicArea rdf:resource="#courthouse"/>
+  </StoryWorldCore:GroundWay>
+</rdf:RDF>

@@ -1,0 +1,2 @@
+:- multifile
+    suggestion/5.

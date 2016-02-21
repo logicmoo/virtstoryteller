@@ -1,0 +1,46 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix lolli:   <http://www.owl-ontologies.com/StoryWorldSettings/Lollipop.owl#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Lollipop.owl#> .
+
+# Description of the park.
+# Author: Ivo Swartjes
+# Date:   21 jan 2008
+
+:oIceCreamTruck
+    a   :Location ;
+    :adjacent   :park_1 ;
+    .
+    
+:oParkBench
+	a	:Location ;
+	.
+	
+:linda
+    a   :Kid ;
+    :has    :money_1 ;
+    :at :park_1 ;
+    .
+    
+:money_1
+    a   :Money ;
+    .
+    
+:park_1
+    a   :Location ;
+    :adjacent :oIceCreamTruck ;
+    .        
+    
+:otto
+    a   :IceVendor ;
+    :has    :vanilla_ice_1 ;
+    :at :oIceCreamTruck ;
+    .    	
+    
+:vanilla_ice_1
+    a   :IceCream ;
+    .    
+	
+	    

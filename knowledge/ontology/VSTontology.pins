@@ -1,0 +1,204 @@
+; Wed Oct 29 15:28:03 CET 2008
+; 
+;+ (version "3.3.1")
+;+ (build "Build 430")
+
+([Aborted] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([addresses] of  %3AJADE-SLOT
+
+	(%3AJADE-UNNAMED-SLOT FALSE))
+
+([AgentAction] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE TRUE))
+
+([AID] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE TRUE))
+
+([CharacterInfo] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Concept] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE TRUE))
+
+([FabulaCausality] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([FabulaCausalityDeclaration] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([FabulaElement] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([FabulaElementDeclaration] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Finished] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([FramingOperator] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([FramingOperatorPossible] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([GiveControl] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([GoalProgress] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE)
+	(%3AJADE-JAVA-CODE "public static final int COMPLETED = 0;\npublic static final int FAILED = 1;\npublic static final int WAITFOREXPECTATION = 2;\npublic static final int NEARLYCOMPLETED = 3;\npublic static final int UNKNOWN = 4;"))
+
+([GoalSchema] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([IncomingPerception] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([IncomingSetting] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([InferenceOperator] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([name] of  %3AJADE-SLOT
+
+	(%3AJADE-UNNAMED-SLOT FALSE))
+
+([NextRound] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Operator] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([OperatorResult] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([OperatorStatus] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([PerformOperator] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([PlayCharacter] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Predicate] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE TRUE))
+
+([project+annotation] of  %3APROJECT-ANNOTATION
+
+	(%3ALOCATION "C:\\Users\\frosty\\workspace\\VirtualStoryteller\\src")
+	(%3AONTOLOGYNAME "VST")
+	(%3APACKAGE "vs.communication")
+	(%3ASUPPORT "j2se"))
+
+([RDFtriple] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE)
+	(%3AJADE-JAVA-CODE "public String toString() {\n		com.hp.hpl.jena.shared.PrefixMapping pm = com.hp.hpl.jena.shared.PrefixMapping.Factory.create();\n		pm.setNsPrefixes(vs.Config.namespaceMap);\n\n		StringBuilder sb = new StringBuilder();\n		sb.append(getTruth()).append(\"(\").append(pm.shortForm(getSubject())).append(\",\").append(\n				pm.shortForm(getPredicate())).append(\",\").append(pm.shortForm(getObject())).append(\n				\")\");\n		return sb.toString();\n}\n\n/**\n * Following the steps from http://java.sun.com/developer/Books/effectivejava/Chapter3.pdf\n * It must be symmetric, transitive and consistent\n */\n@Override\npublic boolean equals(Object o) {\n	// 1. check for equality\n	if (this == o)\n		return true;\n\n	// 2. check for type\n	if (!(o instanceof RDFtriple))\n		return false;\n\n	// 3. typecast\n	RDFtriple t = (RDFtriple) o;\n\n	boolean equalCheck = true;\n\n	// 4. Check for equality of important fields. \n	//    We are only interested in the antecedents, consequents, and inspiration-causers.\n	return t.getTruth() == this.getTruth()\n			&& t.getSubject().equals(this.getSubject())\n			&& t.getPredicate().equals(this.getPredicate())			\n			&& t.getObject().equals(this.getObject());\n}\n\n/** \n * Return the sum of the hashcodes of the important parts. hashCode must be overridden when equals() is used.\n */\n@Override\npublic int hashCode() {\n	int result = 17; // arbitrary\n	result = 37 * result + (getTruth()? 1 : 2); // 37 is an odd prime\n	result = 37 * result + getSubject().hashCode();\n	result = 37 * result + getPredicate().hashCode();\n	result = 37 * result + getObject().hashCode();\n\n	return result;\n}"))
+
+([resolvers] of  %3AJADE-SLOT
+
+	(%3AJADE-UNNAMED-SLOT FALSE))
+
+([Scheduled] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Schema] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([SelectAction] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([SimpleJADEAbstractOntology_00014] of  %3ASTANDARD-FACET
+
+	(%3AASSOCIATED-SLOT [%3AJADE-NAME]))
+
+([SimpleJADEAbstractOntology_00016] of  %3ASTANDARD-FACET
+
+	(%3AASSOCIATED-SLOT [%3AJADE-UNNAMED-SLOT]))
+
+([State] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryAction] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryBelief] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryEvent] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryGoal] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryInternalElement] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryOutcome] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StoryPerception] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([StorySettingElement] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([Trace] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([TraceInformation] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([UseSuggestion] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))
+
+([VST_Ontology_Instance_1] of  %3APAL-CONSTRAINT
+)
+
+([WorldChange] of  %3AJADE-CLASS
+
+	(%3AJADE-IGNORE FALSE))

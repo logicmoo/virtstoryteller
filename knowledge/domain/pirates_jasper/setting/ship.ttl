@@ -1,0 +1,104 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix psj:     <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper.owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper.owl#> .
+
+# First attempt of a setting; in this case a ship. Mostly based on Ivo's ship.
+# Author: Jasper Bragt
+# Date:		4  feb 2008
+# Updated:	26 feb 2008
+
+# The ship
+:oShip_1
+    a   psj:Ship;
+    swc:hasRegion :oDeck_1, :oHold_1, :oCrowsNest_1; 
+    rdfs:label "the ship";
+    .
+
+# The deck
+:oDeck_1
+    a   psj:Deck;
+    rdfs:label "the deck";
+    .
+
+# The hold
+:oHold_1
+    a   psj:Hold;
+    rdfs:label "the hold";
+    .
+
+# The ladder from the deck to the hold
+:oLadder_down
+    a   psj:Ladder;
+    swc:fromGeographicArea :oDeck_1;
+    swc:toGeographicArea :oHold_1;
+   swc:hasDoor :oHatch_1;
+    .
+    
+# The ladder from the hold to the deck
+:oLadder_up
+    a   psj:Ladder;
+    swc:toGeographicArea :oDeck_1;
+    swc:fromGeographicArea :oHold_1;
+    swc:hasDoor :oHatch_1;
+    .
+        
+# And let's add a closed hatch connecting the deck with the hold
+:oHatch_1
+    a   psj:Hatch; 
+    swc:hasOpenCloseProperty swc:openable; 
+    swc:hasOpenCloseProperty swc:closed; 
+    rdfs:label "the hatch to the hold";
+    .
+
+# The crow's nest
+:oCrowsNest_1
+	a	psj:CrowsNest;
+	rdfs:label "the crow's nest";
+	.
+    
+# A rope ladder from the deck to the crow's nest
+:oRopeLadder_1
+	a	psj:Ladder;
+	swc:fromGeographicArea :oDeck_1;
+	swc:toGeographicArea :oCrowsNest_1;
+    swc:hasDoor :oHatch_2;
+	rdfs:label "the rope ladder to the crow's nest";
+	.
+	
+# And we're forced to add a(n) (open) hatch connecting the deck with the crow's nest
+# This door is obligatory in the current planner setup, because the negative precondition
+# (Road, swc:hasDoor, Door) of WalkFromTo cannot be satisfied when there is a door somewhere 
+# in the world (in this case 'oHatch_1'). TransitMove only works when all paths in the world 
+# have a door, of when none of the paths have a door.
+:oHatch_2
+    a   psj:Hatch; 
+    swc:hasOpenCloseProperty swc:openable; 
+    swc:hasOpenCloseProperty swc:open; 
+    rdfs:label "the hatch to the crow's nest";
+    .
+
+# A torch on the deck
+:oTorch_1
+    a   psj:Torch;
+    swc:supportedBy :oDeck_1;
+    psj:hasLitProperty psj:lit;
+    rdfs:label "the torch";
+    .
+
+# A canon in the hold
+:oCanon_1
+	 a   psj:Canon;
+    swc:supportedBy :oHold_1;
+    rdfs:label "the canon";
+    .
+    
+# A canonball in the hold
+:oCanonBall_1
+    a   psj:CanonBall;
+    swc:supportedBy :oHold_1;
+    rdfs:label "the canonball";
+    .

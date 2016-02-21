@@ -1,0 +1,165 @@
+% ---------------------------------------------------------------------------------
+% Copyright (C) 2008 Human Media Interaction - University of Twente
+%  
+% This file is part of The Virtual Storyteller.
+% 
+% The Virtual Storyteller is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% The Virtual Storyteller is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with The Virtual Storyteller. If not, see <http://www.gnu.org/licenses/>.
+% ---------------------------------------------------------------------------------
+
+% TakeFrom
+% TakeOut
+% PutOn
+% Dress
+% Undress
+
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#TakeFrom'),
+		agens(Agens), patiens(Patiens), instrument(Instrument), location(Location)
+	]),
+	class(action),
+	duration(2),
+	posPreconditions([
+		    (Instrument,	swc:controlledBy,	Agens),
+		    (Instrument,	swcr:knowsAction,	fabula:'TakeFrom'),
+		    (Patiens,	    swc:supportedBy,	Location),
+		    (Instrument,	swc:supportedBy,	Location)
+		]),
+	negPreconditions([
+		    (Instrument,	owlr:is,    Patiens)
+		]),
+	posEffects([
+		    (Patiens,	swc:heldBy,		    Instrument)
+		]),
+	negEffects([
+		    (Patiens,	swc:supportedBy,    Location)
+		])
+]).
+
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#TakeOut'),
+		agens(Agens), patiens(Patiens), target(Target), instrument(Instrument), location(Location)
+	]),
+	class(action),
+	duration(2),
+	posPreconditions([
+		    (Instrument,	swc:controlledBy,	Agens),
+		    (Instrument,	swcr:knowsAction,	fabula:'TakeOut'),
+		    (Patiens,	    swc:containedBy,	Target),
+		    (Instrument, swc:supportedBy, Location),
+		    (Target,	swc:supportedBy,	Location)
+		]),
+	negPreconditions([
+		    (Instrument,	owlr:is,    Patiens)
+		]),
+	posEffects([
+		    (Patiens,	swc:heldBy,		    Instrument)
+		]),
+	negEffects([
+		    (Patiens,	swc:containedBy,    Target)
+		])
+]).
+
+schema([
+	head([
+		type('http://www.owl-ontologies.com/FabulaKnowledge.owl#PutOn'), 
+		agens(Agens), patiens(Patiens), instrument(Instrument), location(Location)
+	]),
+	class(action),
+	duration(3),
+	posPreconditions([
+		(Instrument,	swc:controlledBy,	Agens),
+		(Instrument,	swcr:knowsAction, fabula:'PutOn'),
+		(Patiens,	swc:heldBy,			Instrument),
+		(Instrument,	swc:supportedBy,		Location)
+		]),
+	negPreconditions([
+		]),
+	posEffects([
+		(Patiens,	swc:supportedBy,		Location)
+		]),
+	negEffects([
+		(Patiens,	swc:heldBy,			Instrument)
+		])
+]).
+
+schema([
+	head(
+		[type('http://www.owl-ontologies.com/FabulaKnowledge.owl#PutOnSelf'), 
+		agens(Agens), patiens(Patiens), instrument(Instrument), location(Location)
+	]),
+	class(action),
+	duration(3),
+	posPreconditions([
+		(Instrument,	swc:controlledBy,	Agens),
+		(Instrument,	swcr:knowsAction,			fabula:'Dress'),
+		(Patiens,	swc:heldBy,			Instrument),
+		(Instrument,	swc:supportedBy,		Location)
+		]),
+	negPreconditions([
+		]),
+	posEffects(	[
+		(Patiens,	swc:supportedBy,		Patiens)
+		]),
+	negEffects([
+		(Patiens,	swc:heldBy,			Instrument)
+		])
+]).
+
+schema([
+	head(
+		[type('http://www.owl-ontologies.com/FabulaKnowledge.owl#Dress'), 
+		agens(Agens), patiens(Patiens), instrument(Instrument)
+	]),
+	class(action),
+	duration(15),
+	posPreconditions([
+		(Instrument,	swc:controlledBy,	Agens),
+		(Instrument,	swcr:knowsAction,		fabula:'Dress'),
+		(Patiens,	swc:heldBy,			Instrument),
+		(Patiens, 	owlr:typeOrSubType, swc:'WearableItem')
+		%(Patiens, 	rdf:type, 			swc:'Clothing')
+		]),
+	negPreconditions([
+		]),
+	posEffects([
+		(Patiens,	swc:wornBy,			Instrument)
+		]),
+	negEffects([
+		(Patiens,	swc:heldBy,			Instrument)
+		])
+]).
+
+schema([
+	head(
+		[type('http://www.owl-ontologies.com/FabulaKnowledge.owl#Undress'), 
+		agens(Agens), patiens(Patiens), instrument(Instrument)
+	]),
+	class(action),
+	duration(17),
+	posPreconditions([
+		(Instrument,	swc:controlledBy,	Agens),
+		(Instrument,	swcr:knowsAction,	fabula:'Undress'),
+		(Patiens,	    swc:wornBy,			Instrument)
+		]),
+	negPreconditions([
+		]),
+	posEffects([
+		(Patiens,	swc:heldBy,			Instrument)
+		]),
+	negEffects([
+		(Patiens,	swc:wornBy,			Instrument)
+		])
+]).

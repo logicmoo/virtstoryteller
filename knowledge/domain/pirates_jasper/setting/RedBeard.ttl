@@ -1,0 +1,24 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix fabula:  <http://www.owl-ontologies.com/FabulaKnowledge.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix psj:     <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper.owl#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper.owl#> .
+
+# Description of RedBeard
+# Author: Jasper Bragt
+# Date:   25 feb 2008
+
+# A pirate: RedBeard
+:RedBeard
+    a   psj:Pirate ;
+    a   swc:Human ;
+    a   fabula:Character ;
+    swc:hasAction fabula:TransitMove, fabula:Transfer, fabula:Manipulate ;
+    swc:controlledBy :RedBeard;
+    
+    swc:supportedBy :oHold_1 ;
+    
+    rdfs:label "RedBeard" ; 
+    .

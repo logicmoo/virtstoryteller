@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/Base64.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/epsgraphics.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/xparse-j-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/CalendarBean.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/commons-codec-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/http.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/iiop.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/jade.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/jadeTools.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jade-3.4/MeetingScheduler.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jug-lgpl-2.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/collections-generic-4.01.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/colt-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/concurrent-1.3.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/SWI-Prolog-JPL/pl/lib/jpl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-3d-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-3d-demos-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-algorithms-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-api-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-api-2.0-alpha2-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-graph-impl-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-io-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-samples-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/JUNG/jung-visualization-2.0-alpha2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/antlr-2.7.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/arq.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/axis.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/bcpg-jdk15-141.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/bcprov-jdk15-141.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/commons-lang-2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/commons-logging-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/concurrent.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/grddl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/hsqldb-1.8.0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/icu4j_3_4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/iri.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/jakarta-oro-2.0.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/jenatest.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/json.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/junit.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/log4j-1.2.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/mysql-connector-java-3.2.0-alpha-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/nekohtml.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/ng4j.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/saxon8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/saxon8-dom.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/stax-api-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/tagsoup-1.0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/wstx-asl-2.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/xercesImpl.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ng4j-0.8/xml-apis.jar"/>
+	<classpathentry excluding="com/exploringxml/xml/|vs/action/|vs/action/ActionUtils.java|vs/action/ConjunctiveVector.java|vs/action/DisjunctiveVector.java|vs/action/Preconditions.java|vs/action/XMLActionDB.java|vs/actor/|vs/agentontology/|vs/debug/OWLReasoningContextTest.java|vs/debug/Test.java|vs/director/|vs/fabula/FabulaIndividual.java|vs/fabula/FabulaNetwork.java|vs/fabula/FabulaTriple.java|vs/fabula/KifLogicBuilder.java|vs/fabula/LogicBuilder.java|vs/knowledge/IJTPKnowledgeManager.java|vs/knowledge/JTPKnowledgeManager.java|vs/knowledge/JTPReasoningKnowledgeManager.java|vs/knowledge/RDFTripleFactory.java|vs/knowledge/vocab/RDF.java|vs/plotagent/ui/FabulaGraphFiller.java|vs/plotagent/ui/ListFabulaCommand.java|vs/plotagent/ui/TellFabulaCommand.java|vs/rationalagent/ui/GraphFiller.java|vs/rationalagent/ui/ListGoalsCommand.java|vs/rationalagent/ui/SetActorGoalCommand.java|vs/ui/GraphFiller.java|vs/ui/GraphGui.java|vs/utils/CNFPrinter.java|vs/worldagent/behaviour/PulseBehaviour.java|vs/worldagent/behaviour/ReceiveActionEventListBehaviour.java|vs/worldagent/behaviour/SendTimeBehaviour.java|vs/worldagent/behaviour/SendWorldUpdatesBehaviour.java|vs/worldagent/ui/DoActionCommand.java|vs/worldagent/ui/GetPossibleActionsCommand.java|vs/worldagent/ui/LocationGraphFiller.java|vs/knowledge/RDFTriple.java|vs/debug/JungTestPanel.java|vs/characteragent/ui/EdgeTypeLabeller.java|vs/knowledge/IPrologKnowledgeManager.java|vs/knowledge/IKnowledgeManager.java|vs/knowledge/PrologKB2.java|vs/poplanner/IPoPlanner.java|vs/characteragent/FabulaStorage.java|vs/plotagent/ui/StartStoryCommand.java|vs/communication/ApplyWorldChange.java" including="vs/" kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/ng4j-0.8/jena.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

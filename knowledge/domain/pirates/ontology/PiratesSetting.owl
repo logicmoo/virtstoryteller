@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:swc="http://www.owl-ontologies.com/StoryWorldCore.owl#"
+    xmlns:fabula="http://www.owl-ontologies.com/FabulaKnowledge.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldSettings/Pirates#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldSettings/Pirates">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl"/>
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="GetBottle">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Goal for getting a bottle</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AttainGoal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GetTreasure">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AttainGoal"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Goal for getting a treasure</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Bar">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#StationaryArtifact"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Sea">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Shovel">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Substance"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Deck">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The deck of a ship</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Bottle">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#SubstanceContainer"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ladder">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A ladder, connecting two areas</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GroundWay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Rum">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The famous pirate drink</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Substance"/>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Beverage"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TreasureChest">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Container"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Hold">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The storage hold (ruim) of a ship</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Island">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Pirate">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Gold">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Substance"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ship">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A ship</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

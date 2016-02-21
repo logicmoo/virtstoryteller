@@ -1,0 +1,1041 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.owl-ontologies.com/FabulaKnowledge.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/FabulaKnowledge.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Close">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Close a device which is open and can be closed using the object itself. This excludes closing a frying pan with its cover, assuming that the cover is not a part of the pan.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Manipulate"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AirMove">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TransitMove"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Transit movement through the air. Note that one can fly through
+corridors.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="GlideFly">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Fly"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CloseDoor">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Close a door which is open</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Close"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Belief">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Something that is likely the case, according to the agent</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CurrentBeliefElement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Inject">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Insert"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Inserting a BiologicallyActiveSubstance into an Animal or Human
+with a syringe. This is SUMO and will not be implemented in our first
+world.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="CorpuscularObjectMove">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Action"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Put">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Transfer"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of changing the location of an object which has an isLocated
+relation with the hands (or hand-like object) of the actor. After the
+action the actor does not hold the object anymore.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="FaucetFill">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Extract"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Use a faucet to fill a container with a substance.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="MechanicalSail">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Propel the boat by means of engines.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Skipper"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveOut">
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CurrentBeliefElement">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="BeliefElement"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes a belief about the now...e.g. what is believed to be true now.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Run">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Ambulate"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fast movement over ground. Consumes more energy per distance
+measure.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="See">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Perception"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Assemble">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Creating an artifact from its parts. Action is reversible by Disassemble.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Make"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ContentGraph">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Considering a Named Graph URI as a resource, ContentGraph is its class. It represents a Named Graph specifying the content of a fabula element.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Detach">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Attaching"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Insert">
+    <rdfs:subClassOf rdf:resource="#Put"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of inserting an Object into another object.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Action">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="InternalElement"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="SettingElement"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Event"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="phi_causes"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Event"/>
+              <owl:Class rdf:about="#Perception"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Outcome"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Event"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="enables"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Goal"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Perception"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="FabulaElement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Outcome">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#InternalElement"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="psi_causes"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Goal"/>
+              <owl:Class rdf:about="#InternalElement"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#FabulaElement"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Goal"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Action"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Perception"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes what happened to a Goal</rdfs:comment>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#SettingElement"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Event"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Strike">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Attack"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Attack an object while holding another object to hit with. (i.e. use that object as weapon).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ForcefulDetach">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Detaching an object using force. This can be done on
+glued and tied objects. There is the risk of breaking one of the objects,
+however.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Detach"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PutOn">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of placing an Object from ones Hands atop of another
+object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MoveIn">
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Move the self into another object (probably a container). The result is that one is containedBy the object.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="OpenDoor">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Open a door which is closed.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Open"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Lock">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lock a securityDevice 'Lock'</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Manipulate"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="WalkToFromDoor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Walk"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Eat">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Consume"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ingesting corpuscular food. (i.e. food which is not a substance).</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Swim">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="WaterMove"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Movement through water by using arms or fins.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Take">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of changing the location of an object to the grabbing device
+of the acting object.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Transfer"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SwitchOff">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Turn off a device which 'on'.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Manipulate"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ControlAct">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Actions involving control</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Cycle">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Ride"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Use your own force to propel a vehicle.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="FutureBeliefElement">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describes a belief about the future, this could be a hope or a worry, for instance</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#BeliefElement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Worry">
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PhysicalElement">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#InternalElement"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Denotes the elements of the internal feelings that are not psychological</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="TakeControl">
+    <rdfs:subClassOf rdf:resource="#ControlAct"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Take control of a device.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="DropControl">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Drop control over a device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ControlAct"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SustainGoal">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A goal to sustain a certain situation or state, i.e. being healthy</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Goal"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#FabulaElement">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An element that represents a part of fabula, being that what happens in a story, the actual events and processes</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#TransitMove">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The general class of actions in which the acting object changes
+its location.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Shoot">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Attack"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Hope">
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Character"/>
+  <owl:Class rdf:about="#Event">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#enables"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Event"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Outcome"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Perception"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#SettingElement"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#InternalElement"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Event"/>
+              <owl:Class rdf:about="#Perception"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#phi_causes"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Any change in the world that is not a direct and planned result of a character action</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+    <owl:disjointWith rdf:resource="#Action"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Goal"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Undress">
+    <rdfs:subClassOf rdf:resource="#Take"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The act of taking off WearableProducts.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="TakeFrom">
+    <rdfs:subClassOf rdf:resource="#Take"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of taking an object which is supported by another
+object.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Goal">
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+    <owl:disjointWith rdf:resource="#Action"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Perception"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#InternalElement"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Event"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A goal of a character</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Goal"/>
+              <owl:Class rdf:about="#Action"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="motivates"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Outcome"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#SettingElement"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasContent"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#ContentGraph"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="WindSail">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Propel the boat by means of wind energy.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Skipper"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Success">
+    <rdfs:subClassOf rdf:resource="#Outcome"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Taste">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Perception"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="NeedleDrain">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Extract"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The inverse of Inject: Use a syringe to drain someone.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Tie">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Attach"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Attach one object to another using a rope-like device.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Ambulate">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="GroundMove"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Movement over ground using legs.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="WalkFromToDoor">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Walk"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Extract">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of extracting an Object from another Object</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LieOn">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MoveOn"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Consume">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ingesting food</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Climb">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GroundMove"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Fold">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Manipulate"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fold a foldable item into its folded or original state.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="NeutralOutcome">
+    <rdfs:subClassOf rdf:resource="#Outcome"/>
+  </owl:Class>
+  <owl:Class rdf:ID="JetFly">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Fly"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Feel">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Perception"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Suspicion">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Creation">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Class of actions dealing with creation and uncreation.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Ride">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Movement over ground by means of wheels.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#GroundMove"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Manipulate">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >General class of actions that change one property of an object.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#BeliefElement">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >An Internal Element representing a belief of a character</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#InternalElement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SpeechAct">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="StepOn">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveOn"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Disassemble">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Disassemble the object into its parts.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Creation"/>
+  </owl:Class>
+  <owl:Class rdf:about="#InternalElement">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Goal"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#motivates"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#SettingElement"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Goal"/>
+    <owl:disjointWith rdf:resource="#Outcome"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Perception"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Action"/>
+    <owl:disjointWith rdf:resource="#Event"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#psi_causes"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#InternalElement"/>
+              <owl:Class rdf:about="#Goal"/>
+              <owl:Class rdf:about="#Outcome"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasContent"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#ContentGraph"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Anything internal to a character, like a belief, or an emotion, feeling, etc.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#enables"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Goal"/>
+              <owl:Class rdf:about="#Action"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="WingFly">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Fly"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SwitchOn">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Turn a device with a power source on.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Guess">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Drink">
+    <rdfs:subClassOf rdf:resource="#Consume"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Ingesting substance food.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Drive">
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Drive an automated vehicle.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#SettingElement">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasContent"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#ContentGraph"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+    <owl:disjointWith rdf:resource="#Goal"/>
+    <owl:disjointWith rdf:resource="#Action"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Perception"/>
+    </owl:disjointWith>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A fact about the story world that every character agrees on.</rdfs:comment>
+    <owl:disjointWith rdf:resource="#Outcome"/>
+    <owl:disjointWith rdf:resource="#InternalElement"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#enables"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Event"/>
+              <owl:Class rdf:about="#Perception"/>
+              <owl:Class rdf:about="#BeliefElement"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Event"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Attaching">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >General class of actions that deal with attaching and detaching objects.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Attack">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Try to hurt/damage an object.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Unlock">
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Unlock a lock with a key.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Dress">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Putting on WearableProducts, like Bracelets or Jeans.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FalsehoodGraph">
+    <rdfs:subClassOf rdf:resource="#ContentGraph"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A content graph whose content is to be interpreted as being false.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="ScoopOut">
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The process of scooping substances out of some container using another container.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#WaterMove">
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >All movement that is done over a WaterWay.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="OpenContainer">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Open"/>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Open a container which is closed</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Make">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >[SUMO] The subclass of Creation in which an individual Artifact or a type of
+Artifact is made.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Creation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Hear">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Perception"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SitOn">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MoveOn"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Perception">
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#psi_causes"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#InternalElement"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Action"/>
+    <owl:disjointWith rdf:resource="#Event"/>
+    <owl:disjointWith rdf:resource="#SettingElement"/>
+    <owl:disjointWith rdf:resource="#Outcome"/>
+    <owl:disjointWith rdf:resource="#InternalElement"/>
+    <owl:disjointWith rdf:resource="#Goal"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Describing what a character perceives</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ContentGraph"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasContent"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Skipper">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Movement through water by means of transportation device. Can be
+split in movement needing wind and movement using an engine.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WaterMove"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Attach">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Attach one object to another using a AttachingDevice.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attaching"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Emotion">
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Fly">
+    <rdfs:subClassOf rdf:resource="#AirMove"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Movement through the air using wings. Is not yet different from Air-
+Move. Note that AirMove is included because of consistency, and Fly is
+added because it is a more intuitive term to use. One can split AirMove
+in movement using moving wings and movement using a jet-engine, if
+it proves to be a useful distinction.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Smell">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Row">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Propel the boat using the energy of its controller.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_2">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Perception"/>
+          <owl:Class rdf:about="#InternalElement"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Kick">
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Kick an object using ones legs.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#GroundMove">
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >All move actions that are done over the ground (i.e. a GroundWay) fall in this
+category.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="TakeOut">
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of taking an object out of a Container.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="CloseContainer">
+    <rdfs:subClassOf rdf:resource="#Close"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Close a container which is open.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Untie">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Detaching an object which is fastened by a rope-like device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Detach"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Walk">
+    <rdfs:subClassOf rdf:resource="#Ambulate"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Normal movement over ground.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="TruthGraph">
+    <rdfs:subClassOf rdf:resource="#ContentGraph"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A content graph whose content is to be interpreted as being true.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Transfer">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The general action of changing the location of an object other
+than the acting object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Expectation">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Something that is likely to occur</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Failure">
+    <rdfs:subClassOf rdf:resource="#Outcome"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PourIn">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Pour in fluid from a container into another container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RailDrive">
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+  </owl:Class>
+  <owl:Class rdf:about="#MoveOn">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Move the self ONTO another object. (supportedBy the other object)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Glue">
+    <rdfs:subClassOf rdf:resource="#Attach"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Attach one object to another using a sticky substance. The substance will be removed from the storyworld after use.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Open">
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Open an artifact which is closed.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="WalkFromTo">
+    <rdfs:subClassOf rdf:resource="#Walk"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Axiom_1">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Goal"/>
+          <owl:Class rdf:about="#Action"/>
+          <owl:Class rdf:about="#InternalElement"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Transform">
+    <rdfs:subClassOf rdf:resource="#Make"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Creating an artifact from its substances. (i.e. create a WineGlass from Sand or a Key from Metal). Action is irreversible.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="WalkToFrom">
+    <rdfs:subClassOf rdf:resource="#Walk"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PutIn">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >The action of placing an Object inside a Container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Punch">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Attack an object using bare hands.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Jump">
+    <rdfs:subClassOf rdf:resource="#AirMove"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AttainGoal">
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A goal to attain a certain situation / state, i.e. being rich</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="causes">
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+    <rdfs:range rdf:resource="#FabulaElement"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#enables">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#motivates">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#psi_causes">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasContent">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Defines the graph that forms the content of a fabula element</rdfs:comment>
+    <rdfs:range rdf:resource="#ContentGraph"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#phi_causes">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+  <owl:FunctionalProperty rdf:ID="character">
+    <rdfs:range rdf:resource="#Character"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hasTruth">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment xml:lang="en">Defines whether the individual is interpreted as being true ("I see that...") or false ("I don't see that...")
+can also define whether graphs should be interpreted as being true or false: a true perception with false content graph means ("I see that there is no...")</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="endTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="isSuccessful">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="startTime">
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="patiens">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Action"/>
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Goal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="resolves">
+    <rdfs:range rdf:resource="#Goal"/>
+    <rdfs:domain rdf:resource="#Outcome"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="agens">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >the one doing the Action</rdfs:comment>
+    <rdfs:range rdf:resource="#Character"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Action"/>
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Goal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="time">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="instrument">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Action"/>
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Goal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="duration">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >total duration of an action</rdfs:comment>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="target">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Action"/>
+          <owl:Class rdf:about="#Event"/>
+          <owl:Class rdf:about="#Goal"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:FunctionalProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

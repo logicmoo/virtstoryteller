@@ -1,0 +1,30 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix fabula:  <http://www.owl-ontologies.com/FabulaKnowledge.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix psj2:    <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper2.owl#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper2.owl#> .
+
+# Description of Jean-Baptiste 
+# Author: Jasper Bragt
+# Date:   Aug 2008
+
+# A pirate: Jean-Baptiste
+:Jean-Baptiste
+    a   psj2:Pirate ;
+    #a   swc:Human ;
+    a   fabula:Character ;
+    swc:hasRole :Pirate;
+    #swc:hasAction fabula:TransitMove, fabula:Transfer, fabula:Manipulate ;
+    #swc:controlledBy :Jean-Baptiste;
+    
+    swc:at :oDeck_1 ;
+    
+    rdfs:label "Jean-Baptiste" ; 
+    .
+ 
+#load_domain(pirates_jasper2).   
+#goal_schema(S), validate_schema(S,[]),goal_success_conditions(S, SC), plan(psj2:'Jean-Baptiste', SC, Plan).
+#query(psj2:'Ladder', rdfs:subClassOf, X).
+

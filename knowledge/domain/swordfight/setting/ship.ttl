@@ -1,0 +1,37 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix ps:      <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+
+# Description of the ship for the sword-fighting domain.
+# Author: Ivo Swartjes
+# Date:   12 feb 2008
+
+# A ship
+:the_bloody_rage
+    a   :Ship ;
+    swc:hasRegion :oDeck_1 ; 
+    rdfs:label "the Bloody Rage" ;
+    .
+
+# The deck
+:oDeck_1
+    a   :Deck ;
+    rdfs:label "the deck" ;
+    .
+    
+:oRum_1
+    a   :Rum ;
+    .   
+    
+:annesRapier
+    a   :Rapier ;
+    .
+    
+:annesBelt 
+    a   :Belt ;
+    .        
+ 

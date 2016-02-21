@@ -1,0 +1,83 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix psj2:    <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper2.owl#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper2.owl#> .
+
+# Description of the ship
+# Author: Jasper Bragt
+# Date:   Aug 2008
+
+# The deck
+:oDeck_1
+    a   psj2:Deck ;
+    rdfs:label "the deck" ;
+    .
+
+# The hold
+:oHold_1
+    a   psj2:Hold ;
+    rdfs:label "the hold" ;
+    .
+
+# The ladder from the deck to the hold
+:oLadder_down
+    a   psj2:Ladder ;
+    swc:from :oDeck_1 ;
+    swc:to :oHold_1 ;
+    swc:hasDoor :oHatch_1 ;
+    rdfs:label "the ladder down" ;
+    .
+    
+# The ladder from the hold to the deck
+:oLadder_up
+    a   psj2:Ladder ;
+    swc:from :oHold_1 ;
+    swc:to :oDeck_1 ;
+    swc:hasDoor :oHatch_1 ;
+    rdfs:label "the ladder up" ;
+    .    
+        
+# And let's add a closed hatch connecting the deck with the hold
+:oHatch_1
+    a   swc:Door ; 
+    swc:hasAttribute swc:closed ; 
+    rdfs:label "the hatch to the hold" ;
+    .
+
+# A torch on the deck
+:oTorch_1
+    a   psj2:Torch;
+    swc:at :oDeck_1;
+    swc:hasAttribute psj2:lit;
+    rdfs:label "the torch";
+    .
+    
+# A bottle on the deck
+:oBottle_1
+    a   psj2:Bottle;
+    swc:at :oDeck_1;
+    rdfs:label "a bottle";
+    .
+    
+# A bottle in the hold
+:oBottle_2
+    a   psj2:Bottle;
+    swc:at :oHold_1;
+    rdfs:label "another bottle";
+    .
+
+# A canon in the hold
+:oCanon_1
+	 a   psj2:Canon;
+    swc:at :oHold_1;
+    rdfs:label "the canon";
+    .
+    
+# A canonball in the hold
+:oCanonBall_1
+    a   psj2:CanonBall;
+    swc:at :oHold_1;
+    rdfs:label "the canonball";
+    .    

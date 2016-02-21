@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:fabula="http://www.owl-ontologies.com/FabulaKnowledge.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldSettings/MakeLoveNotWar.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldSettings/MakeLoveNotWar.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="ExpressLove">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="TakeOutOnSomebody">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Goal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="KickTree">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:Class rdf:ID="VentButSparePeople">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Goal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ExpressHate">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Action"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasEmotion"/>
+  <fabula:Emotion rdf:ID="love"/>
+  <fabula:Emotion rdf:ID="hate"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

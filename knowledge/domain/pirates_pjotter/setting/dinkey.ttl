@@ -1,0 +1,23 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix ps:      <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+
+# Description of the treasure island. It is connected by the sea, and defines a treasure...somewhere.
+# Author: Ivo Swartjes
+# Date:   4 oct 2007
+
+# A treasure island
+:oMainLand_1
+    a   ps:Island ;
+    rdfs:label "Dinkey Island" ;
+    .
+    
+# The sea    
+:oHarbor_1
+    a   ps:GeographicArea ;
+    a	ps:MooringArea ;
+    swc:partOfGeographicArea :oMainLand_1;    
+    .

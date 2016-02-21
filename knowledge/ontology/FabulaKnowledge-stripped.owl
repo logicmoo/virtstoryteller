@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY FabulaKnowledge "http://www.owl-ontologies.com/FabulaKnowledge.owl#">
+  <!ENTITY FabulaKnowledge.owl "http://www.owl-ontologies.com/FabulaKnowledge.owl">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+<rdf:RDF xml:base="&FabulaKnowledge.owl;"
+         xmlns:FabulaKnowledge="&FabulaKnowledge;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;">
+
+<!-- Ontology Information -->
+  <owl:Ontology rdf:about=""/>
+
+<!-- Classes -->
+  <owl:Class rdf:about="#Action">
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AirMove">
+    <rdfs:comment rdf:datatype="&xsd;string">Transit movement through the air. Note that one can fly through
+corridors.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Ambulate">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement over ground using legs.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GroundMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Assemble">
+    <rdfs:comment rdf:datatype="&xsd;string">Creating an artifact from its parts. Action is reversible by Disassemble.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Make"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Attach">
+    <rdfs:comment rdf:datatype="&xsd;string">Attach one object to another using a AttachingDevice.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attaching"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AttachChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Attaching">
+    <rdfs:comment rdf:datatype="&xsd;string">General class of actions that deal with attaching and detaching objects.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Attack">
+    <rdfs:comment rdf:datatype="&xsd;string">Try to hurt/damage an object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AttainGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to attain a certain situation / state, i.e. being rich</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#AvoidGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to avoid a certain situation / state, i.e. that the vilain escapes</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Belief">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#BeliefElement">
+    <rdfs:comment rdf:datatype="&xsd;string">An Internal Element representing a belief of a character</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Character"/>
+  <owl:Class rdf:about="#Climb">
+    <rdfs:subClassOf rdf:resource="#GroundMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Close">
+    <rdfs:comment rdf:datatype="&xsd;string">Close a device which is open and can be closed using the object itself. This excludes closing a frying pan with its cover, assuming that the cover is not a part of the pan.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Cognition">
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Consume">
+    <rdfs:comment rdf:datatype="&xsd;string">Ingesting food</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ConsumeChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ControlAct">
+    <rdfs:comment rdf:datatype="&xsd;string">Actions involving control</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ControlActChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#CorpuscularObjectMove">
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Creation">
+    <rdfs:comment rdf:datatype="&xsd;string">Class of actions dealing with creation and uncreation.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#CreationChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#CurrentBeliefElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Describes a belief about the now...e.g. what is believed to be true now.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#BeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Cycle">
+    <rdfs:comment rdf:datatype="&xsd;string">Use your own force to propel a vehicle.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Detach">
+    <rdfs:subClassOf rdf:resource="#Attaching"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Disassemble">
+    <rdfs:comment rdf:datatype="&xsd;string">Disassemble the object into its parts.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Creation"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Dress">
+    <rdfs:comment rdf:datatype="&xsd;string">Putting on WearableProducts, like Bracelets or Jeans.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Drink">
+    <rdfs:comment rdf:datatype="&xsd;string">Ingesting substance food.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Consume"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Drive">
+    <rdfs:comment rdf:datatype="&xsd;string">Drive an automated vehicle.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#DropControl">
+    <rdfs:comment rdf:datatype="&xsd;string">Drop control over a device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ControlAct"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Eat">
+    <rdfs:comment rdf:datatype="&xsd;string">Ingesting corpuscular food. (i.e. food which is not a substance).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Consume"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Emotion">
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Event">
+    <rdfs:comment rdf:datatype="&xsd;string">Any change in the world that is not a direct and planned result of a character action</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Extract">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of extracting an Object from another Object</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FabulaElement">
+    <rdfs:comment rdf:datatype="&xsd;string">An element that represents a part of fabula, being that what happens in a story, the actual events and processes</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FaucetFill">
+    <rdfs:comment rdf:datatype="&xsd;string">Use a faucet to fill a container with a substance.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Feel">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Fly">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement through the air using wings. Is not yet different from Air-
+Move. Note that AirMove is included because of consistency, and Fly is
+added because it is a more intuitive term to use. One can split AirMove
+in movement using moving wings and movement using a jet-engine, if
+it proves to be a useful distinction.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#AirMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Fold">
+    <rdfs:comment rdf:datatype="&xsd;string">Fold a foldable item into its folded or original state.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ForcefulDetach">
+    <rdfs:comment rdf:datatype="&xsd;string">Detaching an object using force. This can be done on
+glued and tied objects. There is the risk of breaking one of the objects,
+however.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Detach"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#FutureBeliefElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Describes a belief about the future, this could be a hope or a worry, for instance</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#BeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#GlideFly">
+    <rdfs:subClassOf rdf:resource="#Fly"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Glue">
+    <rdfs:comment rdf:datatype="&xsd;string">Attach one object to another using a sticky substance. The substance will be removed from the storyworld after use.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attach"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Goal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal of a character</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#GroundMove">
+    <rdfs:comment rdf:datatype="&xsd;string">All move actions that are done over the ground (i.e. a GroundWay) fall in this
+category.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Guess">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Hear">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Hope">
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Hunger">
+    <rdfs:subClassOf rdf:resource="#PhysicalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Inject">
+    <rdfs:comment rdf:datatype="&xsd;string">Inserting a BiologicallyActiveSubstance into an Animal or Human
+with a syringe. This is SUMO and will not be implemented in our first
+world.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Insert">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of inserting an Object into another object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#InternalElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Anything internal to a character, like a belief, or an emotion, feeling, etc.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#JetFly">
+    <rdfs:subClassOf rdf:resource="#Fly"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Joy">
+    <rdfs:subClassOf rdf:resource="#Emotion"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Jump">
+    <rdfs:subClassOf rdf:resource="#AirMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Kick">
+    <rdfs:comment rdf:datatype="&xsd;string">Kick an object using ones legs.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LeaveGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to leave a certain situation / state, i.e. being hungry</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LieOn">
+    <rdfs:subClassOf rdf:resource="#MoveOn"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LocationMoveChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Lock">
+    <rdfs:comment rdf:datatype="&xsd;string">Lock a securityDevice 'Lock'</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Make">
+    <rdfs:comment rdf:datatype="&xsd;string">[SUMO] The subclass of Creation in which an individual Artifact or a type of
+Artifact is made.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Creation"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Manipulate">
+    <rdfs:comment rdf:datatype="&xsd;string">General class of actions that change one property of an object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ManipulateChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MechanicalSail">
+    <rdfs:comment rdf:datatype="&xsd;string">Propel the boat by means of engines.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MoveIn">
+    <rdfs:comment rdf:datatype="&xsd;string">Move the self into another object (probably a container). The result is that one is containedBy the object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MoveOn">
+    <rdfs:comment rdf:datatype="&xsd;string">Move the self ONTO another object. (supportedBy the other object)</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#MoveOut">
+    <rdfs:subClassOf rdf:resource="#CorpuscularObjectMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#NeedleDrain">
+    <rdfs:comment rdf:datatype="&xsd;string">The inverse of Inject: Use a syringe to drain someone.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Open">
+    <rdfs:comment rdf:datatype="&xsd;string">Open a device which is closed.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Outcome">
+    <rdfs:comment rdf:datatype="&xsd;string">Describes what happened to a Goal</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Perception">
+    <rdfs:comment rdf:datatype="&xsd;string">Describing what a character perceives</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#FabulaElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PhysicalElement">
+    <rdfs:comment rdf:datatype="&xsd;string">Denotes the elements of the internal feelings that are not psychological</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#InternalElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PourIn">
+    <rdfs:comment rdf:datatype="&xsd;string">Pour in fluid from a container into another container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Punch">
+    <rdfs:comment rdf:datatype="&xsd;string">Attack an object using bare hands.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Put">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of changing the location of an object which has an isLocated
+relation with the hands (or hand-like object) of the actor. After the
+action the actor does not hold the object anymore.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Transfer"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PutIn">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of placing an Object inside a Container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Insert"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PutOn">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of placing an Object from ones Hands atop of another
+object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Put"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#RailDrive">
+    <rdfs:subClassOf rdf:resource="#Ride"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Ride">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement over ground by means of wheels.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#GroundMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Row">
+    <rdfs:comment rdf:datatype="&xsd;string">Propel the boat using the energy of its controller.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Run">
+    <rdfs:comment rdf:datatype="&xsd;string">Fast movement over ground. Consumes more energy per distance
+measure.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ambulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Sadness">
+    <rdfs:subClassOf rdf:resource="#Emotion"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#ScoopOut">
+    <rdfs:comment rdf:datatype="&xsd;string">The process of scooping substances out of some container using another container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#See">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Shoot">
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SitOn">
+    <rdfs:subClassOf rdf:resource="#MoveOn"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Skipper">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement through water by means of transportation device. Can be
+split in movement needing wind and movement using an engine.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WaterMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Smell">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#StepOn">
+    <rdfs:subClassOf rdf:resource="#MoveOn"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Strike">
+    <rdfs:comment rdf:datatype="&xsd;string">Attack an object while holding another object to hit with. (i.e. use that object as weapon).</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attack"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Suspicion">
+    <rdfs:subClassOf rdf:resource="#CurrentBeliefElement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SustainGoal">
+    <rdfs:comment rdf:datatype="&xsd;string">A goal to sustain a certain situation or state, i.e. being healthy</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Goal"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Swim">
+    <rdfs:comment rdf:datatype="&xsd;string">Movement through water by using arms or fins.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WaterMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SwitchOff">
+    <rdfs:comment rdf:datatype="&xsd;string">Turn off a device which 'on'.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#SwitchOn">
+    <rdfs:comment rdf:datatype="&xsd;string">Turn a device with a power source on.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Take">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of changing the location of an object to the grabbing device
+of the acting object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Transfer"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TakeControl">
+    <rdfs:comment rdf:datatype="&xsd;string">Take control of a device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#ControlAct"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TakeFrom">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of taking an object which is supported by another
+object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TakeOut">
+    <rdfs:comment rdf:datatype="&xsd;string">The action of taking an object out of a Container.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Extract"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Taste">
+    <rdfs:subClassOf rdf:resource="#Perception"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Tie">
+    <rdfs:comment rdf:datatype="&xsd;string">Attach one object to another using a rope-like device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Attach"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Transfer">
+    <rdfs:comment rdf:datatype="&xsd;string">The general action of changing the location of an object other
+than the acting object.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TransferChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Transform">
+    <rdfs:comment rdf:datatype="&xsd;string">Creating an artifact from its substances. (i.e. create a WineGlass from Sand or a Key from Metal). Action is irreversible.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Make"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TransitMove">
+    <rdfs:comment rdf:datatype="&xsd;string">The general class of actions in which the acting object changes
+its location.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#TransitMoveChanges">
+    <rdfs:subClassOf rdf:resource="#WorldChanges"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Undress">
+    <rdfs:comment rdf:datatype="&xsd;string">The act of taking off WearableProducts.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Take"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Unlock">
+    <rdfs:comment rdf:datatype="&xsd;string">Unlock a lock with a key.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Manipulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Untie">
+    <rdfs:comment rdf:datatype="&xsd;string">Detaching an object which is fastened by a rope-like device.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Detach"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Walk">
+    <rdfs:comment rdf:datatype="&xsd;string">Normal movement over ground.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Ambulate"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WaterMove">
+    <rdfs:comment rdf:datatype="&xsd;string">All movement that is done over a WaterWay.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#TransitMove"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WindSail">
+    <rdfs:comment rdf:datatype="&xsd;string">Propel the boat by means of wind energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Skipper"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WingFly">
+    <rdfs:subClassOf rdf:resource="#Fly"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#WorldChanges">
+    <rdfs:comment rdf:datatype="&xsd;string">Add and delete list which contains changes of the world.</rdfs:comment>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Worry">
+    <rdfs:subClassOf rdf:resource="#FutureBeliefElement"/>
+  </owl:Class>
+
+<!-- Datatypes -->
+  <rdfs:Datatype rdf:about="&xsd;boolean"/>
+  <rdfs:Datatype rdf:about="&xsd;int"/>
+
+<!-- Annotation Properties -->
+  <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+
+<!-- Datatype Properties -->
+  <owl:DatatypeProperty rdf:about="#endTime">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;int"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#isNegated">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+    <rdfs:range rdf:resource="&xsd;boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#isSuccessful">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;boolean"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#startTime">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="&xsd;int"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="#time">
+    <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+    <rdfs:range rdf:resource="&xsd;int"/>
+  </owl:DatatypeProperty>
+
+<!-- Object Properties -->
+  <owl:FunctionalProperty rdf:about="#agens">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">the one doing the Action</rdfs:comment>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#causes"/>
+  <owl:FunctionalProperty rdf:about="#character">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#enables">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#hasContent">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:comment rdf:datatype="&xsd;string">Specifies which elements belong to the context of a certain fabula element</rdfs:comment>
+    <rdfs:domain rdf:resource="#FabulaElement"/>
+  </owl:FunctionalProperty>
+
+  <owl:FunctionalProperty rdf:about="#instrument">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#motivates">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#patiens">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+  <owl:ObjectProperty rdf:about="#phi_causes">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#psi_causes">
+    <rdfs:subPropertyOf rdf:resource="#causes"/>
+  </owl:ObjectProperty>
+
+  <owl:FunctionalProperty rdf:about="#resolves">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Outcome"/>
+    <rdfs:range rdf:resource="#Goal"/>
+  </owl:FunctionalProperty>
+
+  <owl:FunctionalProperty rdf:about="#target">
+    <rdf:type rdf:resource="&owl;ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Action"/>
+  </owl:FunctionalProperty>
+
+<!-- Instances -->
+  <FabulaKnowledge:Assemble rdf:about="#AssembleObjectFromHeap"/>
+  <FabulaKnowledge:CreationChanges rdf:about="#AssembleObjectFromHeapChanges"/>
+  <FabulaKnowledge:Assemble rdf:about="#AssignObjectToHeap"/>
+  <FabulaKnowledge:CreationChanges rdf:about="#AssignObjectToHeapChanges"/>
+  <FabulaKnowledge:ManipulateChanges rdf:about="#CloseChanges"/>
+  <FabulaKnowledge:Close rdf:about="#CloseContainerNoLock"/>
+  <FabulaKnowledge:Close rdf:about="#CloseContainerWithLock"/>
+  <FabulaKnowledge:Close rdf:about="#CloseDoorNoLock"/>
+  <FabulaKnowledge:Close rdf:about="#CloseDoorWithLock"/>
+  <FabulaKnowledge:Assemble rdf:about="#CreateHeap"/>
+  <FabulaKnowledge:CreationChanges rdf:about="#CreateHeapChanges"/>
+  <FabulaKnowledge:Cycle rdf:about="#CycleFromTo"/>
+  <FabulaKnowledge:Cycle rdf:about="#CycleFromToDoor"/>
+  <FabulaKnowledge:Cycle rdf:about="#CycleToFrom"/>
+  <FabulaKnowledge:Cycle rdf:about="#CycleToFromDoor"/>
+  <FabulaKnowledge:Disassemble rdf:about="#DisassembleHeap"/>
+  <FabulaKnowledge:CreationChanges rdf:about="#DisassembleHeapChanges"/>
+  <FabulaKnowledge:Disassemble rdf:about="#DisassembleObjectFromHeap"/>
+  <FabulaKnowledge:CreationChanges rdf:about="#DisassembleObjectFromHeapChanges"/>
+  <FabulaKnowledge:Disassemble rdf:about="#DisassembleObjectToConstructionHeap"/>
+  <FabulaKnowledge:CreationChanges rdf:about="#DisassembleObjectToConstructionHeapChanges"/>
+  <FabulaKnowledge:Dress rdf:about="#DressAction"/>
+  <FabulaKnowledge:TransferChanges rdf:about="#DressChanges"/>
+  <FabulaKnowledge:Drive rdf:about="#DriveFromTo"/>
+  <FabulaKnowledge:Drive rdf:about="#DriveFromToDoor"/>
+  <FabulaKnowledge:Drive rdf:about="#DriveToFrom"/>
+  <FabulaKnowledge:Drive rdf:about="#DriveToFromDoor"/>
+  <FabulaKnowledge:DropControl rdf:about="#DropControlAction"/>
+  <FabulaKnowledge:ControlActChanges rdf:about="#DropControlChanges"/>
+  <FabulaKnowledge:ConsumeChanges rdf:about="#EatChanges"/>
+  <FabulaKnowledge:Eat rdf:about="#EatHealthFoodEqualHealth"/>
+  <FabulaKnowledge:Eat rdf:about="#EatHealthFoodMaxHealth"/>
+  <FabulaKnowledge:Eat rdf:about="#EatHealthFoodNotMaxHealth"/>
+  <FabulaKnowledge:Fly rdf:about="#FlyFromTo"/>
+  <FabulaKnowledge:Fly rdf:about="#FlyFromToDoor"/>
+  <FabulaKnowledge:Fly rdf:about="#FlyToFrom"/>
+  <FabulaKnowledge:Fly rdf:about="#FlyToFromDoor"/>
+  <FabulaKnowledge:Fold rdf:about="#FoldAction"/>
+  <FabulaKnowledge:ManipulateChanges rdf:about="#FoldChanges"/>
+  <FabulaKnowledge:ManipulateChanges rdf:about="#LockChanges"/>
+  <FabulaKnowledge:Lock rdf:about="#LockContainerWithCode"/>
+  <FabulaKnowledge:Lock rdf:about="#LockContainerWithKey"/>
+  <FabulaKnowledge:Lock rdf:about="#LockDoorWithCode"/>
+  <FabulaKnowledge:Lock rdf:about="#LockDoorWithKey"/>
+  <FabulaKnowledge:LocationMoveChanges rdf:about="#MoveInChanges"/>
+  <FabulaKnowledge:MoveIn rdf:about="#MoveInContainer"/>
+  <FabulaKnowledge:LocationMoveChanges rdf:about="#MoveOnChanges"/>
+  <FabulaKnowledge:LocationMoveChanges rdf:about="#MoveOutChanges"/>
+  <FabulaKnowledge:MoveOut rdf:about="#MoveOutContainerOnTarget"/>
+  <FabulaKnowledge:ManipulateChanges rdf:about="#OpenChanges"/>
+  <FabulaKnowledge:Open rdf:about="#OpenContainerNoLock"/>
+  <FabulaKnowledge:Open rdf:about="#OpenContainerWithLock"/>
+  <FabulaKnowledge:Open rdf:about="#OpenDoorNoLock"/>
+  <FabulaKnowledge:Open rdf:about="#OpenDoorWithLock"/>
+  <FabulaKnowledge:TransferChanges rdf:about="#PutInChanges"/>
+  <FabulaKnowledge:PutIn rdf:about="#PutInContainer"/>
+  <FabulaKnowledge:TransferChanges rdf:about="#PutOnChanges"/>
+  <FabulaKnowledge:PutOn rdf:about="#PutOnTarget">
+    <rdfs:comment rdf:datatype="&xsd;string">No size restrictions apply yet</rdfs:comment>
+  </FabulaKnowledge:PutOn>
+
+  <FabulaKnowledge:Run rdf:about="#RunFromTo"/>
+  <FabulaKnowledge:Run rdf:about="#RunFromToDoor"/>
+  <FabulaKnowledge:Run rdf:about="#RunToFrom"/>
+  <FabulaKnowledge:Run rdf:about="#RunToFromDoor"/>
+  <FabulaKnowledge:StepOn rdf:about="#StepOnTarget"/>
+  <FabulaKnowledge:ControlActChanges rdf:about="#TakeControlChanges"/>
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlContainedByNonSentient"/>
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlContainedBySentient"/>
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlSupportedByNonSentient"/>
+  <FabulaKnowledge:TakeControl rdf:about="#TakeControlSupportedBySentient"/>
+  <FabulaKnowledge:TakeFrom rdf:about="#TakeFromSupportedBy"/>
+  <FabulaKnowledge:TransferChanges rdf:about="#TakeFromSupportedByChanges"/>
+  <FabulaKnowledge:TransferChanges rdf:about="#TakeOutChanges"/>
+  <FabulaKnowledge:TakeOut rdf:about="#TakeOutContainer"/>
+  <FabulaKnowledge:Tie rdf:about="#TieObjectToRope"/>
+  <FabulaKnowledge:AttachChanges rdf:about="#TieObjectToRopeChanges"/>
+  <FabulaKnowledge:Tie rdf:about="#TieRopeToObject"/>
+  <FabulaKnowledge:AttachChanges rdf:about="#TieRopeToObjectChanges"/>
+  <FabulaKnowledge:TransitMoveChanges rdf:about="#TransitMoveEffects"/>
+  <FabulaKnowledge:TransitMoveChanges rdf:about="#TransitMoveInterEffects"/>
+  <FabulaKnowledge:Undress rdf:about="#UndressAction"/>
+  <FabulaKnowledge:TransferChanges rdf:about="#UndressChanges"/>
+  <FabulaKnowledge:ManipulateChanges rdf:about="#UnlockChanges"/>
+  <FabulaKnowledge:Unlock rdf:about="#UnlockContainerWithCode"/>
+  <FabulaKnowledge:Unlock rdf:about="#UnlockContainerWithKey"/>
+  <FabulaKnowledge:Unlock rdf:about="#UnlockDoorWithCode"/>
+  <FabulaKnowledge:Unlock rdf:about="#UnlockDoorWithKey"/>
+  <FabulaKnowledge:Untie rdf:about="#UntieRopeFromObject"/>
+  <FabulaKnowledge:AttachChanges rdf:about="#UntieRopeFromObjectChanges"/>
+  <FabulaKnowledge:Walk rdf:about="#WalkFromTo"/>
+  <FabulaKnowledge:Walk rdf:about="#WalkFromToDoor"/>
+  <FabulaKnowledge:Walk rdf:about="#WalkToFrom"/>
+  <FabulaKnowledge:Walk rdf:about="#WalkToFromDoor"/>
+</rdf:RDF>

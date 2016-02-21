@@ -1,0 +1,112 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix ps:      <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+
+# Description of the ship.
+# Author: Ivo Swartjes
+# Date:   27 nov 2007
+
+# A ship
+:oShip_1
+    a   ps:Ship ;
+    swc:hasRegion :oDeck_1, :oHold_1; 
+    rdfs:label "the ship" ;
+    ps:mooredAt ps:oHarbor_1 ;
+    .
+
+# The deck
+:oDeck_1
+    a   ps:Deck ;
+    rdfs:label "the deck" ;
+    .
+
+# The hold
+:oHold_1
+    a   ps:Hold ;
+    rdfs:label "the hold" ;
+    .
+
+# The ladder from the deck to the hold
+:oLadder_1
+    a   ps:Ladder ;
+    swc:fromGeographicArea :oDeck_1 ;
+    swc:toGeographicArea :oHold_1 ;
+    swc:hasDoor :oHatch_1 ;
+    .
+        
+# And let's add a closed hatch connecting the deck with the hold
+:oHatch_1
+    a   swc:Door ; 
+    swc:hasOpenCloseProperty swc:openable ; 
+    swc:hasOpenCloseProperty swc:closed ; 
+    rdfs:label "the hatch to the hold" ;
+    .
+    
+# A bottle of rum in the hold
+:oRumBottle_1
+    a   ps:Bottle ;
+    swc:contains :oRum_1 ;
+#    swc:containedBy :oCrate_1 ;
+    rdfs:label "the bottle of rum" ;
+    .
+    
+:oCrate_1
+#	a	swc:Container ;
+#	swc:supportedBy :oHold_1 ; 
+	rdfs:label "the rum crate"
+	.
+   
+
+:oRum_1
+    a   ps:Rum ;
+    .  
+    
+:oCannon_1
+	a	ps:Cannon;
+	.
+	
+:oCannon_2
+	a	ps:Cannon;
+	.
+	
+	
+	
+:oShip_2
+    a   ps:Ship ;
+    swc:hasRegion :oDeck_2, :oHold_2; 
+    rdfs:label "the ship" ;
+    ps:mooredAt ps:oHarbor_1 ;
+    .
+
+# The deck
+:oDeck_2
+    a   ps:Deck ;
+    rdfs:label "the deck" ;
+    .
+
+# The hold
+:oHold_2
+    a   ps:Hold ;
+    rdfs:label "the hold" ;
+    .
+
+# The ladder from the deck to the hold
+:oLadder_2
+    a   ps:Ladder ;
+    swc:fromGeographicArea :oDeck_2 ;
+    swc:toGeographicArea :oHold_2 ;
+    swc:hasDoor :oHatch_2 ;
+    .
+        
+# And let's add a closed hatch connecting the deck with the hold
+:oHatch_2
+    a   swc:Door ; 
+    swc:hasOpenCloseProperty swc:openable ; 
+    swc:hasOpenCloseProperty swc:closed ; 
+    rdfs:label "the hatch to the hold" ;
+    .
+ 

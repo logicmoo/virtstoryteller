@@ -1,0 +1,26 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix fabula:  <http://www.owl-ontologies.com/FabulaKnowledge.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix ps:      <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+
+# Description of LeChuck. 
+# Author: Ivo Swartjes
+# Date:   10 oct 2007
+
+# A pirate: LeChuck
+:leChuck
+    # a   ps:Captain ;          # moved to framing operator       
+    a   swc:Human ;
+    a   fabula:Character ;
+    swc:hasAction fabula:Ambulate, fabula:Transfer, fabula:Manipulate ;
+    swc:controlledBy :leChuck ;
+    
+    swc:supportedBy ps:oHold_1 ;
+    # ps:owns ps:oShip_1 ;      # moved to framing operator       
+    
+    rdfs:label "le Chuck" ; 
+    .
+    

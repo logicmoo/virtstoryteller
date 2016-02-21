@@ -1,0 +1,816 @@
+; Wed Oct 29 15:28:03 CET 2008
+; 
+;+ (version "3.3.1")
+;+ (build "Build 430")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot %3AONTOLOGYNAME
+;+		(comment "name of the ontology")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot object
+;+		(comment "the object of a triple (a URI)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot goalstatus
+;+		(comment "The status of this goal")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-PROPERTIES-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot suggestion
+;+		(comment "the suggestion (e.g. a goal or action to be performed)")
+		(type SYMBOL)
+;+		(allowed-parents FabulaElement)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot addresses
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot setting
+		(type SYMBOL)
+;+		(allowed-parents StorySettingElement)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-PROPERTIES-PACKAGE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot message
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot VSTontology_Slot_3
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-JAVA-CODE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-IGNORE
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot target
+;+		(comment "Target of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ALOCATION
+;+		(comment "The location to store files into")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot endtime
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot fabulaElement
+		(type SYMBOL)
+;+		(allowed-parents FabulaElement)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot agens
+;+		(comment "Agens of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot value
+;+		(comment "The value of the parameter.\nE.g. agens(\"htt...#house\") will translate into an Agens with value \"htt...#house\".")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-JAVA-BASE-CLASS
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot isSuccessful
+;+		(comment "whether the Operator was successful (set by Plot Agent when communicating perceptions)")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot objectIndividual
+;+		(comment "the object of the link (as Individual)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3APACKAGE
+;+		(comment "packagename")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot individual
+;+		(comment "the Individual that the character represents in the world")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot resolves
+;+		(comment "Which Goal (referenced by its Individual string) this outcome resolves")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot fabulaCausality
+		(type SYMBOL)
+;+		(allowed-parents FabulaCausality)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot time
+;+		(comment "time at which the fabula element was created")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot predicate
+;+		(comment "the predicate of a triple (an URI)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot verbosity
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot starttime
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-PROPERTIES-GENERATE-BEANS
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot prologDescription
+;+		(comment "Prolog description of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot resolvers
+		(type SYMBOL)
+;+		(allowed-parents AID)
+		(create-accessor read-write))
+	(single-slot %3AJADE-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+;+		(associated-facet SimpleJADEAbstractOntology_00014)
+		(create-accessor read-write))
+	(single-slot type
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-PROPERTIES-COMPATIBILITY
+		(type SYMBOL)
+		(allowed-values J2ME JavaBeans Classes)
+		(default Classes)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot %3AJADE-INCLUDED-PROPERTIES
+		(type INSTANCE)
+;+		(allowed-classes)
+		(create-accessor read-write))
+	(single-slot contents
+;+		(comment "the contents of the world change")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character
+;+		(comment "refers to the entity in the story world that 'has' or 'intends' the fabula element.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot subject
+;+		(comment "the subject of a triple (an URI)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot status
+;+		(comment "The status of the operator")
+		(type SYMBOL)
+;+		(allowed-parents OperatorStatus)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot operator
+		(type SYMBOL)
+;+		(allowed-parents Operator)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot cause
+;+		(comment "The thing (e.g. Action) that causes this world change. Empty could be interpreted as \"no cause\", i.e. a setting change.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot subjectIndividual
+;+		(comment "The subject of the link (a string representing the individual")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot traceInformation
+		(type SYMBOL)
+;+		(allowed-parents TraceInformation)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot characterInfo
+;+		(comment "the character info for the request\n(\"do you want to join the story as [characterinfo]\"?)")
+		(type SYMBOL)
+;+		(allowed-parents CharacterInfo)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot opponent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-PROPERTIES-DIRECTORY
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ASUPPORT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot patiens
+;+		(comment "Patiens of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot perception
+		(type SYMBOL)
+;+		(allowed-parents StoryPerception)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-UNNAMED-SLOT
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+;+		(associated-facet SimpleJADEAbstractOntology_00016)
+		(create-accessor read-write))
+	(single-slot %3AJADE-PROPERTIES-GENERATE-ONTOLOGY
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot instrument
+;+		(comment "Instrument of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot roundNumber
+;+		(comment "The round number in the simulation in time steps (PA is responsible)")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot truth
+;+		(comment "whether to add, or delete (true = add, false = delete)")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot schemaClass
+;+		(comment "The class of the schema (e.g. \"goal\", \"event\")")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot goal
+;+		(comment "The goal the character was performing")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot phase
+		(type INTEGER)
+		(range 0 3)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot causalProperty
+;+		(comment "The property as string (i.e. http://...#psi_causes)")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot traceDepth
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot worldchange
+		(type SYMBOL)
+;+		(allowed-parents WorldChange)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot contentFabula
+		(type SYMBOL)
+;+		(allowed-parents FabulaElement FabulaCausality)
+		(create-accessor read-write))
+	(multislot contentTriple
+;+		(comment "The contents of a fabula element, represented as a list of RDF triples")
+		(type SYMBOL)
+;+		(allowed-parents RDFtriple)
+		(create-accessor read-write))
+	(multislot parameter
+		(type SYMBOL)
+;+		(allowed-parents)
+		(create-accessor read-write))
+	(single-slot action
+		(type SYMBOL)
+;+		(allowed-parents StoryAction)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass %3AJADE-CLASS
+	(is-a %3ASTANDARD-CLASS)
+	(role concrete)
+	(single-slot %3AJADE-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-JAVA-BASE-CLASS
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-JAVA-CODE
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-IGNORE
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default FALSE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass %3AJADE-SLOT
+	(is-a %3ASTANDARD-SLOT)
+	(role concrete)
+	(single-slot %3AJADE-NAME
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AJADE-UNNAMED-SLOT
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass %3APROJECT-ANNOTATION
+	(is-a %3AANNOTATION)
+	(role concrete)
+	(single-slot %3APACKAGE
+;+		(comment "packagename")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ASUPPORT
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3AONTOLOGYNAME
+;+		(comment "name of the ontology")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot %3ALOCATION
+;+		(comment "The location to store files into")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Concept "The common ancestor for all concepts (i.e. types of entity such as Person, Address...) in an ontology"
+	(is-a USER)
+	(role abstract))
+
+(defclass AID
+	(is-a Concept)
+	(role concrete)
+	(multislot resolvers
+		(type SYMBOL)
+;+		(allowed-parents AID)
+		(create-accessor read-write))
+	(multislot addresses
+		(type STRING)
+		(create-accessor read-write))
+	(single-slot name_
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass AgentAction "The common ancestor for all actions in an ontology (e.g. Sell, Buy...)"
+	(is-a Concept)
+	(role abstract))
+
+(defclass PlayCharacter "Commit oneself to play given part in the story, executed by Character Agent"
+	(is-a AgentAction)
+	(role concrete)
+	(single-slot characterInfo
+;+		(comment "the character info for the request\n(\"do you want to join the story as [characterinfo]\"?)")
+		(type SYMBOL)
+;+		(allowed-parents CharacterInfo)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass GiveControl "Commit oneself to be controlled by another agent, executed by World Agent"
+	(is-a AgentAction)
+	(role concrete))
+
+(defclass PerformOperator "Perform an operator, executed by World Agent"
+	(is-a AgentAction)
+	(role concrete)
+	(single-slot operator
+		(type SYMBOL)
+;+		(allowed-parents Operator)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass SelectAction "Select an action to perform in the world, executed by Character Agent"
+	(is-a AgentAction)
+	(role concrete))
+
+(defclass Trace "Process a trace message (obsolete)"
+	(is-a AgentAction)
+	(role concrete)
+	(single-slot traceInformation
+		(type SYMBOL)
+;+		(allowed-parents TraceInformation)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass UseSuggestion "Use given suggestion, executed by Character Agent"
+	(is-a AgentAction)
+	(role concrete)
+	(single-slot suggestion
+;+		(comment "the suggestion (e.g. a goal or action to be performed)")
+		(type SYMBOL)
+;+		(allowed-parents FabulaElement)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass FramingOperatorPossible "Check whether given framing operator is possible"
+	(is-a AgentAction)
+	(role concrete)
+	(single-slot operator
+		(type SYMBOL)
+;+		(allowed-parents Operator)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass TraceInformation "Information for the tracer to print"
+	(is-a Concept)
+	(role concrete)
+	(single-slot traceDepth
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot message
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot verbosity
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass FabulaElement "Any element that occurs in fabula (e.g. goals, actions, events)"
+	(is-a Concept)
+	(role concrete)
+	(single-slot type
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot individual
+;+		(comment "the Individual that the character represents in the world")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character
+;+		(comment "refers to the entity in the story world that 'has' or 'intends' the fabula element.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot time
+;+		(comment "time at which the fabula element was created")
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Operator "Something that can change the world state"
+	(is-a FabulaElement)
+	(role concrete)
+	(single-slot agens
+;+		(comment "Agens of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot isSuccessful
+;+		(comment "whether the Operator was successful (set by Plot Agent when communicating perceptions)")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot patiens
+;+		(comment "Patiens of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot instrument
+;+		(comment "Instrument of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot target
+;+		(comment "Target of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot starttime
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot endtime
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot prologDescription
+;+		(comment "Prolog description of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass StoryAction "A character action"
+	(is-a Operator)
+	(role concrete))
+
+(defclass StoryEvent "An unintentional event"
+	(is-a Operator)
+	(role concrete))
+
+(defclass FramingOperator "An operator that changes the world but on a meta-level (e.g. \"add a closet to this room\")"
+	(is-a Operator)
+	(role concrete))
+
+(defclass InferenceOperator "An operator that allows characters to draw conclusions to certain situations"
+	(is-a Operator)
+	(role concrete))
+
+(defclass State
+	(is-a FabulaElement)
+	(role concrete)
+	(multislot contentFabula
+		(type SYMBOL)
+;+		(allowed-parents FabulaElement FabulaCausality)
+		(create-accessor read-write))
+	(multislot contentTriple
+;+		(comment "The contents of a fabula element, represented as a list of RDF triples")
+		(type SYMBOL)
+;+		(allowed-parents RDFtriple)
+		(create-accessor read-write)))
+
+(defclass StoryPerception "World changes translated into a perception for a character"
+	(is-a State)
+	(role concrete))
+
+(defclass StoryGoal "Obsolete: state-based representation of a goal"
+	(is-a State)
+	(role concrete))
+
+(defclass StoryInternalElement
+	(is-a State)
+	(role concrete))
+
+(defclass StoryBelief
+	(is-a StoryInternalElement)
+	(role concrete))
+
+(defclass StorySettingElement "A setting element (defining states of the world)"
+	(is-a State)
+	(role concrete))
+
+(defclass StoryOutcome "The outcome of a goal"
+	(is-a FabulaElement)
+	(role concrete)
+	(single-slot resolves
+;+		(comment "Which Goal (referenced by its Individual string) this outcome resolves")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Schema "A schema-based fabula element, defined by its head consisting of a type and optional arguments. The idea of a Schema class is that it completely defines the fabula element due to its parameters.\n- \"class\" slot of schema defined by object class"
+	(is-a FabulaElement)
+	(role concrete)
+	(single-slot prologDescription
+;+		(comment "Prolog description of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass GoalSchema
+	(is-a Schema)
+	(role concrete)
+	(single-slot agens
+;+		(comment "Agens of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot opponent
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot patiens
+;+		(comment "Patiens of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot instrument
+;+		(comment "Instrument of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot target
+;+		(comment "Target of the operator")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass FabulaCausality
+	(is-a Concept)
+	(role concrete)
+	(single-slot causalProperty
+;+		(comment "The property as string (i.e. http://...#psi_causes)")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot objectIndividual
+;+		(comment "the object of the link (as Individual)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot subjectIndividual
+;+		(comment "The subject of the link (a string representing the individual")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass RDFtriple "Represents a fact in the form of an RDF triple\n(NOTE: contains code to pretty print, and to compare triples for equality)"
+	(is-a Concept)
+	(role concrete)
+	(single-slot object
+;+		(comment "the object of a triple (a URI)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot subject
+;+		(comment "the subject of a triple (an URI)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot predicate
+;+		(comment "the predicate of a triple (an URI)")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot truth
+;+		(comment "whether to add, or delete (true = add, false = delete)")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass OperatorStatus "The status of an operator after its execution"
+	(is-a Concept)
+	(role concrete))
+
+(defclass Finished "A finished operator"
+	(is-a OperatorStatus)
+	(role concrete))
+
+(defclass Aborted "An aborted operator"
+	(is-a OperatorStatus)
+	(role concrete))
+
+(defclass Scheduled
+	(is-a OperatorStatus)
+	(role concrete))
+
+(defclass CharacterInfo "CharacterInfo(x)\nx is the individual of the character\n\nInformation about the character:\n- its name in the story world"
+	(is-a Concept)
+	(role concrete)
+	(single-slot individual
+;+		(comment "the Individual that the character represents in the world")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Predicate "The common ancestor for all predicates in an ontology (e.g. FatherOf...)"
+	(is-a USER)
+	(role abstract))
+
+(defclass NextRound "Predicate to indicate that the next round starts"
+	(is-a Predicate)
+	(role concrete)
+	(single-slot roundNumber
+;+		(comment "The round number in the simulation in time steps (PA is responsible)")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass WorldChange "WorldChange(x, y, z)\nA change in the story world"
+	(is-a Predicate)
+	(role concrete)
+	(multislot contentTriple
+;+		(comment "The contents of a fabula element, represented as a list of RDF triples")
+		(type SYMBOL)
+;+		(allowed-parents RDFtriple)
+		(create-accessor read-write))
+	(single-slot cause
+;+		(comment "The thing (e.g. Action) that causes this world change. Empty could be interpreted as \"no cause\", i.e. a setting change.")
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot truth
+;+		(comment "whether to add, or delete (true = add, false = delete)")
+		(type SYMBOL)
+		(allowed-values FALSE TRUE)
+		(default TRUE)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass FabulaElementDeclaration "FabulaElementDeclaration(X):\nX is a fabula element that just 'occurred' in the agent"
+	(is-a Predicate)
+	(role concrete)
+	(single-slot fabulaElement
+		(type SYMBOL)
+;+		(allowed-parents FabulaElement)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass FabulaCausalityDeclaration "FabulaCausalityDeclaration(x):\nx is a fabula causality declaration"
+	(is-a Predicate)
+	(role concrete)
+	(single-slot fabulaCausality
+		(type SYMBOL)
+;+		(allowed-parents FabulaCausality)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass OperatorResult "The result of an operator's execution (e.g. finished, aborted)"
+	(is-a Predicate)
+	(role concrete)
+	(single-slot status
+;+		(comment "The status of the operator")
+		(type SYMBOL)
+;+		(allowed-parents OperatorStatus)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot operator
+		(type SYMBOL)
+;+		(allowed-parents Operator)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass IncomingSetting "An incoming setting"
+	(is-a Predicate)
+	(role concrete)
+	(single-slot setting
+		(type SYMBOL)
+;+		(allowed-parents StorySettingElement)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass GoalProgress
+	(is-a Predicate)
+	(role concrete)
+	(single-slot goalstatus
+;+		(comment "The status of this goal")
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot goal
+;+		(comment "The goal the character was performing")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot character
+;+		(comment "refers to the entity in the story world that 'has' or 'intends' the fabula element.")
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass IncomingPerception "An incoming perception"
+	(is-a Predicate)
+	(role concrete)
+	(single-slot perception
+		(type SYMBOL)
+;+		(allowed-parents StoryPerception)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))

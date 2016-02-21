@@ -1,0 +1,59 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix ps:      <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+
+# Description of the treasure island. It is connected by the sea, and defines a treasure...somewhere.
+# Author: Ivo Swartjes
+# Date:   4 oct 2007
+
+# A treasure island
+:oTreasureIsland_1
+    a   ps:Island ;
+    .
+    
+# The sea    
+:oSea_1
+    a   ps:Sea ;
+    .
+    
+# The sea way from the sea to the beach
+:oShoreWay_1
+    a   swc:SeaWay ;
+    swc:fromGeographicArea :oSea_1 ;
+    swc:toGeographicArea :oBeach_1 ;
+    .
+
+# The sea way from the beach to the sea    
+:oShoreWay_2
+    a   swc:SeaWay ;
+    swc:fromGeographicArea :oBeach_1 ;
+    swc:toGeographicArea :oSea_1 ;
+    .    
+
+# The beach    
+:oBeach_1
+    a   ps:GeographicArea ;
+    swc:partOfGeographicArea :oTreasureIsland_1;
+    .
+
+# A treasure, containing gold    
+:oTreasureChest_1
+    a   ps:TreasureChest ;
+    swc:contains :oGold_1 ;
+    swc:contains :oShovel_1 ;
+    swc:supportedBy :oBeach_1 ;
+    .
+    
+# A shovel
+:oShovel_1
+	a 	ps:Shovel ;
+	.
+
+# The gold    
+:oGold_1
+    a   ps:Gold ;
+    .
+    

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:swc="http://www.owl-ontologies.com/StoryWorldCore.owl#"
+    xmlns:fabula="http://www.owl-ontologies.com/FabulaKnowledge.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/StoryWorldSettings/Pirates_Jasper.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl"/>
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="Deck">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ladder">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GroundWay"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Island">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CanonBall">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Artifact"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Canon">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#SelfConnectedObjectContainer"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Fire">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#Manipulate"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Fire the canon!</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="LitProperties">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#OnOffProperties"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CrowsNest">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Captain">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GoToCrowsNest">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AttainGoal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Hatch">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Door"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Die">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AvoidGoal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Pirate">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Role"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Torch">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#Artifact"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Ship">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FireCanon">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#AttainGoal"/>
+  </owl:Class>
+  <owl:Class rdf:ID="FireProperties">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#InternalAttribute"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Hold">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/StoryWorldCore.owl#GeographicArea"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Load">
+    <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/FabulaKnowledge.owl#PutIn"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasFireProperty">
+    <rdfs:domain rdf:resource="#Canon"/>
+    <rdfs:range rdf:resource="#FireProperties"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasLitProperty">
+    <rdfs:range rdf:resource="#LitProperties"/>
+    <rdfs:domain rdf:resource="#Torch"/>
+  </owl:ObjectProperty>
+  <LitProperties rdf:ID="lit"/>
+  <FireProperties rdf:ID="not_fired"/>
+  <LitProperties rdf:ID="not_lit"/>
+  <FireProperties rdf:ID="fired"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->

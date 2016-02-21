@@ -1,0 +1,93 @@
+% ---------------------------------------------------------------------------------
+% Copyright (C) 2008 Human Media Interaction - University of Twente
+%  
+% This file is part of The Virtual Storyteller.
+% 
+% The Virtual Storyteller is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% The Virtual Storyteller is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with The Virtual Storyteller. If not, see <http://www.gnu.org/licenses/>.
+% ---------------------------------------------------------------------------------
+
+% OpenDoor
+% OpenContainer
+
+% -------------------------------------------------
+% OpenDoor -- opening something that can be opened
+% -------------------------------------------------
+schema([
+    head([
+        type('http://www.owl-ontologies.com/FabulaKnowledge.owl#OpenDoor'),
+        agens(Agens), patiens(Patiens), instrument(Instrument), road(Road)
+        ]),
+    class(action),
+    duration(1),
+    posPreconditions([
+    	 % Agens can do the action, either with his own body or using an instrument that can do the action	
+		(Instrument,	swc:controlledBy,	Agens),
+		(Instrument,	swcr:knowsAction, fabula:'OpenDoor'),
+		
+		% Instrument is located "at" a door that is openable, but closed.
+		(Instrument, swc:supportedBy, CurrLoc),
+		(Road, swc:connectedToGeographicArea, CurrLoc), % CAREFUL, this disables any improvisation actions with effect "fromGeographicArea" or "toGeographicArea".
+		(Road, swc:hasDoor, Patiens),
+		(Patiens, swc:hasOpenCloseProperty, swc:openable),
+		(Patiens, swc:hasOpenCloseProperty, swc:closed)
+	]),
+	negPreconditions([
+	    % The door must not be open
+        (Patiens, swc:hasOpenCloseProperty, swc:open)
+	]),
+	posEffects([
+	    % The door is now open
+	    (Patiens, swc:hasOpenCloseProperty, swc:open)	    
+	]),
+	negEffects([
+	    % The door is no longer closed
+	    (Patiens, swc:hasOpenCloseProperty, swc:closed)
+	])
+]).
+
+% ------------------------------------
+% OpenContainer -- opening a container
+% ------------------------------------
+schema([
+    head([
+        type('http://www.owl-ontologies.com/FabulaKnowledge.owl#OpenContainer'),
+        agens(Agens), patiens(Patiens), instrument(Instrument)
+        ]),
+    class(action),
+    duration(1),
+    posPreconditions([
+    	 % Agens can do the action, either with his own body or using an instrument that can do the action	
+		(Instrument,	swc:controlledBy,	Agens),
+		(Instrument,	swcr:knowsAction, fabula:'OpenContainer'),
+		
+		% Instrument is located "at" a door that is openable, but closed.
+		(Instrument, swc:supportedBy, CurrLoc),
+		(Patiens, swc:supportedBy, CurrLoc),
+		(Patiens, owlr:typeOrSubType, swc:'Container'),
+		(Patiens, swc:hasOpenCloseProperty, swc:openable),
+		(Patiens, swc:hasOpenCloseProperty, swc:closed)
+	]),
+	negPreconditions([
+	    % The container must not be open
+        (Patiens, swc:hasOpenCloseProperty, swc:open)
+	]),
+	posEffects([
+	    % The container is now open
+	    (Patiens, swc:hasOpenCloseProperty, swc:open)	    
+	]),
+	negEffects([
+	    % The container is no longer closed
+	    (Patiens, swc:hasOpenCloseProperty, swc:closed)
+	])
+]).

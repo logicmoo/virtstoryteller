@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns="http://www.owl-ontologies.com/StoryWorldInstances.owl#"
+    xmlns:swc="http://www.owl-ontologies.com/StoryWorldCore.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:swst="http://www.owl-ontologies.com/StoryWorldSettingTemplates.owl#"
+    xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xml:base="http://www.owl-ontologies.com/StoryWorldInstances.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.owl-ontologies.com/StoryWorldSettingTemplates.owl"/>
+  </owl:Ontology>
+  <rdf:Property rdf:about="http://www.owl-ontologies.com/StoryWorldCore.owl#isPlantEater"/>
+  <rdf:Property rdf:about="http://www.owl-ontologies.com/StoryWorldCore.owl#isMeatEater"/>
+  <swc:FruitOrVegetable rdf:ID="Apple">
+    <swc:weight rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >2</swc:weight>
+    <swc:size rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >2</swc:size>
+    <swc:supportedBy>
+      <swc:GeographicArea rdf:ID="House">
+        <swc:isPartOfGeographicArea>
+          <swc:GeographicArea rdf:ID="Grasslands">
+            <swc:isPartOfGeographicArea>
+              <swc:GeographicArea rdf:ID="StoryWorld">
+                <swc:hasGeographicArea>
+                  <swc:GeographicArea rdf:ID="Forest">
+                    <swc:supports>
+                      <swc:Humanoid rdf:ID="Plop">
+                        <swc:supportedBy rdf:resource="#Forest"/>
+                        <swc:hasActions rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Open</swc:hasActions>
+                        <swc:isPlantEater rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >true</swc:isPlantEater>
+                        <swc:transparent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >false</swc:transparent>
+                        <swc:hasActions rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Run</swc:hasActions>
+                        <swc:stamina rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >30</swc:stamina>
+                        <swc:maxStamina rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >50</swc:maxStamina>
+                        <swc:hasActions rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Walk</swc:hasActions>
+                        <swc:strength rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >10</swc:strength>
+                        <swc:maxHealth rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >50</swc:maxHealth>
+                        <swc:isCarnivore rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >false</swc:isCarnivore>
+                        <swc:hasActions rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Close</swc:hasActions>
+                        <swc:size rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >5</swc:size>
+                        <swc:isHerbivore rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >true</swc:isHerbivore>
+                        <swc:health rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >40</swc:health>
+                        <swc:isMeatEater rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >false</swc:isMeatEater>
+                        <swc:weight rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+                        >10</swc:weight>
+                      </swc:Humanoid>
+                    </swc:supports>
+                    <swc:isPartOfGeographicArea rdf:resource="#StoryWorld"/>
+                    <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                    >false</swc:interior>
+                    <swc:isLowestLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                    >true</swc:isLowestLevel>
+                  </swc:GeographicArea>
+                </swc:hasGeographicArea>
+                <swc:hasGeographicArea rdf:resource="#Grasslands"/>
+                <swc:isLowestLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                >false</swc:isLowestLevel>
+                <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                >false</swc:interior>
+              </swc:GeographicArea>
+            </swc:isPartOfGeographicArea>
+            <swc:hasGeographicArea>
+              <swc:GeographicArea rdf:ID="Garden">
+                <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                >false</swc:interior>
+                <swc:isLowestLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                >true</swc:isLowestLevel>
+                <swc:isPartOfGeographicArea rdf:resource="#Grasslands"/>
+              </swc:GeographicArea>
+            </swc:hasGeographicArea>
+            <swc:isLowestLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</swc:isLowestLevel>
+            <swc:hasGeographicArea rdf:resource="#House"/>
+            <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</swc:interior>
+          </swc:GeographicArea>
+        </swc:isPartOfGeographicArea>
+        <swc:isLowestLevel rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</swc:isLowestLevel>
+        <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</swc:interior>
+      </swc:GeographicArea>
+    </swc:supportedBy>
+    <swc:containsSubstance>
+      <swc:Vitamin rdf:ID="AppleVitamin">
+        <swc:potency rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >5</swc:potency>
+      </swc:Vitamin>
+    </swc:containsSubstance>
+  </swc:FruitOrVegetable>
+  <swc:OpenCloseProperties rdf:ID="HouseDoorOpenCloseProperties">
+    <swc:isOpen rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swc:isOpen>
+    <swc:isOpenable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swc:isOpenable>
+  </swc:OpenCloseProperties>
+  <swc:GroundWay rdf:ID="ForestPath">
+    <swc:toGeographicArea rdf:resource="#Garden"/>
+    <swc:length rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >10</swc:length>
+    <swc:width rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >10</swc:width>
+    <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</swc:interior>
+    <swc:fromGeographicArea rdf:resource="#Forest"/>
+  </swc:GroundWay>
+  <swc:GroundWay rdf:ID="HouseDoorway">
+    <swc:width rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >10</swc:width>
+    <swc:toGeographicArea rdf:resource="#House"/>
+    <swc:length rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >1</swc:length>
+    <swc:doorObstacle>
+      <swc:Door rdf:ID="HouseDoor">
+        <swc:transparent rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >false</swc:transparent>
+        <swc:hasOpenCloseProperty rdf:resource="#HouseDoorOpenCloseProperties"/>
+        <swc:strength rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >5</swc:strength>
+      </swc:Door>
+    </swc:doorObstacle>
+    <swc:fromGeographicArea rdf:resource="#Garden"/>
+    <swc:interior rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</swc:interior>
+  </swc:GroundWay>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.2 beta, Build 286)  http://protege.stanford.edu -->

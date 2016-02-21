@@ -1,0 +1,23 @@
+@prefix swc:     <http://www.owl-ontologies.com/StoryWorldCore.owl#> .
+@prefix fabula:  <http://www.owl-ontologies.com/FabulaKnowledge.owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix ps:      <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+@prefix :        <http://www.owl-ontologies.com/StoryWorldSettings/Pirates#> .
+
+# Description of Guybrush. 
+# Author: Pjotter Tommassen
+# Date:   3 January 2008
+
+# A pirate: Guybrush
+:Guybrush
+    a   ps:Pirate ;
+    a   swc:Human ;
+    a   fabula:Character ;
+    swc:hasAction fabula:Ambulate, fabula:Transfer, fabula:Manipulate ;
+    #swc:controlledBy :Guybrush ;
+    
+    swc:supportedBy ps:oBeach_1 ;
+    .
+    
